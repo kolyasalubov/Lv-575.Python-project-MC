@@ -17,16 +17,58 @@ class AlgoInterface(ABC):
         pass
 
 
-class task_NAME(AlgoInterface):
+class task_88a(AlgoInterface):
 
     def execute(self) -> None:
-        # ToDo
+        n = int(input("Enter number n:"))
+        if str(n * n).find("3") != -1:
+            print("YES")
+        else:
+            print("NO")
         return None
 
     @staticmethod
     def name() -> str:
-        # Todo
-        return "NAME"
+        return "88a"
+
+
+class task_88b(AlgoInterface):
+
+    def execute(self) -> None:
+        n = input("Enter number n:")
+        print(n[::-1])
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88b"
+
+class task_322(AlgoInterface):
+
+    def execute(self) -> None:
+        def divisor(number):
+            sum_of_divisors = 0
+            for i in range(1, math.ceil(math.sqrt(number))):
+                if i * i == number:
+                    sum += i
+                    break
+                if number % i == 0:
+                    sum_of_divisors += i
+                    sum_of_divisors += number / i
+            return sum_of_divisors
+
+        maximal = 0
+        number_with_maximal_sum = 0
+        for i in range(1, 10001):
+            if divisor(i) > maximal:
+                maximal = divisor(i)
+                number_with_maximal_sum = i
+        print("Number with maximal sum of divisors is ", number_with_maximal_sum)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "322"
 
 
 if __name__ == "__main__":
