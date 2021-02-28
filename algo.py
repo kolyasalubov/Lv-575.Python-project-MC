@@ -17,16 +17,69 @@ class AlgoInterface(ABC):
         pass
 
 
-class task_NAME(AlgoInterface):
+class task_178_d(AlgoInterface):
 
     def execute(self) -> None:
-        # ToDo
+        print("-" * 60)
+        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
+        print("-" * 60)
+        print("Enter sequence of integer numbers by ' ':")
+        sequence = [int(i) for i in input().split(' ')]
+        result = 0
+        for i in range(1, len(sequence) - 1):
+            if sequence[i] < (sequence[i - 1] + sequence[i + 1]) / 2:
+                result += 1
+        print("Result:", result)
         return None
 
     @staticmethod
     def name() -> str:
-        # Todo
-        return "NAME"
+        return "178 d)"
+
+
+class task_178_e(AlgoInterface):
+
+    def execute(self) -> None:
+        import math
+        print("-" * 60)
+        print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
+        print("-" * 60)
+        print("Enter sequence of integer numbers by ' ':")
+        sequence = [int(i) for i in input().split(' ')]
+        result = 0
+        for i in range(len(sequence)):
+            if 2 ** i < sequence[i] and sequence[i] > math.factorial(i):
+                result += 1
+        print("Result:", result)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "178 e)"
+
+
+class task_555(AlgoInterface):
+
+    def execute(self) -> None:
+        from math import factorial
+        print("-" * 60)
+        print("Task - build first n rows of Pascal's triangle")
+        print("-" * 60)
+        print("Enter natural number:", end=" ")
+        n = int(input())
+        for i in range(n):
+            for j in range(n - i + 1):
+                print(end=" ")
+
+            for j in range(i + 1):
+                # C**k_n = n!/(k!*(n-r)!)
+                print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
+            print()
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "555"
 
 
 if __name__ == "__main__":
