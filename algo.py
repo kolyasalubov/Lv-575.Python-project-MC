@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
-from math import sqrt, gcd, ceil
-from math import floor, log, ceil, sqrt
-
+from math import sqrt, gcd, floor, log, ceil
 
 class AlgoInterface(ABC):
     # interface for algo tasks
@@ -17,6 +15,7 @@ class AlgoInterface(ABC):
         # return name of task
         # user representation
         pass
+
 
 class task_178_d(AlgoInterface):
     def execute(self) -> None:
@@ -36,6 +35,7 @@ class task_178_d(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "178 d)"
+
 
 class task_88a(AlgoInterface):
 
@@ -72,6 +72,7 @@ class task_178b(AlgoInterface):
     def name() -> str:
         return "178 б)"
 
+
 class task_107(AlgoInterface):
 
     def execute(self) -> None:
@@ -92,13 +93,11 @@ class task_243a(AlgoInterface):
     def execute(self) -> None:
         n = int(input("Enter n: "))
 
-
         sq = sqrt(n)
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
             x = sqrt((sq + y) * (sq - y))
-
             if int(x) == x:
                 if int(x) >= y:
                     print(int(x), y)
@@ -137,6 +136,21 @@ class task_178c(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "178 в)"
+
+
+class task_86a(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' input natural number N \n
+        find amount of its digits '''
+        number = int(input("Eneter number N: "))
+        # number must be natural
+        print(len(str(number)) if number > 0 else "Number is not natural")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "86 a)"
 
 
 class task_554(AlgoInterface):
@@ -178,11 +192,13 @@ class task_87(AlgoInterface):
                 if len(string_n) > quantity:
                     for digit in list(string_n[:len(string_n) - int(quantity) - 1:-1]):
                         sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                    print("The sum of the last {} digits of number {} is".format(
+                        quantity, string_n), sum)
                 elif len(string_n) == quantity:
                     for digit in string_n:
                         sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                    print("The sum of the last {} digits of number {} is".format(
+                        quantity, string_n), sum)
                 else:
                     print("m must be less than number of digits n")
             else:
@@ -197,6 +213,60 @@ class task_87(AlgoInterface):
         return "87"
 
 
+class task_86b(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' input natural number N \n
+         find sum of its digits '''
+        number = int(input("Eneter number N: "))
+        number_str = str(number)
+        sum_ = sum(map(int, list(number_str)))
+        print(sum_)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "86 б)"
+
+
+class task_330(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' input natural number N \n
+            find all "ideal" numbers that is less than N \n
+
+            "ideal" - number the sum of witch deviders(without the number itself)
+            is equal to the number'''
+
+        number = int(input("Enter number N: "))
+
+        def get_deviders(numb):
+            # complexity O(sqrt(numb))
+
+            # using set to avoid duplicates of deviders
+            deviders = {1}
+            # starting from 2 because 1 is always devider of natural number
+            for i in range(2, int(numb**0.5) + 2):
+                if numb % i == 0:
+                    deviders.add(numb/i)
+                    deviders.add(i)
+            return deviders
+
+        # general complixity of print all "ideal" numbers till number N
+        # O(n*sqrt(n)) <==> O(n^(3/2))
+        for i in range(2, number):
+            if sum(get_deviders(i)) == i:
+                print(i)
+
+        # alternative form (cons: print all values after forloop ends)
+        # print(*(i for i in range(2, number)  if sum(get_deviders(i)) == i ))
+
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "330"
+
 class task_108(AlgoInterface):
 
     def execute(self) -> None:
@@ -209,7 +279,6 @@ class task_108(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "108"
-
 
 class task_226(AlgoInterface):
 
@@ -270,8 +339,6 @@ class task_178_e(AlgoInterface):
     def name() -> str:
         return "178 e)"
 
-
-
 class task_559(AlgoInterface):
 
     def execute(self) -> None:
@@ -308,7 +375,6 @@ class task_559(AlgoInterface):
     def name() -> str:
         return "559"
 
-
 class task_243b(AlgoInterface):
 
     def execute(self) -> None:
@@ -339,7 +405,6 @@ class task_243b(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "243 б)"
-
 
 class task_555(AlgoInterface):
 
@@ -448,7 +513,7 @@ class task_332(AlgoInterface):
         res = t ** 2
         tmp_res += res
         print('t = ' + str(t))
-        #print(tmp_res)
+        # print(tmp_res)
         return None
 
     @staticmethod
@@ -547,13 +612,10 @@ class task_322(AlgoInterface):
         return "322"
 
 
-
-
-
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = AlgoInterface.__subclasses__()
+    tasks = sorted(AlgoInterface.__subclasses__(), key=lambda x: x.name())
 
     # Console menu
     print("Choose task from:")
