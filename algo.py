@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
+from math import floor, log, ceil, sqrt
 
 
 class AlgoInterface(ABC):
@@ -16,6 +17,18 @@ class AlgoInterface(ABC):
         # user representation
         pass
 
+
+class task_108 (AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input('Input: '))
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "108"
 
 class task_87(AlgoInterface):
 
@@ -116,8 +129,56 @@ class task_559(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-        # Todo
-        return "559"
+         return "559"
+
+
+class task_331a (AlgoInterface):
+
+    def execute(self) -> None:
+
+        def check(number):
+            for i in range(1, int(ceil(sqrt(number)))):
+                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+                    third = number - i ** 2 - j ** 2
+                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+                        return True
+            return False
+
+        n = int(input('Input: '))
+        if not check(n):
+            print("It`s impossible!")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "331 а)"
+
+
+class task_331b(AlgoInterface):
+
+    def execute(self) -> None:
+
+        def check(number):
+            exist = False
+            for i in range(1, int(ceil(sqrt(number)))):
+                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+                    third = number - i ** 2 - j ** 2
+                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                        exist = True
+                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+            if not exist:
+                return False
+            else:
+                return True
+
+        n = int(input('Input: '))
+        if not check(n):
+            print("It`s impossible!")
+
+    @staticmethod
+    def name() -> str:
+        return "331 б)"
 
 
 if __name__ == "__main__":
