@@ -19,7 +19,6 @@ class AlgoInterface(ABC):
         pass
 
 class task_178_d(AlgoInterface):
-
     def execute(self) -> None:
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
@@ -37,6 +36,20 @@ class task_178_d(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "178 d)"
+
+class task_88a(AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input("Enter number n:"))
+        if str(n * n).find("3") != -1:
+            print("YES")
+        else:
+            print("NO")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88a"
 
 
 class task_178b(AlgoInterface):
@@ -488,11 +501,53 @@ class task_331b(AlgoInterface):
         if not check(n):
             print("It`s impossible!")
 
+    @staticmethod
+    def name() -> str:
+        return "331 б)"
+
+
+
+
+class task_88b(AlgoInterface):
+
+    def execute(self) -> None:
+        n = input("Enter number n:")
+        print(n[::-1])
         return None
 
     @staticmethod
     def name() -> str:
-        return "331 б)"
+        return "88b"
+
+class task_322(AlgoInterface):
+
+    def execute(self) -> None:
+        def divisor(number):
+            sum_of_divisors = 0
+            for i in range(1, ceil(sqrt(number))):
+                if i * i == number:
+                    sum += i
+                    break
+                if number % i == 0:
+                    sum_of_divisors += i
+                    sum_of_divisors += number / i
+            return sum_of_divisors
+
+        maximal = 0
+        number_with_maximal_sum = 0
+        for i in range(1, 10001):
+            if divisor(i) > maximal:
+                maximal = divisor(i)
+                number_with_maximal_sum = i
+        print("Number with maximal sum of divisors is ", number_with_maximal_sum)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "322"
+
+
+
 
 
 if __name__ == "__main__":
