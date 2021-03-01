@@ -18,6 +18,27 @@ class AlgoInterface(ABC):
         # user representation
         pass
 
+class task_178_d(AlgoInterface):
+
+    def execute(self) -> None:
+        print("-" * 60)
+        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
+        print("-" * 60)
+        print("Enter sequence of integer numbers by ' ':")
+        sequence = [int(i) for i in input().split(' ')]
+        result = 0
+        for i in range(1, len(sequence) - 1):
+            if sequence[i] < (sequence[i - 1] + sequence[i + 1]) / 2:
+                result += 1
+        print("Result:", result)
+
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "178 d)"
+
+
 
 class task_178b(AlgoInterface):
 
@@ -87,6 +108,7 @@ class task_554(AlgoInterface):
     def name() -> str:
             return "554"
 
+
 class task_87(AlgoInterface):
 
     def execute(self) -> None:
@@ -109,6 +131,7 @@ class task_87(AlgoInterface):
                 print("You've entered not natural number")
         except ValueError:
             print("Please enter the second value")
+
         return None
 
     @staticmethod
@@ -116,13 +139,14 @@ class task_87(AlgoInterface):
         return "87"
 
 
-class task_108 (AlgoInterface):
+class task_108(AlgoInterface):
 
     def execute(self) -> None:
         n = int(input('Input: '))
         print('r = ', floor(log(n, 2)) + 1)
         print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
-        return  None
+
+        return None
 
     @staticmethod
     def name() -> str:
@@ -157,12 +181,37 @@ class task_226(AlgoInterface):
                 print("You've entered not natural number")
         except ValueError:
             print("Please enter the second value")
+
         return None
+
 
     @staticmethod
     def name() -> str:
     # Todo
         return "226"
+
+
+class task_178_e(AlgoInterface):
+
+    def execute(self) -> None:
+        import math
+        print("-" * 60)
+        print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
+        print("-" * 60)
+        print("Enter sequence of integer numbers by ' ':")
+        sequence = [int(i) for i in input().split(' ')]
+        result = 0
+        for i in range(len(sequence)):
+            if 2 ** i < sequence[i] and sequence[i] > math.factorial(i):
+                result += 1
+        print("Result:", result)
+
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "178 e)"
+
 
 
 class task_559(AlgoInterface):
@@ -194,11 +243,38 @@ class task_559(AlgoInterface):
             print("Mersenne primes less than {}:".format(n), sorted(result))
         else:
             print("You've entered not natural number")
+
         return None
 
     @staticmethod
     def name() -> str:
         return "559"
+
+
+class task_555(AlgoInterface):
+
+    def execute(self) -> None:
+        from math import factorial
+        print("-" * 60)
+        print("Task - build first n rows of Pascal's triangle")
+        print("-" * 60)
+        print("Enter natural number:", end=" ")
+        n = int(input())
+        for i in range(n):
+            for j in range(n - i + 1):
+                print(end=" ")
+
+            for j in range(i + 1):
+                # C**k_n = n!/(k!*(n-r)!)
+                print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
+            print()
+
+        return None
+
+    @staticmethod
+    def name() -> str:
+        # Todo
+        return "555"
 
 
 class task_88c(AlgoInterface):
@@ -291,7 +367,6 @@ class task_332(AlgoInterface):
         return "332"
 
 
-
 class task_331a (AlgoInterface):
 
     def execute(self) -> None:
@@ -308,6 +383,7 @@ class task_331a (AlgoInterface):
         n = int(input('Input: '))
         if not check(n):
             print("It`s impossible!")
+
         return None
 
     @staticmethod
@@ -336,9 +412,12 @@ class task_331b(AlgoInterface):
         if not check(n):
             print("It`s impossible!")
 
+        return None
+
     @staticmethod
     def name() -> str:
         return "331 б)"
+
 
 
 if __name__ == "__main__":
