@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, ceil
+from math import floor, log, ceil, sqrt
 
 
 class AlgoInterface(ABC):
@@ -84,7 +85,260 @@ class task_554(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-        return "554"
+            return "554"
+
+class task_87(AlgoInterface):
+
+    def execute(self) -> None:
+        print("Enter n and m:")
+        try:
+            string_n, m = input().split()
+            if string_n.isdigit() and m.isdigit():
+                sum, quantity = 0, int(m)
+                if len(string_n) > quantity:
+                    for digit in list(string_n[:len(string_n) - int(quantity) - 1:-1]):
+                        sum += int(digit)
+                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                elif len(string_n) == quantity:
+                    for digit in string_n:
+                        sum += int(digit)
+                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                else:
+                    print("m must be less than number of digits n")
+            else:
+                print("You've entered not natural number")
+        except ValueError:
+            print("Please enter the second value")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "87"
+
+
+class task_108 (AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input('Input: '))
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        return  None
+
+    @staticmethod
+    def name() -> str:
+        return "108"
+
+
+class task_226(AlgoInterface):
+
+    def execute(self) -> None:
+        import math
+
+        def lcm(a, b):
+            return (a * b) // math.gcd(a, b)
+
+        result = []
+        print("Enter n and m:")
+        try:
+            n, m = input().split()
+            if n.isdigit() and m.isdigit():
+                n, m = int(n), int(m)
+                lcm = lcm(n, m)
+                for i in range(lcm, n * m, lcm):
+                    result.append(i)
+                if not len(result):
+                    print("There are no such values")
+                else:
+                    print("All common multiples less then {}: ".format(n * m), end='')
+                    for el in result:
+                        print(el, end=', ')
+                    print()
+            else:
+                print("You've entered not natural number")
+        except ValueError:
+            print("Please enter the second value")
+        return None
+
+    @staticmethod
+    def name() -> str:
+    # Todo
+        return "226"
+
+
+class task_559(AlgoInterface):
+
+    def execute(self) -> None:
+
+        import math
+
+        # Eratosthene's sieve to get primes
+        def eratosthenes(n):
+            sieve = list(range(n + 1))
+            sieve[1] = 0
+            for i in sieve:
+                if i > 1:
+                    for j in range(i + i, len(sieve), i):
+                        sieve[j] = 0
+            sieve_without_nulls = set([x for x in sieve if x != 0])
+            return set(sieve_without_nulls)
+
+        # Mersenne numbers
+        def mersen_numbers(n):
+            return set([2 ** i - 1 for i in range(2, int(math.log(n + 1, 2)) + 1)])
+
+        print("Enter n:")
+        n = input()
+        if n.isdigit():
+            n = int(n)
+            result = list(eratosthenes(n).intersection(mersen_numbers(n)))  # Mersenne primes
+            print("Mersenne primes less than {}:".format(n), sorted(result))
+        else:
+            print("You've entered not natural number")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "559"
+
+
+class task_88c(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' switches first and last digit '''
+        n = input()
+        print(n[-1] + n[1:-1] + n[0])
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88в"
+
+
+class task_88d(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' inserts digit 1 on the start and last positions '''
+        n = input()
+        print('1' + n + '1')
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88г"
+
+class task_332(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' returns coeficients of distribution of a natural number into 4 squares '''
+        n = int(input())
+        res, tmp_res = 0, 0
+        x, y, z, t = 0, 0, 0, 0
+        while res < n :
+            res = x ** 2
+            x += 1
+        if x == 0 : x = 0
+        elif x == 2 : x = 1
+        else : x -= 2
+        res = x ** 2
+        print('x = ' + str(x))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n :
+            while res < n :
+                res = tmp_res + y ** 2
+                y += 1
+        if y == 0 : y = 0
+        elif y == 2 : y = 1
+        else : y -= 2
+        res = y ** 2
+        print('y = ' + str(y))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n:
+            while res < n :
+                res = tmp_res + z ** 2
+                z += 1
+
+        if z == 0 : z = 0
+        elif z == 2 : z = 1
+        else : z -= 2
+        res = z ** 2
+        print('z = ' + str(z))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n :
+            while res < n :
+                res = tmp_res + t ** 2
+                t += 1
+
+        if t == 0 : t = 0
+        elif t == 2 : t = 1
+        else : t -= 2
+        res = t ** 2
+        tmp_res += res
+        print('t = ' + str(t))
+        #print(tmp_res)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "332"
+
+
+
+class task_331a (AlgoInterface):
+
+    def execute(self) -> None:
+
+        def check(number):
+            for i in range(1, int(ceil(sqrt(number)))):
+                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+                    third = number - i ** 2 - j ** 2
+                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+                        return True
+            return False
+
+        n = int(input('Input: '))
+        if not check(n):
+            print("It`s impossible!")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "331 а)"
+
+
+class task_331b(AlgoInterface):
+
+    def execute(self) -> None:
+
+        def check(number):
+            exist = False
+            for i in range(1, int(ceil(sqrt(number)))):
+                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+                    third = number - i ** 2 - j ** 2
+                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                        exist = True
+                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+            if not exist:
+                return False
+            else:
+                return True
+
+        n = int(input('Input: '))
+        if not check(n):
+            print("It`s impossible!")
+
+    @staticmethod
+    def name() -> str:
+        return "331 б)"
 
 
 if __name__ == "__main__":
