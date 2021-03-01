@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
+from math import sqrt, gcd, ceil
 from math import floor, log, ceil, sqrt
 
 
@@ -16,8 +17,6 @@ class AlgoInterface(ABC):
         # return name of task
         # user representation
         pass
-
-
 
 class task_178_d(AlgoInterface):
 
@@ -40,18 +39,75 @@ class task_178_d(AlgoInterface):
         return "178 d)"
 
 
-class task_108 (AlgoInterface):
+
+class task_178b(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Input: '))
-        print('r = ', floor(log(n, 2)) + 1)
-        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        n = int(input('Enter the size of sequence:'))
+        print('Enter the elements of sequence:')
+        sequence = [int(input()) for i in range(n)]
 
+        counter = 0
+        for element in sequence:
+            if element % 3 == 0 and element % 5 != 0:
+                counter += 1
+
+        print('Result:', counter)
         return None
 
     @staticmethod
     def name() -> str:
-        return "108"
+        return "178 б)"
+
+
+class task_178c(AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input('Enter the size of array:'))
+        print('Enter the elements of sequence:')
+        sequence = [int(input()) for i in range(n)]
+
+        counter = 0
+        for element in sequence:
+            root = sqrt(element)
+            if root ** 2 == element and root % 2 == 0:
+                counter += 1
+
+        print('Result:', counter)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "178 в)"
+
+
+class task_554(AlgoInterface):
+
+    def execute(self) -> None:
+        """
+        Finds triples using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        num = int(input('Enter the number:')) + 1
+        for m in range(2, ceil(sqrt(num))):
+            for n in range(1, m):
+                # m and n are coprime and not both odd
+                if gcd(m, n) == 1 and (m - n) % 2 and (m ** 2 + n ** 2) < num:
+                    a = m ** 2 - n ** 2
+                    b = 2 * m * n
+                    c = m ** 2 + n ** 2
+                    if a > b:
+                        a, b = b, a
+                    k = 1
+                    while k * c < num:
+                        print(k * a, k * b, k * c)
+                        k += 1
+        return None
+
+    @staticmethod
+    def name() -> str:
+            return "554"
+
 
 class task_87(AlgoInterface):
 
@@ -80,8 +136,21 @@ class task_87(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-        # Todo
         return "87"
+
+
+class task_108(AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input('Input: '))
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "108"
 
 
 class task_226(AlgoInterface):
@@ -118,7 +187,7 @@ class task_226(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-        # Todo
+    # Todo
         return "226"
 
 
@@ -182,7 +251,6 @@ class task_559(AlgoInterface):
         return "559"
 
 
-
 class task_555(AlgoInterface):
 
     def execute(self) -> None:
@@ -207,6 +275,97 @@ class task_555(AlgoInterface):
     def name() -> str:
         # Todo
         return "555"
+
+
+class task_88c(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' switches first and last digit '''
+        n = input()
+        print(n[-1] + n[1:-1] + n[0])
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88в"
+
+
+class task_88d(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' inserts digit 1 on the start and last positions '''
+        n = input()
+        print('1' + n + '1')
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88г"
+
+class task_332(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' returns coeficients of distribution of a natural number into 4 squares '''
+        n = int(input())
+        res, tmp_res = 0, 0
+        x, y, z, t = 0, 0, 0, 0
+        while res < n :
+            res = x ** 2
+            x += 1
+        if x == 0 : x = 0
+        elif x == 2 : x = 1
+        else : x -= 2
+        res = x ** 2
+        print('x = ' + str(x))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n :
+            while res < n :
+                res = tmp_res + y ** 2
+                y += 1
+        if y == 0 : y = 0
+        elif y == 2 : y = 1
+        else : y -= 2
+        res = y ** 2
+        print('y = ' + str(y))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n:
+            while res < n :
+                res = tmp_res + z ** 2
+                z += 1
+
+        if z == 0 : z = 0
+        elif z == 2 : z = 1
+        else : z -= 2
+        res = z ** 2
+        print('z = ' + str(z))
+        tmp_res += res
+        # print(tmp_res)
+        # print()
+
+        if tmp_res != n :
+            while res < n :
+                res = tmp_res + t ** 2
+                t += 1
+
+        if t == 0 : t = 0
+        elif t == 2 : t = 1
+        else : t -= 2
+        res = t ** 2
+        tmp_res += res
+        print('t = ' + str(t))
+        #print(tmp_res)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "332"
+
 
 class task_331a (AlgoInterface):
 
