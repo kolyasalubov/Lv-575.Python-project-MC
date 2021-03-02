@@ -22,9 +22,17 @@ class AlgoInterface(ABC):
 class task_178b(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of sequence:'))
+        try:
+            n = int(input('Enter the size of sequence:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -42,9 +50,17 @@ class task_178b(AlgoInterface):
 class task_178c(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of array:'))
+        try:
+            n = int(input('Enter the size of array:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -62,12 +78,7 @@ class task_178c(AlgoInterface):
 
 class task_554(AlgoInterface):
 
-    def execute(self) -> None:
-        """
-        Finds triples using Euclid's formula
-        (Modified to print not only primitive triples)
-        """
-        num = int(input('Enter the number:')) + 1
+    def pythagorean(self, num):
         for m in range(2, ceil(sqrt(num))):
             for n in range(1, m):
                 # m and n are coprime and not both odd
@@ -81,6 +92,19 @@ class task_554(AlgoInterface):
                     while k * c < num:
                         print(k * a, k * b, k * c)
                         k += 1
+        return None
+
+    def execute(self) -> None:
+        """
+        Finds triples using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        try:
+            num = int(input('Enter the number:')) + 1
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        self.pythagorean(num)
         return None
 
     @staticmethod
