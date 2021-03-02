@@ -268,12 +268,15 @@ class task_330(AlgoInterface):
         return "330"
 
 class task_108(AlgoInterface):
-
+    #input number n, we should find the least number, that is bigger than n and is degree of number 2
+    #complexity - O(1)
     def execute(self) -> None:
-        n = int(input('Input: '))
-        print('r = ', floor(log(n, 2)) + 1)
-        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
-
+        try:
+            n = int(input('Input natural number: '))
+            print('r = ', floor(log(n, 2)) + 1)
+            print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        except ValueError:
+            print("Wrong input!")
         return None
 
     @staticmethod
@@ -521,23 +524,30 @@ class task_332(AlgoInterface):
         return "332"
 
 
+#for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
+#complexity ~ O(n)
+def check(number, task):
+    exist = False
+    for i in range(1, int(ceil(sqrt(number)))):
+        for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+            third = number - i ** 2 - j ** 2
+            if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+                exist = True
+                if task == "331 a":
+                    return True
+    return exist
+
+
 class task_331a (AlgoInterface):
 
     def execute(self) -> None:
-
-        def check(number):
-            for i in range(1, int(ceil(sqrt(number)))):
-                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
-                    third = number - i ** 2 - j ** 2
-                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-                        return True
-            return False
-
-        n = int(input('Input: '))
-        if not check(n):
-            print("It`s impossible!")
-
+        try:
+            n = int(input('Input: '))
+            if not check(n, "331 a"):
+                print("It`s impossible!")
+        except ValueError:
+            print("Wrong input!")
         return None
 
     @staticmethod
@@ -548,23 +558,13 @@ class task_331a (AlgoInterface):
 class task_331b(AlgoInterface):
 
     def execute(self) -> None:
-
-        def check(number):
-            exist = False
-            for i in range(1, int(ceil(sqrt(number)))):
-                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
-                    third = number - i ** 2 - j ** 2
-                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                        exist = True
-                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-            if not exist:
-                return False
-            else:
-                return True
-
-        n = int(input('Input: '))
-        if not check(n):
-            print("It`s impossible!")
+        try:
+            n = int(input('Input: '))
+            if not check(n, "331 b"):
+                print("It`s impossible!")
+        except ValueError:
+            print("Wrong input!")
+        return None
 
     @staticmethod
     def name() -> str:
