@@ -86,6 +86,11 @@ class task_178b(AlgoInterface):
 class task_107(AlgoInterface):
 
     def execute(self) -> None:
+        """
+        Return  the largest integer k, at which 4 ^k < m
+
+        :return: None
+        """
         try:
             m = int(input("Enter m: "))
         except ValueError:
@@ -112,6 +117,12 @@ class task_243a(AlgoInterface):
 
     @staticmethod
     def check_squares_existence(n: int) -> tuple:
+        """
+        Check if there are two numbers (x, y) that x ^2 + y ^2 = n
+
+        :param n: int
+        :return: tuple
+        """
         sq = sqrt(n)
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
@@ -128,6 +139,11 @@ class task_243a(AlgoInterface):
         return ()
 
     def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+
+        :return: None
+        """
         try:
             n = int(input("Enter n: "))
         except ValueError:
@@ -431,6 +447,13 @@ class task_243b(AlgoInterface):
 
     @staticmethod
     def find_all_squares(n: int) -> List[Tuple[int, int]]:
+        """
+        Find all of the two numbers (x, y) that x ^2 + y ^2 = n
+
+        :param n: int
+        :return:  list[tuple[int, int]]
+        """
+
         sq = sqrt(n)
         squares_numbers = []
 
@@ -449,6 +472,11 @@ class task_243b(AlgoInterface):
         return squares_numbers
 
     def execute(self) -> None:
+        """
+            Processes user behavior and displays results
+
+            :return: None
+        """
         try:
             n = int(input("Enter n: "))
         except ValueError:
