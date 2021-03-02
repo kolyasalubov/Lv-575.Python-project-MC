@@ -422,26 +422,20 @@ class task_243b(AlgoInterface):
         return squares_numbers
 
     def execute(self) -> None:
-        n = int(input("Enter n: "))
+        try:
+            n = int(input("Enter n: "))
+        except ValueError:
+            raise ValueError("M must be integer")
 
-        is_numbers = False
-        sq = sqrt(n)
-        for y in range(1, int(sqrt(n)) + 1):
-            # n = x^2 + y^2
-            # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
-            x = sqrt((sq + y) * (sq - y))
+        if n < 0:
+            raise ValueError("M can`t be negative")
 
-            if int(x) == x:
-                if int(x) >= y:
-                    print(int(x), y)
-                    is_numbers = True
+        all_squares = self.find_all_squares(n)
 
-            elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
-                if round(x) >= y:
-                    print(round(x), y)
-                    is_numbers = True
-
-        if not is_numbers:
+        if all_squares:
+            for pair in all_squares:
+                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+        else:
             print("This number cannot be represented as the sum of two squares")
 
         return None
