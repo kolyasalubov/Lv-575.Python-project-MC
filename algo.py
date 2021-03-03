@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil
+from typing import List, Tuple
+
 
 class AlgoInterface(ABC):
     # interface for algo tasks
@@ -55,9 +57,17 @@ class task_88a(AlgoInterface):
 class task_178b(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of sequence:'))
+        try:
+            n = int(input('Enter the size of sequence:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -76,10 +86,25 @@ class task_178b(AlgoInterface):
 class task_107(AlgoInterface):
 
     def execute(self) -> None:
-        m = int(input("Enter m: "))
+        """
+        Return  the largest integer k, at which 4 ^k < m
+
+        :return: None
+        """
+        try:
+            m = int(input("Enter m: "))
+        except ValueError:
+            print("M must be integer")
+            raise
+
+        if m < 0:
+            raise ValueError("M can`t be negative")
+
         k = log(m, 4)
 
-        print("k =", int(k) if k != int(k) or k == 0 else int(k) - 1)
+        k = int(k) if k != int(k) or k == 0 else int(k) - 1
+        print("k =", k)
+        print("4 ^", k, " < ", m)
 
         return None
 
@@ -90,9 +115,14 @@ class task_107(AlgoInterface):
 
 class task_243a(AlgoInterface):
 
-    def execute(self) -> None:
-        n = int(input("Enter n: "))
+    @staticmethod
+    def check_squares_existence(n: int) -> tuple:
+        """
+        Check if there are two numbers (x, y) that x ^2 + y ^2 = n
 
+        :param n: int
+        :return: tuple
+        """
         sq = sqrt(n)
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
@@ -100,15 +130,33 @@ class task_243a(AlgoInterface):
             x = sqrt((sq + y) * (sq - y))
             if int(x) == x:
                 if int(x) >= y:
-                    print(int(x), y)
-                    return None
+                    return int(x), y
 
             elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
                 if round(x) >= y:
-                    print(round(x), y)
-                    return None
+                    return round(x), y
 
-        print("This number cannot be represented as the sum of two squares")
+        return ()
+
+    def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+
+        :return: None
+        """
+        try:
+            n = int(input("Enter n: "))
+        except ValueError:
+            raise ValueError("M must be integer")
+
+        if n < 0:
+            raise ValueError("M can`t be negative")
+
+        exists = self.check_squares_existence(n)
+        if exists:
+            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+        else:
+            print("This number cannot be represented as the sum of two squares")
 
         return None
 
@@ -120,9 +168,17 @@ class task_243a(AlgoInterface):
 class task_178c(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of array:'))
+        try:
+            n = int(input('Enter the size of array:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -155,12 +211,7 @@ class task_86a(AlgoInterface):
 
 class task_554(AlgoInterface):
 
-    def execute(self) -> None:
-        """
-        Finds triples using Euclid's formula
-        (Modified to print not only primitive triples)
-        """
-        num = int(input('Enter the number:')) + 1
+    def pythagorean(self, num):
         for m in range(2, ceil(sqrt(num))):
             for n in range(1, m):
                 # m and n are coprime and not both odd
@@ -174,6 +225,19 @@ class task_554(AlgoInterface):
                     while k * c < num:
                         print(k * a, k * b, k * c)
                         k += 1
+        return None
+
+    def execute(self) -> None:
+        """
+        Finds triples using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        try:
+            num = int(input('Enter the number:')) + 1
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        self.pythagorean(num)
         return None
 
     @staticmethod
@@ -372,29 +436,55 @@ class task_559(AlgoInterface):
     def name() -> str:
         return "559"
 
+
 class task_243b(AlgoInterface):
 
-    def execute(self) -> None:
-        n = int(input("Enter n: "))
+    @staticmethod
+    def find_all_squares(n: int) -> List[Tuple[int, int]]:
+        """
+        Find all of the two numbers (x, y) that x ^2 + y ^2 = n
 
-        is_numbers = False
+        :param n: int
+        :return:  list[tuple[int, int]]
+        """
+
         sq = sqrt(n)
+        squares_numbers = []
+
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
             x = sqrt((sq + y) * (sq - y))
-
             if int(x) == x:
                 if int(x) >= y:
-                    print(int(x), y)
-                    is_numbers = True
+                    squares_numbers.append((int(x), y))
 
             elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
                 if round(x) >= y:
-                    print(round(x), y)
-                    is_numbers = True
+                    squares_numbers.append((round(x), y))
 
-        if not is_numbers:
+        return squares_numbers
+
+    def execute(self) -> None:
+        """
+            Processes user behavior and displays results
+
+            :return: None
+        """
+        try:
+            n = int(input("Enter n: "))
+        except ValueError:
+            raise ValueError("M must be integer")
+
+        if n < 0:
+            raise ValueError("M can`t be negative")
+
+        all_squares = self.find_all_squares(n)
+
+        if all_squares:
+            for pair in all_squares:
+                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+        else:
             print("This number cannot be represented as the sum of two squares")
 
         return None
