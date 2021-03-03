@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil
 from typing import List, Tuple
+import re
 
 
 class AlgoInterface(ABC):
@@ -19,7 +20,7 @@ class AlgoInterface(ABC):
         pass
 
 
-class task_178_d(AlgoInterface):
+class Task178d(AlgoInterface):
     def execute(self) -> None:
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
@@ -39,7 +40,7 @@ class task_178_d(AlgoInterface):
         return "178 d)"
 
 
-class task_88a(AlgoInterface):
+class Task88a(AlgoInterface):
 
     def execute(self) -> None:
         n = int(input("Enter number n:"))
@@ -54,7 +55,7 @@ class task_88a(AlgoInterface):
         return "88a"
 
 
-class task_178b(AlgoInterface):
+class Task178b(AlgoInterface):
 
     def execute(self) -> None:
         try:
@@ -83,7 +84,7 @@ class task_178b(AlgoInterface):
         return "178 б)"
 
 
-class task_107(AlgoInterface):
+class Task107(AlgoInterface):
 
     def execute(self) -> None:
         """
@@ -113,7 +114,7 @@ class task_107(AlgoInterface):
         return "107"
 
 
-class task_243a(AlgoInterface):
+class Task243a(AlgoInterface):
 
     @staticmethod
     def check_squares_existence(n: int) -> tuple:
@@ -165,7 +166,7 @@ class task_243a(AlgoInterface):
         return "243 а)"
 
 
-class task_178c(AlgoInterface):
+class Task178c(AlgoInterface):
 
     def execute(self) -> None:
         try:
@@ -194,14 +195,17 @@ class task_178c(AlgoInterface):
         return "178 в)"
 
 
-class task_86a(AlgoInterface):
+class Task86a(AlgoInterface):
 
     def execute(self) -> None:
         ''' input natural number N \n
         find amount of its digits '''
-        number = int(input("Eneter number N: "))
+
+        if not (number := input("Enter number N: ")).isdigit():
+            print("Wrong input!")
+            return None
         # number must be natural
-        print(len(str(number)) if number > 0 else "Number is not natural")
+        print(len(number))
         return None
 
     @staticmethod
@@ -209,7 +213,7 @@ class task_86a(AlgoInterface):
         return "86 a)"
 
 
-class task_554(AlgoInterface):
+class Task554(AlgoInterface):
 
     def pythagorean(self, num):
         for m in range(2, ceil(sqrt(num))):
@@ -242,10 +246,10 @@ class task_554(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-            return "554"
+        return "554"
 
 
-class task_87(AlgoInterface):
+class Task87(AlgoInterface):
 
     def execute(self) -> None:
         print("Enter n and m:")
@@ -273,14 +277,16 @@ class task_87(AlgoInterface):
         return "87"
 
 
-class task_86b(AlgoInterface):
+class Task86b(AlgoInterface):
 
     def execute(self) -> None:
         ''' input natural number N \n
          find sum of its digits '''
-        number = int(input("Eneter number N: "))
-        number_str = str(number)
-        sum_ = sum(map(int, list(number_str)))
+        if not (number := input("Enter number N: ")).isdigit():
+            print("Wrong input!")
+            return None
+
+        sum_ = sum(map(int, list(number)))
         print(sum_)
         return None
 
@@ -289,7 +295,20 @@ class task_86b(AlgoInterface):
         return "86 б)"
 
 
-class task_330(AlgoInterface):
+class Task330(AlgoInterface):
+
+    @staticmethod
+    def _get_deviders(numb):
+        # complexity O(sqrt(numb))
+
+        # using set to avoid duplicates of deviders
+        deviders = {1}
+        # starting from 2 because 1 is always devider of natural number
+        for i in range(2, int(numb**0.5) + 2):
+            if numb % i == 0:
+                deviders.add(numb/i)
+                deviders.add(i)
+        return deviders
 
     def execute(self) -> None:
         ''' input natural number N \n
@@ -300,22 +319,10 @@ class task_330(AlgoInterface):
 
         number = int(input("Enter number N: "))
 
-        def get_deviders(numb):
-            # complexity O(sqrt(numb))
-
-            # using set to avoid duplicates of deviders
-            deviders = {1}
-            # starting from 2 because 1 is always devider of natural number
-            for i in range(2, int(numb**0.5) + 2):
-                if numb % i == 0:
-                    deviders.add(numb/i)
-                    deviders.add(i)
-            return deviders
-
         # general complixity of print all "ideal" numbers till number N
         # O(n*sqrt(n)) <==> O(n^(3/2))
         for i in range(2, number):
-            if sum(get_deviders(i)) == i:
+            if sum(self._get_deviders(i)) == i:
                 print(i)
 
         # alternative form (cons: print all values after forloop ends)
@@ -327,9 +334,10 @@ class task_330(AlgoInterface):
     def name() -> str:
         return "330"
 
-class task_108(AlgoInterface):
+class Task108(AlgoInterface):
     #input number n, we should find the least number, that is bigger than n and is degree of number 2
     #complexity - O(1)
+
     def execute(self) -> None:
         try:
             n = int(input('Input natural number: '))
@@ -343,7 +351,8 @@ class task_108(AlgoInterface):
     def name() -> str:
         return "108"
 
-class task_226(AlgoInterface):
+
+class Task226(AlgoInterface):
 
     def execute(self) -> None:
         import math
@@ -375,11 +384,11 @@ class task_226(AlgoInterface):
 
     @staticmethod
     def name() -> str:
-    # Todo
+        # Todo
         return "226"
 
 
-class task_178_e(AlgoInterface):
+class Task178_e(AlgoInterface):
 
     def execute(self) -> None:
         import math
@@ -400,7 +409,8 @@ class task_178_e(AlgoInterface):
     def name() -> str:
         return "178 e)"
 
-class task_559(AlgoInterface):
+
+class Task559(AlgoInterface):
 
     def execute(self) -> None:
 
@@ -425,7 +435,8 @@ class task_559(AlgoInterface):
         n = input()
         if n.isdigit():
             n = int(n)
-            result = list(eratosthenes(n).intersection(mersen_numbers(n)))  # Mersenne primes
+            result = list(eratosthenes(n).intersection(
+                mersen_numbers(n)))  # Mersenne primes
             print("Mersenne primes less than {}:".format(n), sorted(result))
         else:
             print("You've entered not natural number")
@@ -437,7 +448,7 @@ class task_559(AlgoInterface):
         return "559"
 
 
-class task_243b(AlgoInterface):
+class Task243b(AlgoInterface):
 
     @staticmethod
     def find_all_squares(n: int) -> List[Tuple[int, int]]:
@@ -493,7 +504,8 @@ class task_243b(AlgoInterface):
     def name() -> str:
         return "243 б)"
 
-class task_555(AlgoInterface):
+
+class Task555(AlgoInterface):
 
     def execute(self) -> None:
         from math import factorial
@@ -518,7 +530,7 @@ class task_555(AlgoInterface):
         return "555"
 
 
-class task_88c(AlgoInterface):
+class Task88c(AlgoInterface):
 
     def execute(self) -> None:
         ''' switches first and last digit '''
@@ -531,7 +543,7 @@ class task_88c(AlgoInterface):
         return "88в"
 
 
-class task_88d(AlgoInterface):
+class Task88d(AlgoInterface):
 
     def execute(self) -> None:
         ''' inserts digit 1 on the start and last positions '''
@@ -543,32 +555,39 @@ class task_88d(AlgoInterface):
     def name() -> str:
         return "88г"
 
-class task_332(AlgoInterface):
+
+class Task332(AlgoInterface):
 
     def execute(self) -> None:
         ''' returns coeficients of distribution of a natural number into 4 squares '''
         n = int(input())
         res, tmp_res = 0, 0
         x, y, z, t = 0, 0, 0, 0
-        while res < n :
+        while res < n:
             res = x ** 2
             x += 1
-        if x == 0 : x = 0
-        elif x == 2 : x = 1
-        else : x -= 2
+        if x == 0:
+            x = 0
+        elif x == 2:
+            x = 1
+        else:
+            x -= 2
         res = x ** 2
         print('x = ' + str(x))
         tmp_res += res
         # print(tmp_res)
         # print()
 
-        if tmp_res != n :
-            while res < n :
+        if tmp_res != n:
+            while res < n:
                 res = tmp_res + y ** 2
                 y += 1
-        if y == 0 : y = 0
-        elif y == 2 : y = 1
-        else : y -= 2
+        if y == 0:
+            y = 0
+        elif y == 2:
+            y = 1
+        else:
+            y -= 2
         res = y ** 2
         print('y = ' + str(y))
         tmp_res += res
@@ -576,27 +595,33 @@ class task_332(AlgoInterface):
         # print()
 
         if tmp_res != n:
-            while res < n :
+            while res < n:
                 res = tmp_res + z ** 2
                 z += 1
 
-        if z == 0 : z = 0
-        elif z == 2 : z = 1
-        else : z -= 2
+        if z == 0:
+            z = 0
+        elif z == 2:
+            z = 1
+        else:
+            z -= 2
         res = z ** 2
         print('z = ' + str(z))
         tmp_res += res
         # print(tmp_res)
         # print()
 
-        if tmp_res != n :
-            while res < n :
+        if tmp_res != n:
+            while res < n:
                 res = tmp_res + t ** 2
                 t += 1
 
-        if t == 0 : t = 0
-        elif t == 2 : t = 1
-        else : t -= 2
+        if t == 0:
+            t = 0
+        elif t == 2:
+            t = 1
+        else:
+            t -= 2
         res = t ** 2
         tmp_res += res
         print('t = ' + str(t))
@@ -623,7 +648,7 @@ def check(number, task):
     return exist
 
 
-class task_331a (AlgoInterface):
+class Task331a (AlgoInterface):
 
     def execute(self) -> None:
         try:
@@ -639,7 +664,7 @@ class task_331a (AlgoInterface):
         return "331 а)"
 
 
-class task_331b(AlgoInterface):
+class Task331b(AlgoInterface):
 
     def execute(self) -> None:
         try:
@@ -655,9 +680,7 @@ class task_331b(AlgoInterface):
         return "331 б)"
 
 
-
-
-class task_88b(AlgoInterface):
+class Task88b(AlgoInterface):
 
     def execute(self) -> None:
         n = input("Enter number n:")
@@ -668,7 +691,8 @@ class task_88b(AlgoInterface):
     def name() -> str:
         return "88b"
 
-class task_322(AlgoInterface):
+
+class Task322(AlgoInterface):
 
     def execute(self) -> None:
         def divisor(number):
@@ -699,7 +723,8 @@ class task_322(AlgoInterface):
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = sorted(AlgoInterface.__subclasses__(), key=lambda x: x.name())
+    tasks = sorted(AlgoInterface.__subclasses__(),
+                   key=lambda x: int(re.search('[0-9]+', x.name())[0]))
 
     # Console menu
     print("Choose task from:")
@@ -717,8 +742,8 @@ if __name__ == "__main__":
             continue
 
         # executing algorithm
-        task_to_execute = tasks[position]()
-        task_to_execute.execute()
+        Taskto_execute = tasks[position]()
+        Taskto_execute.execute()
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
