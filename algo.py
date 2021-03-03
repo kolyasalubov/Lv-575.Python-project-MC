@@ -87,7 +87,7 @@ class task_243a(AlgoInterface):
             x = sqrt((sq + y) * (sq - y))
 
             if int(x) == x:
-                if int(x) >= y:
+                if x >= y:
                     print(int(x), y)
                     return None
 
@@ -498,7 +498,7 @@ class task_331b(AlgoInterface):
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = AlgoInterface.__subclasses__()
+    tasks = sorted(AlgoInterface.__subclasses__(), key=lambda x: x.name())
 
     # Console menu
     print("Choose task from:")
