@@ -250,25 +250,21 @@ class task_87(AlgoInterface):
     def execute(self) -> None:
         print("Enter n and m:")
         try:
-            string_n, m = input().split()
-            if string_n.isdigit() and m.isdigit():
-                sum, quantity = 0, int(m)
-                if len(string_n) > quantity:
-                    for digit in list(string_n[:len(string_n) - int(quantity) - 1:-1]):
-                        sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(
-                        quantity, string_n), sum)
-                elif len(string_n) == quantity:
-                    for digit in string_n:
-                        sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(
-                        quantity, string_n), sum)
-                else:
-                    print("m must be less than number of digits n")
-            else:
-                print("You've entered not natural number")
+            n, m = input().split()
         except ValueError:
             print("Please enter the second value")
+            return None
+        if not n.isdigit() or not m.isdigit():
+            print("You've entered not natural number")
+            return None
+        sum, quantity = 0, int(m)
+        len_of_number = len(n)
+        if quantity > len_of_number:
+            print("m must be less than number of digits n")
+        else:
+            for i in range(quantity):
+                sum += int(n[len_of_number - i - 1])
+            print("The sum of the last {} digits of number {} is".format(quantity, n), sum)
 
         return None
 
@@ -355,29 +351,27 @@ class task_226(AlgoInterface):
         def lcm(a, b):
             return (a * b) // math.gcd(a, b)
 
-        result = []
         print("Enter n and m:")
         try:
             n, m = input().split()
-            if n.isdigit() and m.isdigit():
-                n, m = int(n), int(m)
-                lcm = lcm(n, m)
-                for i in range(lcm, n * m, lcm):
-                    result.append(i)
-                if not len(result):
-                    print("There are no such values")
-                else:
-                    print("All common multiples less then {}: ".format(n * m), end='')
-                    for el in result:
-                        print(el, end=', ')
-                    print()
-            else:
-                print("You've entered not natural number")
         except ValueError:
             print("Please enter the second value")
+        if not n.isdigit() or not m.isdigit():
+            print("You've entered not natural number")
+            return None
+
+        n, m = int(n), int(m)
+        lcm = lcm(n, m)
+        result = [i for i in range(lcm, n * m, lcm)]
+        if result:
+            print("All common multiples less then {}: ".format(n * m), end='')
+            for el in result:
+                print(el, end=', ')
+            print()
+        else:
+            print("There are no such values")
 
         return None
-
 
     @staticmethod
     def name() -> str:
@@ -410,7 +404,7 @@ class task_559(AlgoInterface):
 
     def execute(self) -> None:
 
-        import math
+        from math import log
 
         # Eratosthene's sieve to get primes
         def eratosthenes(n):
@@ -425,7 +419,7 @@ class task_559(AlgoInterface):
 
         # Mersenne numbers
         def mersen_numbers(n):
-            return set([2 ** i - 1 for i in range(2, int(math.log(n + 1, 2)) + 1)])
+            return set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)])
 
         print("Enter n:")
         n = input()
