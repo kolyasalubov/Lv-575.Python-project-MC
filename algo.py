@@ -43,12 +43,15 @@ class Task178d(AlgoInterface):
 class Task88a(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input("Enter number n:"))
-        if str(n * n).find("3") != -1:
-            print("YES")
+        n = input("Enter number n:")
+        if type(n) == int and n > 0:
+            if str(n * n).find("3") != -1:
+                print("YES")
+            else:
+                print("NO")
+            return None
         else:
-            print("NO")
-        return None
+            print("Wrong type of a number")
 
     @staticmethod
     def name() -> str:
