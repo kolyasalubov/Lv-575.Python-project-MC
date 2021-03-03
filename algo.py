@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
-from math import sqrt, gcd, ceil
-from math import floor, log, ceil, sqrt
+from math import sqrt, gcd, floor, log, ceil
+from typing import List, Tuple
 
 
 class AlgoInterface(ABC):
@@ -18,8 +18,8 @@ class AlgoInterface(ABC):
         # user representation
         pass
 
-class task_178_d(AlgoInterface):
 
+class task_178_d(AlgoInterface):
     def execute(self) -> None:
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
@@ -39,12 +39,35 @@ class task_178_d(AlgoInterface):
         return "178 d)"
 
 
+class task_88a(AlgoInterface):
+
+    def execute(self) -> None:
+        n = int(input("Enter number n:"))
+        if str(n * n).find("3") != -1:
+            print("YES")
+        else:
+            print("NO")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88a"
+
+
 class task_178b(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of sequence:'))
+        try:
+            n = int(input('Enter the size of sequence:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -59,13 +82,29 @@ class task_178b(AlgoInterface):
     def name() -> str:
         return "178 б)"
 
+
 class task_107(AlgoInterface):
 
     def execute(self) -> None:
-        m = int(input("Enter m: "))
+        """
+        Return  the largest integer k, at which 4 ^k < m
+
+        :return: None
+        """
+        try:
+            m = int(input("Enter m: "))
+        except ValueError:
+            print("M must be integer")
+            raise
+
+        if m < 0:
+            raise ValueError("M can`t be negative")
+
         k = log(m, 4)
 
-        print("k =", int(k) if k != int(k) or k == 0 else int(k) - 1)
+        k = int(k) if k != int(k) or k == 0 else int(k) - 1
+        print("k =", k)
+        print("4 ^", k, " < ", m)
 
         return None
 
@@ -76,27 +115,48 @@ class task_107(AlgoInterface):
 
 class task_243a(AlgoInterface):
 
-    def execute(self) -> None:
-        n = int(input("Enter n: "))
+    @staticmethod
+    def check_squares_existence(n: int) -> tuple:
+        """
+        Check if there are two numbers (x, y) that x ^2 + y ^2 = n
 
-
+        :param n: int
+        :return: tuple
+        """
         sq = sqrt(n)
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
             x = sqrt((sq + y) * (sq - y))
-
             if int(x) == x:
-                if x >= y:
-                    print(int(x), y)
-                    return None
+                if int(x) >= y:
+                    return int(x), y
 
             elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
                 if round(x) >= y:
-                    print(round(x), y)
-                    return None
+                    return round(x), y
 
-        print("This number cannot be represented as the sum of two squares")
+        return ()
+
+    def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+
+        :return: None
+        """
+        try:
+            n = int(input("Enter n: "))
+        except ValueError:
+            raise ValueError("M must be integer")
+
+        if n < 0:
+            raise ValueError("M can`t be negative")
+
+        exists = self.check_squares_existence(n)
+        if exists:
+            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+        else:
+            print("This number cannot be represented as the sum of two squares")
 
         return None
 
@@ -108,9 +168,17 @@ class task_243a(AlgoInterface):
 class task_178c(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Enter the size of array:'))
+        try:
+            n = int(input('Enter the size of array:'))
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
         print('Enter the elements of sequence:')
-        sequence = [int(input()) for i in range(n)]
+        try:
+            sequence = [int(input()) for i in range(n)]
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
 
         counter = 0
         for element in sequence:
@@ -126,14 +194,24 @@ class task_178c(AlgoInterface):
         return "178 в)"
 
 
-class task_554(AlgoInterface):
+class task_86a(AlgoInterface):
 
     def execute(self) -> None:
-        """
-        Finds triples using Euclid's formula
-        (Modified to print not only primitive triples)
-        """
-        num = int(input('Enter the number:')) + 1
+        ''' input natural number N \n
+        find amount of its digits '''
+        number = int(input("Eneter number N: "))
+        # number must be natural
+        print(len(str(number)) if number > 0 else "Number is not natural")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "86 a)"
+
+
+class task_554(AlgoInterface):
+
+    def pythagorean(self, num):
         for m in range(2, ceil(sqrt(num))):
             for n in range(1, m):
                 # m and n are coprime and not both odd
@@ -147,6 +225,19 @@ class task_554(AlgoInterface):
                     while k * c < num:
                         print(k * a, k * b, k * c)
                         k += 1
+        return None
+
+    def execute(self) -> None:
+        """
+        Finds triples using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        try:
+            num = int(input('Enter the number:')) + 1
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        self.pythagorean(num)
         return None
 
     @staticmethod
@@ -165,11 +256,13 @@ class task_87(AlgoInterface):
                 if len(string_n) > quantity:
                     for digit in list(string_n[:len(string_n) - int(quantity) - 1:-1]):
                         sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                    print("The sum of the last {} digits of number {} is".format(
+                        quantity, string_n), sum)
                 elif len(string_n) == quantity:
                     for digit in string_n:
                         sum += int(digit)
-                    print("The sum of the last {} digits of number {} is".format(quantity, string_n), sum)
+                    print("The sum of the last {} digits of number {} is".format(
+                        quantity, string_n), sum)
                 else:
                     print("m must be less than number of digits n")
             else:
@@ -184,19 +277,75 @@ class task_87(AlgoInterface):
         return "87"
 
 
-class task_108(AlgoInterface):
+class task_86b(AlgoInterface):
 
     def execute(self) -> None:
-        n = int(input('Input: '))
-        print('r = ', floor(log(n, 2)) + 1)
-        print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        ''' input natural number N \n
+         find sum of its digits '''
+        number = int(input("Eneter number N: "))
+        number_str = str(number)
+        sum_ = sum(map(int, list(number_str)))
+        print(sum_)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "86 б)"
+
+
+class task_330(AlgoInterface):
+
+    def execute(self) -> None:
+        ''' input natural number N \n
+            find all "ideal" numbers that is less than N \n
+
+            "ideal" - number the sum of witch deviders(without the number itself)
+            is equal to the number'''
+
+        number = int(input("Enter number N: "))
+
+        def get_deviders(numb):
+            # complexity O(sqrt(numb))
+
+            # using set to avoid duplicates of deviders
+            deviders = {1}
+            # starting from 2 because 1 is always devider of natural number
+            for i in range(2, int(numb**0.5) + 2):
+                if numb % i == 0:
+                    deviders.add(numb/i)
+                    deviders.add(i)
+            return deviders
+
+        # general complixity of print all "ideal" numbers till number N
+        # O(n*sqrt(n)) <==> O(n^(3/2))
+        for i in range(2, number):
+            if sum(get_deviders(i)) == i:
+                print(i)
+
+        # alternative form (cons: print all values after forloop ends)
+        # print(*(i for i in range(2, number)  if sum(get_deviders(i)) == i ))
 
         return None
 
     @staticmethod
     def name() -> str:
-        return "108"
+        return "330"
 
+class task_108(AlgoInterface):
+    #input number n, we should find the least number, that is bigger than n and is degree of number 2
+    #complexity - O(1)
+    def execute(self) -> None:
+        try:
+            n = int(input('Input natural number: '))
+            print('r = ', floor(log(n, 2)) + 1)
+            print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
+        except ValueError:
+            print("Wrong input!")
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "108"
 
 class task_226(AlgoInterface):
 
@@ -257,8 +406,6 @@ class task_178_e(AlgoInterface):
     def name() -> str:
         return "178 e)"
 
-
-
 class task_559(AlgoInterface):
 
     def execute(self) -> None:
@@ -298,27 +445,52 @@ class task_559(AlgoInterface):
 
 class task_243b(AlgoInterface):
 
-    def execute(self) -> None:
-        n = int(input("Enter n: "))
+    @staticmethod
+    def find_all_squares(n: int) -> List[Tuple[int, int]]:
+        """
+        Find all of the two numbers (x, y) that x ^2 + y ^2 = n
 
-        is_numbers = False
+        :param n: int
+        :return:  list[tuple[int, int]]
+        """
+
         sq = sqrt(n)
+        squares_numbers = []
+
         for y in range(1, int(sqrt(n)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
             x = sqrt((sq + y) * (sq - y))
-
             if int(x) == x:
                 if int(x) >= y:
-                    print(int(x), y)
-                    is_numbers = True
+                    squares_numbers.append((int(x), y))
 
             elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
                 if round(x) >= y:
-                    print(round(x), y)
-                    is_numbers = True
+                    squares_numbers.append((round(x), y))
 
-        if not is_numbers:
+        return squares_numbers
+
+    def execute(self) -> None:
+        """
+            Processes user behavior and displays results
+
+            :return: None
+        """
+        try:
+            n = int(input("Enter n: "))
+        except ValueError:
+            raise ValueError("M must be integer")
+
+        if n < 0:
+            raise ValueError("M can`t be negative")
+
+        all_squares = self.find_all_squares(n)
+
+        if all_squares:
+            for pair in all_squares:
+                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+        else:
             print("This number cannot be represented as the sum of two squares")
 
         return None
@@ -326,7 +498,6 @@ class task_243b(AlgoInterface):
     @staticmethod
     def name() -> str:
         return "243 б)"
-
 
 class task_555(AlgoInterface):
 
@@ -435,7 +606,7 @@ class task_332(AlgoInterface):
         res = t ** 2
         tmp_res += res
         print('t = ' + str(t))
-        #print(tmp_res)
+        # print(tmp_res)
         return None
 
     @staticmethod
@@ -443,23 +614,30 @@ class task_332(AlgoInterface):
         return "332"
 
 
+#for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
+#complexity ~ O(n)
+def check(number, task):
+    exist = False
+    for i in range(1, int(ceil(sqrt(number)))):
+        for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+            third = number - i ** 2 - j ** 2
+            if third > 0 and float(third ** (1 / 2)) % 1 == 0:
+                print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
+                exist = True
+                if task == "331 a":
+                    return True
+    return exist
+
+
 class task_331a (AlgoInterface):
 
     def execute(self) -> None:
-
-        def check(number):
-            for i in range(1, int(ceil(sqrt(number)))):
-                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
-                    third = number - i ** 2 - j ** 2
-                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-                        return True
-            return False
-
-        n = int(input('Input: '))
-        if not check(n):
-            print("It`s impossible!")
-
+        try:
+            n = int(input('Input: '))
+            if not check(n, "331 a"):
+                print("It`s impossible!")
+        except ValueError:
+            print("Wrong input!")
         return None
 
     @staticmethod
@@ -470,29 +648,58 @@ class task_331a (AlgoInterface):
 class task_331b(AlgoInterface):
 
     def execute(self) -> None:
-
-        def check(number):
-            exist = False
-            for i in range(1, int(ceil(sqrt(number)))):
-                for j in range(1, int(ceil(sqrt(number - i ** 2)))):
-                    third = number - i ** 2 - j ** 2
-                    if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                        exist = True
-                        print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-            if not exist:
-                return False
-            else:
-                return True
-
-        n = int(input('Input: '))
-        if not check(n):
-            print("It`s impossible!")
-
+        try:
+            n = int(input('Input: '))
+            if not check(n, "331 b"):
+                print("It`s impossible!")
+        except ValueError:
+            print("Wrong input!")
         return None
 
     @staticmethod
     def name() -> str:
         return "331 б)"
+
+
+
+
+class task_88b(AlgoInterface):
+
+    def execute(self) -> None:
+        n = input("Enter number n:")
+        print(n[::-1])
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "88b"
+
+class task_322(AlgoInterface):
+
+    def execute(self) -> None:
+        def divisor(number):
+            sum_of_divisors = 0
+            for i in range(1, ceil(sqrt(number))):
+                if i * i == number:
+                    sum += i
+                    break
+                if number % i == 0:
+                    sum_of_divisors += i
+                    sum_of_divisors += number / i
+            return sum_of_divisors
+
+        maximal = 0
+        number_with_maximal_sum = 0
+        for i in range(1, 10001):
+            if divisor(i) > maximal:
+                maximal = divisor(i)
+                number_with_maximal_sum = i
+        print("Number with maximal sum of divisors is ", number_with_maximal_sum)
+        return None
+
+    @staticmethod
+    def name() -> str:
+        return "322"
 
 
 if __name__ == "__main__":
