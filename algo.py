@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
-from math import sqrt, gcd, floor, log, ceil
+from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
 import re
 
@@ -307,9 +307,9 @@ class Task330(AlgoInterface):
         # using set to avoid duplicates of deviders
         deviders = {1}
         # starting from 2 because 1 is always devider of natural number
-        for i in range(2, int(numb**0.5) + 2):
+        for i in range(2, int(numb ** 0.5) + 2):
             if numb % i == 0:
-                deviders.add(numb/i)
+                deviders.add(numb / i)
                 deviders.add(i)
         return deviders
 
@@ -337,9 +337,10 @@ class Task330(AlgoInterface):
     def name() -> str:
         return "330"
 
+
 class Task108(AlgoInterface):
-    #input number n, we should find the least number, that is bigger than n and is degree of number 2
-    #complexity - O(1)
+    # input number n, we should find the least number, that is bigger than n and is degree of number 2
+    # complexity - O(1)
 
     def execute(self) -> None:
         try:
@@ -394,7 +395,6 @@ class Task226(AlgoInterface):
 class Task178_e(AlgoInterface):
 
     def execute(self) -> None:
-        import math
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
         print("-" * 60)
@@ -510,13 +510,8 @@ class Task243b(AlgoInterface):
 
 class Task555(AlgoInterface):
 
-    def execute(self) -> None:
-        from math import factorial
-        print("-" * 60)
-        print("Task - build first n rows of Pascal's triangle")
-        print("-" * 60)
-        print("Enter natural number:", end=" ")
-        n = int(input())
+    @staticmethod
+    def build_pascals_triangle(n: int):
         for i in range(n):
             for j in range(n - i + 1):
                 print(end=" ")
@@ -525,6 +520,14 @@ class Task555(AlgoInterface):
                 # C**k_n = n!/(k!*(n-r)!)
                 print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
             print()
+
+    def execute(self) -> None:
+        print("-" * 60)
+        print("Task - build first n rows of Pascal's triangle")
+        print("-" * 60)
+        print("Enter natural number:", end=" ")
+        n = int(input())
+        self.build_pascals_triangle(n)
 
         return None
 
@@ -592,8 +595,8 @@ class Task332(AlgoInterface):
         return "332"
 
 
-#for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
-#complexity ~ O(n)
+# for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
+# complexity ~ O(n)
 def check(number, task):
     exist = False
     for i in range(1, int(ceil(sqrt(number)))):
@@ -607,7 +610,7 @@ def check(number, task):
     return exist
 
 
-class Task331a (AlgoInterface):
+class Task331a(AlgoInterface):
 
     def execute(self) -> None:
         try:
@@ -688,7 +691,7 @@ if __name__ == "__main__":
     # Console menu
     print("Choose task from:")
     print("\n".join('\t{}. {}'.format(i, task.name()) for i,
-                    task in enumerate(tasks, 1)))
+                                                          task in enumerate(tasks, 1)))
 
     while True:
         # handaling wrong input
