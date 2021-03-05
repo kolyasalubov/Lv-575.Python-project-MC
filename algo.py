@@ -19,6 +19,12 @@ class AlgoInterface(ABC):
         # user representation
         pass
 
+    @abstractstaticmethod
+    def main_logic(*args, **kwargs) -> str:
+        # return name of task
+        # user representation
+        pass
+
 
 class Task178d(AlgoInterface):
     def execute(self) -> None:
@@ -158,7 +164,8 @@ class Task243a(AlgoInterface):
 
         exists = self.check_squares_existence(n)
         if exists:
-            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+            print(
+                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -200,15 +207,37 @@ class Task178c(AlgoInterface):
 
 class Task86a(AlgoInterface):
 
+    @staticmethod
+    def main_logic(number):
+        return len(str(number))
+
+    @staticmethod
+    def validate_data(input_number):
+
+        s = str(input_number)
+        if not((s.startswith('-') and s[1:].isdigit()) or s.isdigit()):
+            raise TypeError  # raises TypeError if not int
+
+        number = int(input_number)
+
+        if number <= 0:
+            raise ValueError  # raises ValueError if not natural
+        return number
+
     def execute(self) -> None:
         ''' input natural number N \n
         find amount of its digits '''
+        input_data = input("Enter number: ")
 
-        if not (number := input("Enter number N: ")).isdigit():
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("Wrong input!")
             return None
+
         # number must be natural
-        print(len(number))
+        print(self.main_logic(number))
+
         return None
 
     @staticmethod
@@ -271,7 +300,8 @@ class Task87(AlgoInterface):
         else:
             for i in range(quantity):
                 sum += int(n[len_of_number - i - 1])
-            print("The sum of the last {} digits of number {} is".format(quantity, n), sum)
+            print("The sum of the last {} digits of number {} is".format(
+                quantity, n), sum)
 
         return None
 
@@ -402,7 +432,7 @@ class Task178_e(AlgoInterface):
         sequence = [int(i) for i in input().split(' ')]
         result = 0
         for i in range(len(sequence)):
-            if 2 ** i < sequence[i] and sequence[i] > math.factorial(i):
+            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
                 result += 1
         print("Result:", result)
 
@@ -497,7 +527,8 @@ class Task243b(AlgoInterface):
 
         if all_squares:
             for pair in all_squares:
-                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+                print(
+                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -553,7 +584,8 @@ class Task88d(AlgoInterface):
 
     def execute(self) -> None:
         ''' inserts digit 1 on the start and last positions '''
-        n = input("Enter N to insert digit 1 on the start and last positions of the number : ")
+        n = input(
+            "Enter N to insert digit 1 on the start and last positions of the number : ")
         print('1' + n + '1')
         return None
 
@@ -684,6 +716,9 @@ class Task322(AlgoInterface):
 
 if __name__ == "__main__":
 
+    print(
+        ', '.join(f"'{cls.__name__}'" for cls in AlgoInterface.__subclasses__()))
+
     # get all subclasses of AlgoInterface
     tasks = sorted(AlgoInterface.__subclasses__(),
                    key=lambda x: int(re.search('[0-9]+', x.name())[0]))
@@ -691,7 +726,7 @@ if __name__ == "__main__":
     # Console menu
     print("Choose task from:")
     print("\n".join('\t{}. {}'.format(i, task.name()) for i,
-                                                          task in enumerate(tasks, 1)))
+                    task in enumerate(tasks, 1)))
 
     while True:
         # handaling wrong input
