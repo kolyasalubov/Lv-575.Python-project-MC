@@ -214,8 +214,8 @@ class Task86a(AlgoInterface):
     @staticmethod
     def validate_data(input_number):
 
-        s = str(input_number)
-        if not((s.startswith('-') and s[1:].isdigit()) or s.isdigit()):
+        s = str(input_number).strip()
+        if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
             raise TypeError  # raises TypeError if not int
 
         number = int(input_number)
