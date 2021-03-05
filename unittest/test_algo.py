@@ -1,11 +1,7 @@
 import unittest
 from parameterized import parameterized
-import sys
-import os
-sys.path.append(
-    '..')
+import algo
 
-from algo import *
 
 class TestTask86a(unittest.TestCase):
 

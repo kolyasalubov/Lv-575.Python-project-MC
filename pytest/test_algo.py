@@ -1,10 +1,6 @@
+import algo
 import pytest
-import sys
-import os
-sys.path.append(
-    '..')
 
-from algo import *
 
 
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 4), (567, 3)], )
