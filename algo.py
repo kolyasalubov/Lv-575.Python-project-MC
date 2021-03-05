@@ -402,7 +402,7 @@ class Task178_e(AlgoInterface):
         sequence = [int(i) for i in input().split(' ')]
         result = 0
         for i in range(len(sequence)):
-            if 2 ** i < sequence[i] and sequence[i] > math.factorial(i):
+            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
                 result += 1
         print("Result:", result)
 
