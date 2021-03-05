@@ -20,10 +20,31 @@ class AlgoInterface(ABC):
         pass
 
     @abstractstaticmethod
-    def main_logic(*args, **kwargs) -> str:
+    def main_logic(*args, **kwargs):
         # return name of task
         # user representation
         pass
+
+    @abstractstaticmethod
+    def validate_data(*args, **kwargs):
+        # return name of task
+        # user representation
+        pass
+
+
+class TaskWithOneIntValidationParameter(AlgoInterface):
+    @staticmethod
+    def validate_data(input_number) -> int:
+
+        s = str(input_number).strip()
+        if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
+            raise TypeError  # raises TypeError if not int
+
+        number = int(input_number)
+
+        if number <= 0:
+            raise ValueError  # raises ValueError if not natural
+        return number
 
 
 class Task178d(AlgoInterface):
