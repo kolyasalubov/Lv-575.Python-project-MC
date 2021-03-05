@@ -379,7 +379,6 @@ class Task330(TaskWithOneIntValidationParameter):
             print("Wrong input!")
             return None
 
-
         # general complixity of print all "ideal" numbers till number N
         # O(n*sqrt(n)) <==> O(n^(3/2))
         for n in self.main_logic(number):
@@ -741,12 +740,17 @@ class Task322(AlgoInterface):
         return "322"
 
 
+# function for bfs search of endpoint classes
 def get_classes(cls):
     stack = set(cls.__subclasses__())
+
+    # array for all leaves
     endpoint_classes = []
 
     while stack:
         current = stack.pop()
+
+        # checking if it is an rnd point class
         if classes := current.__subclasses__():
             stack |= {c for c in classes}
             continue
