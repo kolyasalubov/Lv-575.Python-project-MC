@@ -34,7 +34,7 @@ class AlgoInterface(ABC):
 
 class TaskWithOneIntValidationParameter(AlgoInterface):
     @staticmethod
-    def validate_data(input_number) -> int:
+    def validate_data(input_number):
 
         s = str(input_number).strip()
         if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
@@ -226,24 +226,11 @@ class Task178c(AlgoInterface):
         return "178 в)"
 
 
-class Task86a(AlgoInterface):
+class Task86a(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(number):
         return len(str(number))
-
-    @staticmethod
-    def validate_data(input_number):
-
-        s = str(input_number).strip()
-        if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
-            raise TypeError  # raises TypeError if not int
-
-        number = int(input_number)
-
-        if number <= 0:
-            raise ValueError  # raises ValueError if not natural
-        return number
 
     def execute(self) -> None:
         ''' input natural number N \n
@@ -331,17 +318,25 @@ class Task87(AlgoInterface):
         return "87"
 
 
-class Task86b(AlgoInterface):
+class Task86b(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(number):
+        return sum(map(int, list(str(number))))
 
     def execute(self) -> None:
         ''' input natural number N \n
          find sum of its digits '''
-        if not (number := input("Enter number N: ")).isdigit():
+
+        input_data = input("Enter number N: ")
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("Wrong input!")
             return None
 
-        sum_ = sum(map(int, list(number)))
-        print(sum_)
+        # number must be natural
+        print(self.main_logic(number))
         return None
 
     @staticmethod
@@ -735,13 +730,25 @@ class Task322(AlgoInterface):
         return "322"
 
 
+def get_classes(cls):
+    stack = set(cls.__subclasses__())
+    endpoint_classes = []
+
+    while stack:
+        current = stack.pop()
+        if classes := current.__subclasses__():
+            stack |= {c for c in classes}
+            continue
+
+        endpoint_classes.append(current)
+
+    return endpoint_classes
+
+
 if __name__ == "__main__":
 
-    print(
-        ', '.join(f"'{cls.__name__}'" for cls in AlgoInterface.__subclasses__()))
-
     # get all subclasses of AlgoInterface
-    tasks = sorted(AlgoInterface.__subclasses__(),
+    tasks = sorted(get_classes(AlgoInterface),
                    key=lambda x: int(re.search('[0-9]+', x.name())[0]))
 
     # Console menu
