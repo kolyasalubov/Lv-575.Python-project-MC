@@ -344,7 +344,7 @@ class Task86b(TaskWithOneIntValidationParameter):
         return "86 б)"
 
 
-class Task330(AlgoInterface):
+class Task330(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def _get_deviders(numb):
@@ -355,9 +355,15 @@ class Task330(AlgoInterface):
         # starting from 2 because 1 is always devider of natural number
         for i in range(2, int(numb ** 0.5) + 2):
             if numb % i == 0:
-                deviders.add(numb / i)
+                deviders.add(numb // i)
                 deviders.add(i)
         return deviders
+
+    @staticmethod
+    def main_logic(number):
+        for i in range(2, number):
+            if sum(Task330._get_deviders(i)) == i:
+                yield i
 
     def execute(self) -> None:
         ''' input natural number N \n
@@ -366,13 +372,18 @@ class Task330(AlgoInterface):
             "ideal" - number the sum of witch deviders(without the number itself)
             is equal to the number'''
 
-        number = int(input("Enter number N: "))
+        number = input("Enter number N: ")
+        try:
+            number = self.validate_data(number)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
 
         # general complixity of print all "ideal" numbers till number N
         # O(n*sqrt(n)) <==> O(n^(3/2))
-        for i in range(2, number):
-            if sum(self._get_deviders(i)) == i:
-                print(i)
+        for n in self.main_logic(number):
+            print(n)
 
         # alternative form (cons: print all values after forloop ends)
         # print(*(i for i in range(2, number)  if sum(get_deviders(i)) == i ))
