@@ -114,7 +114,13 @@ class Task178b(AlgoInterface):
         return "178 б)"
 
 
-class Task107(AlgoInterface):
+class Task107(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(m: int) -> int:
+        k: float = log(m, 4)
+        k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
+        return k
 
     def execute(self) -> None:
         """
@@ -122,20 +128,18 @@ class Task107(AlgoInterface):
 
         :return: None
         """
+
+        input_data = input("Enter m: ")
+
         try:
-            m = int(input("Enter m: "))
-        except ValueError:
-            print("M must be integer")
-            raise
+            m = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if m < 0:
-            raise ValueError("M can`t be negative")
-
-        k = log(m, 4)
-
-        k = int(k) if k != int(k) or k == 0 else int(k) - 1
+        k = self.main_logic(m)
         print("k =", k)
-        print("4 ^", k, " < ", m)
+        print("4 ^{} < {}".format(k, m))
 
         return None
 
@@ -783,7 +787,7 @@ if __name__ == "__main__":
 
         # executing algorithm
         Taskto_execute = tasks[position]()
-        Taskto_execute.execute()
+        Taskto_execute.execute
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
