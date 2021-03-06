@@ -1,12 +1,14 @@
 import algo
 import pytest
 
+
 # Testing base class with validation method for corrext number answer
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 5888), (3, 3), ('0002', 2),
                                                     ('+99999', 99999), ('  067 ', 67), (' 12', 12)], )
 def test_TaskWithOneIntValidationParameter_validate_data(number, expected_value):
     assert algo.TaskWithOneIntValidationParameter.validate_data(
         number) == expected_value
+
 
 # Testing base class with validation method for exceptions
 @pytest.mark.parametrize('number, expected_value', [('1.2', TypeError), ('-3sdhv', TypeError), (0, ValueError),
@@ -19,15 +21,18 @@ def test_TaskWithOneIntValidationParameter_validate_exceptions(number, expected_
     with pytest.raises(expected_value):
         algo.TaskWithOneIntValidationParameter.validate_data(number)
 
+
 # Testing task 86a class main logic (must return  amount of digits in number)
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 4), ('567', 3), (1111111111, 10)])
 def test_task86a_main_logic(number, expected_value):
     assert algo.Task86a.main_logic(number) == expected_value
 
+
 # Testing task 86b class main logic (must return sum of digits in number)
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 29), ('567', 18), (1111101111, 9)])
 def test_task86b_main_logic(number, expected_value):
     assert algo.Task86b.main_logic(number) == expected_value
+
 
 # Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)
 @pytest.mark.parametrize('number, expected_value',
@@ -40,6 +45,7 @@ def test_task86b_main_logic(number, expected_value):
                          )
 def test_task330_get_deviders(number, expected_value):
     assert algo.Task330._get_deviders(number) == expected_value
+
 
 # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
 @pytest.mark.parametrize('number, expected_value',
