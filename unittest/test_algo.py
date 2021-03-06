@@ -51,7 +51,7 @@ class TestTask330(unittest.TestCase):
                            (198, {1, 2, 3, 6, 9, 11, 18, 22, 33, 66, 99})],
                           )
     def test_get_deviders(self, number, expected_value):
-        self.assertEqual(algo.Task330._get_deviders(number), expected_value)
+        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
 
     # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
     @parameterized.expand([(10, [6]),

@@ -118,6 +118,10 @@ class Task107(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(m: int) -> int:
+        """
+
+        :rtype: object
+        """
         k: float = log(m, 4)
         k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
         return k
@@ -351,7 +355,7 @@ class Task86b(TaskWithOneIntValidationParameter):
 class Task330(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def _get_deviders(numb):
+    def _get_dividers(numb):
         # complexity O(sqrt(numb))
 
         # using set to avoid duplicates of deviders
@@ -366,7 +370,7 @@ class Task330(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(number):
         for i in range(2, number):
-            if sum(Task330._get_deviders(i)) == i:
+            if sum(Task330._get_dividers(i)) == i:
                 yield i
 
     def execute(self) -> None:
