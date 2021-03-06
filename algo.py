@@ -148,10 +148,10 @@ class Task107(TaskWithOneIntValidationParameter):
         return "107"
 
 
-class Task243a(AlgoInterface):
+class Task243a(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def check_squares_existence(n: int) -> tuple:
+    def main_logic(n: int) -> tuple:
         """
         Check if there are two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -179,15 +179,15 @@ class Task243a(AlgoInterface):
 
         :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        exists = self.check_squares_existence(n)
+        exists = self.main_logic(n)
         if exists:
             print(
                 "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
@@ -511,10 +511,10 @@ class Task559(AlgoInterface):
         return "559"
 
 
-class Task243b(AlgoInterface):
+class Task243b(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def find_all_squares(n: int) -> List[Tuple[int, int]]:
+    def main_logic(n: int) -> List[Tuple[int, int]]:
         """
         Find all of the two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -545,15 +545,15 @@ class Task243b(AlgoInterface):
 
             :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        all_squares = self.find_all_squares(n)
+        all_squares = self.main_logic(n)
 
         if all_squares:
             for pair in all_squares:
