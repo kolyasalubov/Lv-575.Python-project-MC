@@ -119,7 +119,7 @@ class Task107(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(m: int) -> int:
         """
-
+        Return  the largest integer k, at which 4 ^k < m
         :rtype: object
         """
         k: float = log(m, 4)
@@ -128,7 +128,7 @@ class Task107(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         """
-        Return  the largest integer k, at which 4 ^k < m
+        Processes user behavior and displays results
 
         :return: None
         """
