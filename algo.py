@@ -791,7 +791,7 @@ if __name__ == "__main__":
 
         # executing algorithm
         Taskto_execute = tasks[position]()
-        Taskto_execute.execute
+        Taskto_execute.execute()
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
