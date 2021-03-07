@@ -50,7 +50,7 @@ class TestTask330(unittest.TestCase):
                            (90, {1, 2, 3, 5, 6, 9, 10, 15, 18, 30, 45}),
                            (198, {1, 2, 3, 6, 9, 11, 18, 22, 33, 66, 99})],
                           )
-    def test_get_deviders(self, number, expected_value):
+    def test_get_dividers(self, number, expected_value):
         self.assertEqual(algo.Task330._get_dividers(number), expected_value)
 
     # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
@@ -66,3 +66,39 @@ class TestTask330(unittest.TestCase):
     def test_main_logic(self, number, expected_value):
         self.assertEqual(
             [res for res in algo.Task330.main_logic(number)], expected_value)
+
+
+class TestTask107(unittest.TestCase):
+
+    # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
+    @parameterized.expand([
+        (1, 0), (2, 0), (15, 1), (16, 1), (17, 2), (32, 2), (64, 2), (65, 3),
+        (72, 3), (128, 3), (256, 3), (257, 4), (4000, 5), (10_000, 6),
+    ])
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task107.main_logic(number), expected_value)
+
+
+class TestTask243a(unittest.TestCase):
+
+    # Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    @parameterized.expand([
+        (1, ()), (7, ()), (13, (3, 2)), (272, (16, 4)), (317, (14, 11)), (300, ()),
+        (6340, (78, 16)), (41410, (197, 51)), (67, ()), (32187, ()),
+    ])
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task243a.main_logic(number), expected_value)
+
+
+class TestTask243b(unittest.TestCase):
+
+    # Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
+    @parameterized.expand([
+        (1, []), (7, []), (13, [(3, 2)]), (272, [(16, 4)]), (317, [(14, 11)]), (300, []),
+        (6340, [(78, 16), (72, 34)]),
+        (41410, [(197, 51), (183, 89), (181, 93), (159, 127)]),
+        (100000, [(316, 12), (300, 100), (260, 180)]),
+        (1000000000, [(31600, 1200), (30672, 7696), (30000, 10000), (26000, 18000), (24560, 19920)])
+    ])
+    def test_task243b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task243b.main_logic(number), expected_value)

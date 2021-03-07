@@ -2,7 +2,7 @@ import algo
 import pytest
 
 
-# Testing base class with validation method for corrext number answer
+# Testing base class with validation method for correct number answer
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 5888), (3, 3), ('0002', 2),
                                                     ('+99999', 99999), ('  067 ', 67), (' 12', 12)], )
 def test_TaskWithOneIntValidationParameter_validate_data(number, expected_value):
@@ -34,7 +34,7 @@ def test_task86b_main_logic(number, expected_value):
     assert algo.Task86b.main_logic(number) == expected_value
 
 
-# Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)
+# Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)
 @pytest.mark.parametrize('number, expected_value',
                          [(1, {1}),
                           (100, {1, 2, 4, 5, 10, 20, 25, 50}),
@@ -47,7 +47,7 @@ def test_task330_get_dividers(number, expected_value):
     assert algo.Task330._get_dividers(number) == expected_value
 
 
-# Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
+# Testing task 330 class main logic (must return number thats sum of dividers(from get_dividers) is equal to the number)
 @pytest.mark.parametrize('number, expected_value',
                          [(10, [6]),
                           (100, [6, 28]),
@@ -62,6 +62,7 @@ def test_task330_main_logic(number, expected_value):
     assert [res for res in algo.Task330.main_logic(number)] == expected_value
 
 
+# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize('number, expected_value', [
     (1, 0), (2, 0), (15, 1), (16, 1), (17, 2), (32, 2), (64, 2), (65, 3),
     (72, 3), (128, 3), (256, 3), (257, 4), (4000, 5), (10_000, 6),
@@ -70,6 +71,7 @@ def test_task107_main_logic(number, expected_value):
     assert algo.Task107.main_logic(number) == expected_value
 
 
+# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize('number, expected_value', [
     (1, ()), (7, ()), (13, (3, 2)), (272, (16, 4)), (317, (14, 11)), (300, ()),
     (6340, (78, 16)), (41410, (197, 51)), (67, ()), (32187, ()),
@@ -78,6 +80,7 @@ def test_task243a_main_logic(number, expected_value):
     assert algo.Task243a.main_logic(number) == expected_value
 
 
+# Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize('number, expected_value', [
     (1, []), (7, []), (13, [(3, 2)]), (272, [(16, 4)]), (317, [(14, 11)]), (300, []),
     (6340, [(78, 16), (72, 34)]),

@@ -456,7 +456,7 @@ class Task226(AlgoInterface):
         return "226"
 
 
-class Task178_e(AlgoInterface):
+class Task178e(AlgoInterface):
 
     def execute(self) -> None:
         print("-" * 60)
