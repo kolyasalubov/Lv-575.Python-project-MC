@@ -85,27 +85,34 @@ class Task88a(AlgoInterface):
         return "88a"
 
 
-class Task178b(AlgoInterface):
+class Task178b(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
-        try:
-            n = int(input('Enter the size of sequence:'))
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-        print('Enter the elements of sequence:')
-        try:
-            sequence = [int(input()) for i in range(n)]
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-
+    @staticmethod
+    def main_logic(sequence):
         counter = 0
         for element in sequence:
             if element % 3 == 0 and element % 5 != 0:
                 counter += 1
+        return counter
 
-        print('Result:', counter)
+    def execute(self) -> None:
+
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print('Enter the elements of sequence:')
+        sequence = [input() for i in range(n)]
+        for i in range(len(sequence)):
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+
+        print('Result:', self.main_logic(sequence))
 
         return None
 
@@ -197,20 +204,10 @@ class Task243a(AlgoInterface):
         return "243 а)"
 
 
-class Task178c(AlgoInterface):
+class Task178c(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
-        try:
-            n = int(input('Enter the size of array:'))
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-        print('Enter the elements of sequence:')
-        try:
-            sequence = [int(input()) for i in range(n)]
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
+    @staticmethod
+    def main_logic(sequence):
 
         counter = 0
         for element in sequence:
@@ -218,7 +215,26 @@ class Task178c(AlgoInterface):
             if root ** 2 == element and root % 2 == 0:
                 counter += 1
 
-        print('Result:', counter)
+        return counter
+
+    def execute(self) -> None:
+
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print('Enter the elements of sequence:')
+        sequence = [input() for i in range(n)]
+        for i in range(len(sequence)):
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+
+        print('Result:', self.main_logic(sequence))
         return None
 
     @staticmethod
@@ -253,9 +269,11 @@ class Task86a(TaskWithOneIntValidationParameter):
         return "86 a)"
 
 
-class Task554(AlgoInterface):
+class Task554(TaskWithOneIntValidationParameter):
 
-    def pythagorean(self, num):
+    @staticmethod
+    def main_logic(num):
+        res = []
         for m in range(2, ceil(sqrt(num))):
             for n in range(1, m):
                 # m and n are coprime and not both odd
@@ -267,21 +285,23 @@ class Task554(AlgoInterface):
                         a, b = b, a
                     k = 1
                     while k * c < num:
+                        res.append([k * a, k * b, k * c])
                         print(k * a, k * b, k * c)
                         k += 1
-        return None
+        return res
 
     def execute(self) -> None:
         """
         Finds triples using Euclid's formula
         (Modified to print not only primitive triples)
         """
+        number = input('Enter n: ')
         try:
-            num = int(input('Enter the number:')) + 1
+            num = self.validate_data(number)
         except ValueError:
             print("ValueError exception thrown")
             return None
-        self.pythagorean(num)
+        self.main_logic(num + 1)
         return None
 
     @staticmethod
