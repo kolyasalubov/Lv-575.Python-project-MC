@@ -121,28 +121,36 @@ class Task178b(TaskWithOneIntValidationParameter):
         return "178 б)"
 
 
-class Task107(AlgoInterface):
+class Task107(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(m: int) -> int:
+        """
+        Return  the largest integer k, at which 4 ^k < m
+        :rtype: object
+        """
+        k: float = log(m, 4)
+        k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
+        return k
 
     def execute(self) -> None:
         """
-        Return  the largest integer k, at which 4 ^k < m
+        Processes user behavior and displays results
 
         :return: None
         """
+
+        input_data = input("Enter m: ")
+
         try:
-            m = int(input("Enter m: "))
-        except ValueError:
-            print("M must be integer")
-            raise
+            m = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if m < 0:
-            raise ValueError("M can`t be negative")
-
-        k = log(m, 4)
-
-        k = int(k) if k != int(k) or k == 0 else int(k) - 1
+        k = self.main_logic(m)
         print("k =", k)
-        print("4 ^", k, " < ", m)
+        print("4 ^{} < {}".format(k, m))
 
         return None
 
@@ -151,10 +159,10 @@ class Task107(AlgoInterface):
         return "107"
 
 
-class Task243a(AlgoInterface):
+class Task243a(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def check_squares_existence(n: int) -> tuple:
+    def main_logic(n: int) -> tuple:
         """
         Check if there are two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -182,15 +190,15 @@ class Task243a(AlgoInterface):
 
         :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        exists = self.check_squares_existence(n)
+        exists = self.main_logic(n)
         if exists:
             print(
                 "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
@@ -367,7 +375,7 @@ class Task86b(TaskWithOneIntValidationParameter):
 class Task330(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def _get_deviders(numb):
+    def _get_dividers(numb):
         # complexity O(sqrt(numb))
 
         # using set to avoid duplicates of deviders
@@ -382,7 +390,7 @@ class Task330(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(number):
         for i in range(2, number):
-            if sum(Task330._get_deviders(i)) == i:
+            if sum(Task330._get_dividers(i)) == i:
                 yield i
 
     def execute(self) -> None:
@@ -414,17 +422,24 @@ class Task330(TaskWithOneIntValidationParameter):
         return "330"
 
 
-class Task108(AlgoInterface):
+class Task108(TaskWithOneIntValidationParameter):
     # input number n, we should find the least number, that is bigger than n and is degree of number 2
     # complexity - O(1)
 
+    @staticmethod
+    def main_logic(n):
+        return 2 ** (floor(log(n, 2)) + 1)
+
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input natural number: '))
-            print('r = ', floor(log(n, 2)) + 1)
-            print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', k)
         return None
 
     @staticmethod
@@ -468,7 +483,7 @@ class Task226(AlgoInterface):
         return "226"
 
 
-class Task178_e(AlgoInterface):
+class Task178e(AlgoInterface):
 
     def execute(self) -> None:
         print("-" * 60)
@@ -527,10 +542,10 @@ class Task559(AlgoInterface):
         return "559"
 
 
-class Task243b(AlgoInterface):
+class Task243b(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def find_all_squares(n: int) -> List[Tuple[int, int]]:
+    def main_logic(n: int) -> List[Tuple[int, int]]:
         """
         Find all of the two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -561,15 +576,15 @@ class Task243b(AlgoInterface):
 
             :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        all_squares = self.find_all_squares(n)
+        all_squares = self.main_logic(n)
 
         if all_squares:
             for pair in all_squares:
@@ -676,27 +691,39 @@ class Task332(AlgoInterface):
 # for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
 # complexity ~ O(n)
 def check(number, task):
-    exist = False
+    array = []
     for i in range(1, int(ceil(sqrt(number)))):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-                exist = True
+                array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
                 if task == "331 a":
-                    return True
-    return exist
+                    return array
+    return array
 
 
-class Task331a(AlgoInterface):
+class Task331a(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 a")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 a"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
@@ -704,15 +731,28 @@ class Task331a(AlgoInterface):
         return "331 а)"
 
 
-class Task331b(AlgoInterface):
+class Task331b(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 b")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 b"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
@@ -802,8 +842,9 @@ if __name__ == "__main__":
             continue
 
         # executing algorithm
-        Taskto_execute = tasks[position]()
-        Taskto_execute.execute()
+        Task_to_execute = tasks[position]()
+        Task_to_execute.execute()
+
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':

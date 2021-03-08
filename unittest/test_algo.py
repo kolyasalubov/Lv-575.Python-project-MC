@@ -1,11 +1,5 @@
 import unittest
 from parameterized import parameterized
-# import algo
-
-import sys
-
-sys.path.append(
-    '..')
 import algo
 
 
@@ -56,8 +50,8 @@ class TestTask330(unittest.TestCase):
                            (90, {1, 2, 3, 5, 6, 9, 10, 15, 18, 30, 45}),
                            (198, {1, 2, 3, 6, 9, 11, 18, 22, 33, 66, 99})],
                           )
-    def test_get_deviders(self, number, expected_value):
-        self.assertEqual(algo.Task330._get_deviders(number), expected_value)
+    def test_get_dividers(self, number, expected_value):
+        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
 
     # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
     @parameterized.expand([(10, [6]),
@@ -102,7 +96,7 @@ class TestTask178c(unittest.TestCase):
         self.assertEqual(algo.Task178c.main_logic(sequence), expected_value)
 
 
-class TestTask178c(unittest.TestCase):
+class TestTask554(unittest.TestCase):
 
     # Testing task 554 class main logic (must return list of pythagorean triplets)
     @parameterized.expand([(20, [[3, 4, 5],
@@ -121,3 +115,73 @@ class TestTask178c(unittest.TestCase):
                           )
     def test_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task554.main_logic(number + 1), expected_value)
+
+
+class TestTask107(unittest.TestCase):
+
+    # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
+    @parameterized.expand([
+        (1, 0), (2, 0), (15, 1), (16, 1), (17, 2), (32, 2), (64, 2), (65, 3),
+        (72, 3), (128, 3), (256, 3), (257, 4), (4000, 5), (10_000, 6),
+    ])
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task107.main_logic(number), expected_value)
+
+
+class TestTask243a(unittest.TestCase):
+
+    # Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    @parameterized.expand([
+        (1, ()), (7, ()), (13, (3, 2)), (272, (16, 4)), (317, (14, 11)), (300, ()),
+        (6340, (78, 16)), (41410, (197, 51)), (67, ()), (32187, ()),
+    ])
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task243a.main_logic(number), expected_value)
+
+
+class TestTask243b(unittest.TestCase):
+
+    # Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
+    @parameterized.expand([
+        (1, []), (7, []), (13, [(3, 2)]), (272, [(16, 4)]), (317, [(14, 11)]), (300, []),
+        (6340, [(78, 16), (72, 34)]),
+        (41410, [(197, 51), (183, 89), (181, 93), (159, 127)]),
+        (100000, [(316, 12), (300, 100), (260, 180)]),
+        (1000000000, [(31600, 1200), (30672, 7696), (30000, 10000), (26000, 18000), (24560, 19920)])
+    ])
+    def test_task243b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task243b.main_logic(number), expected_value)
+
+
+class TestTask108(unittest.TestCase):
+
+    @parameterized.expand([
+        (2, 4), (123, 128), (1034, 2048), (100020, 131072)
+    ])
+    def test_task108_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task108.main_logic(number), expected_value)
+
+
+class TestTask331a(unittest.TestCase):
+
+    @parameterized.expand([
+        (19, ['1^2 + 3^2 + 3^2']),
+        (20, False),
+        (75, ['1^2 + 5^2 + 7^2']),
+        (4, False)
+    ])
+    def test_task331a_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task331a.main_logic(number), expected_value)
+
+
+class TestTask331b(unittest.TestCase):
+
+    @parameterized.expand([
+        (19, ['1^2 + 3^2 + 3^2', '3^2 + 1^2 + 3^2', '3^2 + 3^2 + 1^2']),
+        (20, False),
+        (75, ['1^2 + 5^2 + 7^2', '1^2 + 7^2 + 5^2', '5^2 + 1^2 + 7^2', '5^2 + 5^2 + 5^2', '5^2 + 7^2 + 1^2',
+              '7^2 + 1^2 + 5^2', '7^2 + 5^2 + 1^2']),
+        (4, False)
+    ])
+    def test_task331b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task331b.main_logic(number), expected_value)
