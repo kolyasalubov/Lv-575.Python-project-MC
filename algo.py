@@ -402,17 +402,24 @@ class Task330(TaskWithOneIntValidationParameter):
         return "330"
 
 
-class Task108(AlgoInterface):
+class Task108(TaskWithOneIntValidationParameter):
     # input number n, we should find the least number, that is bigger than n and is degree of number 2
     # complexity - O(1)
 
+    @staticmethod
+    def main_logic(n):
+        return 2 ** (floor(log(n, 2)) + 1)
+
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input natural number: '))
-            print('r = ', floor(log(n, 2)) + 1)
-            print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', k)
         return None
 
     @staticmethod
@@ -664,27 +671,39 @@ class Task332(AlgoInterface):
 # for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
 # complexity ~ O(n)
 def check(number, task):
-    exist = False
+    array = []
     for i in range(1, int(ceil(sqrt(number)))):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-                exist = True
+                array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
                 if task == "331 a":
-                    return True
-    return exist
+                    return array
+    return array
 
 
-class Task331a(AlgoInterface):
+class Task331a(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 a")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 a"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
@@ -692,15 +711,28 @@ class Task331a(AlgoInterface):
         return "331 а)"
 
 
-class Task331b(AlgoInterface):
+class Task331b(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 b")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 b"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
@@ -792,6 +824,7 @@ if __name__ == "__main__":
         # executing algorithm
         Task_to_execute = tasks[position]()
         Task_to_execute.execute()
+
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
