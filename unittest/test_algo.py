@@ -102,3 +102,37 @@ class TestTask243b(unittest.TestCase):
     ])
     def test_task243b_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task243b.main_logic(number), expected_value)
+
+
+class TestTask108(unittest.TestCase):
+
+    @parameterized.expand([
+        (2, 4), (123, 128), (1034, 2048), (100020, 131072)
+    ])
+    def test_task108_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task108.main_logic(number), expected_value)
+
+
+class TestTask331a(unittest.TestCase):
+
+    @parameterized.expand([
+        (19, ['1^2 + 3^2 + 3^2']),
+        (20, False),
+        (75, ['1^2 + 5^2 + 7^2']),
+        (4, False)
+    ])
+    def test_task331a_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task331a.main_logic(number), expected_value)
+
+
+class TestTask331b(unittest.TestCase):
+
+    @parameterized.expand([
+        (19, ['1^2 + 3^2 + 3^2', '3^2 + 1^2 + 3^2', '3^2 + 3^2 + 1^2']),
+        (20, False),
+        (75, ['1^2 + 5^2 + 7^2', '1^2 + 7^2 + 5^2', '5^2 + 1^2 + 7^2', '5^2 + 5^2 + 5^2', '5^2 + 7^2 + 1^2',
+              '7^2 + 1^2 + 5^2', '7^2 + 5^2 + 1^2']),
+        (4, False)
+    ])
+    def test_task331b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task331b.main_logic(number), expected_value)
