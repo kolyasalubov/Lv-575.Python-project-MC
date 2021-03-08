@@ -790,8 +790,8 @@ if __name__ == "__main__":
             continue
 
         # executing algorithm
-        Taskto_execute = tasks[position]()
-        Taskto_execute.execute
+        Task_to_execute = tasks[position]()
+        Task_to_execute.execute()
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
