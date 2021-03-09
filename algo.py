@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
 import re
+import logging
 
 
 class AlgoInterface(ABC):
@@ -45,6 +46,29 @@ class TaskWithOneIntValidationParameter(AlgoInterface):
         if number <= 0:
             raise ValueError  # raises ValueError if not natural
         return number
+
+
+class InvalidInput(Exception):
+    pass
+
+
+class TaskWithTwoIntValidationParameters(AlgoInterface):
+
+    @staticmethod
+    def validate_data(input_data):
+
+        try:
+            n, m = input_data.split()
+        except ValueError:
+            raise ValueError
+        if not n.isdigit() or not m.isdigit():
+            raise TypeError
+
+        # m should be less then len(n)
+        quantity, len_of_number = int(m), len(n)
+        if quantity > len_of_number:
+            raise InvalidInput
+        return n, m
 
 
 class Task178d(AlgoInterface):
@@ -297,27 +321,33 @@ class Task554(AlgoInterface):
         return "554"
 
 
-class Task87(AlgoInterface):
+class Task87(TaskWithTwoIntValidationParameters):
+    @staticmethod
+    def main_logic(n, quantity):
+        sum, len_of_number = 0, len(n)
+        for i in range(quantity):
+            sum += int(n[len_of_number - i - 1])
+        return sum
 
     def execute(self) -> None:
-        print("Enter n and m:")
+        global n
+        global m
         try:
-            n, m = input().split()
+            input_data = input("Enter n and m:")
+            n, m = self.validate_data(input_data)
         except ValueError:
             print("Please enter the second value")
             return None
-        if not n.isdigit() or not m.isdigit():
+        except TypeError:
             print("You've entered not natural number")
             return None
-        sum, quantity = 0, int(m)
-        len_of_number = len(n)
-        if quantity > len_of_number:
+        except InvalidInput:
             print("m must be less than number of digits n")
-        else:
-            for i in range(quantity):
-                sum += int(n[len_of_number - i - 1])
-            print("The sum of the last {} digits of number {} is".format(
-                quantity, n), sum)
+            return None
+        # numbers must be natural
+        result = self.main_logic(n, int(m))
+        print("The sum of the last {} digits of number {} is".format(
+                    int(m), n), result)
 
         return None
 
