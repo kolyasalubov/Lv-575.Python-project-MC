@@ -118,3 +118,80 @@ def test_task331a_main_logic(number, expected_value):
     (4, False)])
 def test_task331b_main_logic(number, expected_value):
     assert algo.Task331b.main_logic(number) == expected_value
+
+
+# Testing base class with validation method for exceptions
+@pytest.mark.parametrize('data, expected_value', [('1.2', ValueError), ('-3ssss', ValueError), ('0', ValueError),
+                                                  ('445', ValueError), ('7m 456', TypeError), ('7115m 4', TypeError),
+                                                  ('124 4d56', TypeError), ('7,5555 456', TypeError),
+                                                  ('7 456', algo.InvalidInput), ('44894 10', algo.InvalidInput),
+                                                  ('5555 5', algo.InvalidInput)], )
+def test_TaskWithTwoIntValidationParameters_validate_exceptions_task87(data, expected_value):
+    with pytest.raises(expected_value):
+        algo.TaskWithTwoIntValidationParametersForTask87.validate_data(data)
+
+
+# Testing task 87 class main logic
+@pytest.mark.parametrize('number, quantity, expected_value', [
+    ('78451', 2, 6), ('421', 3, 7), ('1234567890', 10, 45), ('52138', 4, 14), ('17', 2, 8), ('32', 1, 2)])
+def test_task87_main_logic(number, quantity, expected_value):
+    assert algo.Task87.main_logic(number, quantity) == expected_value
+
+
+# Testing base class with validation method for exceptions
+@pytest.mark.parametrize('data, expected_value', [('1.2', ValueError), ('-3ssss', ValueError), ('0', ValueError),
+                                                  ('445', ValueError), ('7m 456', TypeError), ('7115m 4', TypeError),
+                                                  ('124 4d56', TypeError), ('7,5555 456', TypeError)],)
+def test_TaskWithTwoIntValidationParameters_validate_exceptions_task226(data, expected_value):
+    with pytest.raises(expected_value):
+        algo.TaskWithTwoIntValidationParameters.validate_data(data)
+
+
+# Testing task 226 class main logic
+@pytest.mark.parametrize('number1, number2, expected_value', [
+    (12, 36, [36, 72, 108, 144, 180, 216, 252, 288, 324, 360, 396]), (78, 5, []), (78, 12, [156, 312, 468, 624, 780]),
+    (444, 822, [60828, 121656, 182484, 243312, 304140]), (77, 127, [])],)
+def test_task226_main_logic(number1, number2, expected_value):
+    assert algo.Task226.main_logic(number1, number2) == expected_value
+
+
+# Testing base class with validation method for exceptions
+@pytest.mark.parametrize('data, expected_value', [
+    ('1.2', TypeError), ('lol', TypeError),
+    (1.2, TypeError), ('40o', TypeError), ('-2', ValueError),
+    ('-0.2', TypeError), ('-0', ValueError), ('-566', ValueError),
+    (' ', TypeError), ('0  02223 ', TypeError), ('+777m', TypeError)],)
+def test_TaskWithTwoIntValidationParameters_validate_exceptions_task559(data, expected_value):
+    with pytest.raises(expected_value):
+        algo.TaskWithOneIntValidationParameter.validate_data(data)
+
+
+# Testing eratosthenes function in task 559
+@pytest.mark.parametrize('number, expected_value', [
+    (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
+    (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
+    (61, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
+    (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]),
+    ],)
+def test_task559_eratosthenes(number, expected_value):
+    assert algo.Task559.eratosthenes(number) == expected_value
+
+
+# Testing mersen_numbers function in task 559
+@pytest.mark.parametrize('number, expected_value', [
+    (24, [3, 7, 15]),
+    (50, [3, 7, 15, 31]),
+    (61, [3, 7, 15, 31]),
+    (88, [3, 7, 15, 31, 63]),
+    (7700, [3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095]),
+    ],)
+def test_task559_mersen_number(number, expected_value):
+    assert algo.Task559.mersen_numbers(number) == expected_value
+
+
+# Testing task 559 class main logic
+@pytest.mark.parametrize('number, expected_value', [
+    (456, [3, 7, 31, 127]), (1234, [3, 7, 31, 127]), (2, []), (100000, [3, 7, 31, 127, 8191]),
+    (748452, [3, 7, 31, 127, 8191, 131071, 524287]), (12, [3, 7]), (6, [3])],)
+def test_task559_main_logic(number, expected_value):
+    assert algo.Task559.main_logic(number) == expected_value
