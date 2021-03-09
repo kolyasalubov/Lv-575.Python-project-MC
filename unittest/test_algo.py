@@ -136,3 +136,21 @@ class TestTask331b(unittest.TestCase):
     ])
     def test_task331b_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task331b.main_logic(number), expected_value)
+
+
+class TestTask88a(unittest.TestCase):
+
+    @parameterized.expand([
+        (3, 'NO'), (6, 'YES'), (18, 'YES'), (13, 'NO')
+    ])
+    def test_task88a_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task88a.main_logic(number), expected_value)
+
+
+class TestTask88b(unittest.TestCase):
+
+    @parameterized.expand([
+        (3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)
+    ])
+    def test_task88b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task88b.main_logic(number), expected_value)
