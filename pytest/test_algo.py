@@ -3,7 +3,6 @@ import pytest
 import sys
 
 
-
 # Testing base class with validation method for correct number answer
 @pytest.mark.parametrize('number, expected_value', [(1, 1), (5888, 5888), (3, 3), ('0002', 2),
                                                     ('+99999', 99999), ('  067 ', 67), (' 12', 12)], )
@@ -62,6 +61,52 @@ def test_task330_get_dividers(number, expected_value):
                          )
 def test_task330_main_logic(number, expected_value):
     assert [res for res in algo.Task330.main_logic(number)] == expected_value
+
+
+# Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
+@pytest.mark.parametrize('sequence, expected_value',
+                         [([5], 0),
+                          ([9], 1),
+                          ([4, 5], 0),
+                          ([9, 13], 1),
+                          ([9, 12, 18, 21], 4),
+                          ([1, 5, 10, 15], 0)]
+                         )
+def test_task178b_main_logic(sequence, expected_value):
+    assert algo.Task178b.main_logic(sequence) == expected_value
+
+
+# Testing task 178c class main logic (must return amount of numbers which are the square of the even number)
+@pytest.mark.parametrize('sequence, expected_value',
+                         [([5], 0),
+                          ([100], 1),
+                          ([4, 5], 1),
+                          ([9, 13], 0),
+                          ([4, 16, 36, 64], 4),
+                          ([1, 2, 10, 15], 0)]
+                         )
+def test_task178c_main_logic(sequence, expected_value):
+    assert algo.Task178c.main_logic(sequence) == expected_value
+
+
+# Testing task 554 class main logic (must return list of pythagorean triplets)
+@pytest.mark.parametrize('number, expected_value',
+                         [(20, [[3, 4, 5],
+                                [6, 8, 10],
+                                [9, 12, 15],
+                                [12, 16, 20],
+                                [5, 12, 13],
+                                [8, 15, 17]]),
+
+                          (5, [[3, 4, 5]]),
+
+                          (10, [[3, 4, 5],
+                                [6, 8, 10]]),
+
+                          (1, [])]
+                         )
+def test_task554_main_logic(number, expected_value):
+    assert algo.Task554.main_logic(number + 1) == expected_value
 
 
 # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
@@ -195,3 +240,15 @@ def test_task559_mersen_number(number, expected_value):
     (748452, [3, 7, 31, 127, 8191, 131071, 524287]), (12, [3, 7]), (6, [3])],)
 def test_task559_main_logic(number, expected_value):
     assert algo.Task559.main_logic(number) == expected_value
+
+# Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)
+@pytest.mark.parametrize('number, expected_value', [(3, 'NO'), (6, 'YES'), (18, 'YES'), (13, 'NO')])
+def test_task88a_main_logic(number, expected_value):
+    assert algo.Task88a.main_logic(number) == expected_value
+
+
+# Testing task 88b class main logic ( input number n, we should revert it)
+@pytest.mark.parametrize('number, expected_value', [(3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)])
+def test_task88b_main_logic(number, expected_value):
+    assert algo.Task88b.main_logic(number) == expected_value
+

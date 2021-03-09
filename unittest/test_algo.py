@@ -68,6 +68,55 @@ class TestTask330(unittest.TestCase):
             [res for res in algo.Task330.main_logic(number)], expected_value)
 
 
+class TestTask178b(unittest.TestCase):
+
+    # Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
+    @parameterized.expand([([5], 0),
+                           ([9], 1),
+                           ([4, 5], 0),
+                           ([9, 13], 1),
+                           ([9, 12, 18, 21], 4),
+                           ([1, 5, 10, 15], 0)]
+                          )
+    def test_main_logic(self, sequence, expected_value):
+        self.assertEqual(algo.Task178b.main_logic(sequence), expected_value)
+
+
+class TestTask178c(unittest.TestCase):
+
+    # Testing task 178c class main logic (must return amount of numbers which are the square of the even number)
+    @parameterized.expand([([5], 0),
+                           ([100], 1),
+                           ([4, 5], 1),
+                           ([9, 13], 0),
+                           ([4, 16, 36, 64], 4),
+                           ([1, 2, 10, 15], 0)]
+                          )
+    def test_main_logic(self, sequence, expected_value):
+        self.assertEqual(algo.Task178c.main_logic(sequence), expected_value)
+
+
+class TestTask554(unittest.TestCase):
+
+    # Testing task 554 class main logic (must return list of pythagorean triplets)
+    @parameterized.expand([(20, [[3, 4, 5],
+                                 [6, 8, 10],
+                                 [9, 12, 15],
+                                 [12, 16, 20],
+                                 [5, 12, 13],
+                                 [8, 15, 17]]),
+
+                           (5, [[3, 4, 5]]),
+
+                           (10, [[3, 4, 5],
+                                 [6, 8, 10]]),
+
+                           (1, [])]
+                          )
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task554.main_logic(number + 1), expected_value)
+
+
 class TestTask107(unittest.TestCase):
 
     # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
@@ -213,3 +262,22 @@ class TestTask559(unittest.TestCase):
         (748452, [3, 7, 31, 127, 8191, 131071, 524287]), (12, [3, 7]), (6, [3])])
     def test_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task559.main_logic(number), expected_value)
+
+
+class TestTask88a(unittest.TestCase):
+
+    @parameterized.expand([
+        (3, 'NO'), (6, 'YES'), (18, 'YES'), (13, 'NO')
+    ])
+    def test_task88a_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task88a.main_logic(number), expected_value)
+
+
+class TestTask88b(unittest.TestCase):
+
+    @parameterized.expand([
+        (3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)
+    ])
+    def test_task88b_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task88b.main_logic(number), expected_value)
+
