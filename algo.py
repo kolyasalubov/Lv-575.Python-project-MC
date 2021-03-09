@@ -90,7 +90,7 @@ class Task88a(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def name() -> str:
-        return "88a"
+        return "88 a)"
 
 
 class Task178b(TaskWithOneIntValidationParameter):
@@ -636,58 +636,91 @@ class Task555(AlgoInterface):
         return "555"
 
 
-class Task88c(AlgoInterface):
+class Task88c(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n: int) -> int:
+        '''Switches first and last digits of the number'''
+        
+        n = str(n)
+        return int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
-        ''' switches first and last digits of the number '''
-        n = input("Enter N to switch first and last digits of the number : ")
-        print(n[-1] + n[1:-1] + n[0])
+        input_data = input("Enter N to switch first and last digits of the number : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        print("Result: {}".format(self.main_logic(n)))
+
         return None
 
     @staticmethod
     def name() -> str:
-        return "88в"
+        return "88 в)"
 
 
-class Task88d(AlgoInterface):
+class Task88d(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n: int) -> int:
+        '''Inserts digit 1 on the start and last positions'''
+
+        n = str(n)
+        return int('1' + n + '1')
 
     def execute(self) -> None:
-        ''' inserts digit 1 on the start and last positions '''
-        n = input(
-            "Enter N to insert digit 1 on the start and last positions of the number : ")
-        print('1' + n + '1')
+        input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        print("Result: {}".format(self.main_logic(n)))
         return None
 
     @staticmethod
     def name() -> str:
-        return "88г"
+        return "88 г)"
 
 
-class Task332(AlgoInterface):
+class Task332(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
+    @staticmethod
+    def main_logic(n: int) -> List[int]:
         ''' returns coeficients of distribution of a natural number into 4 squares '''
 
-        n = int(input("Enter N to find Lagrange decomposition coefficients : "))
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]
         for i in xs:
             counter += 1
             if tmp_res != n:
-                while res < n:
+                while res <= n:
                     res = tmp_res + i ** 2
                     i += 1
-                if i == 0:
-                    i = 0
-                elif i == 2:
-                    i = 1
-                else:
-                    i -= 2
+                if i == 0: i = 0
+                elif i == 3 and counter == len(xs) and n == tmp_res + 4: i = 2
+                elif i == 2 and counter == len(xs) and n == tmp_res + 1: i = 1
+                else: i -= 2
                 res = i ** 2
-                print('x' + str(counter) + ' = ' + str(i))
                 tmp_res += res
-            else:
-                print('x' + str(counter) + ' = 0')
+                xs[counter - 1] = i
+
+        return xs
+
+    def execute(self) -> None:
+        input_data = input("Enter N to find Lagrange decomposition coefficients : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        for i, x in enumerate(self.main_logic(n)):
+            print('x' + str(i) + ' = ' + str(x))
 
         return None
 
@@ -787,7 +820,7 @@ class Task88b(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def name() -> str:
-        return "88b"
+        return "88 б)"
 
 
 class Task322(AlgoInterface):
@@ -842,7 +875,7 @@ if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
     tasks = sorted(get_classes(AlgoInterface),
-                   key=lambda x: int(re.search('[0-9]+', x.name())[0]))
+                   key=lambda x: int(re.search("[0-9]+", x.name())[0]))
 
     # Console menu
     print("Choose task from:")
@@ -860,9 +893,9 @@ if __name__ == "__main__":
             continue
 
         # executing algorithm
+
         Task_to_execute = tasks[position]()
         Task_to_execute.execute()
-
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
