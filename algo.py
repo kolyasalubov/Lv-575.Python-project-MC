@@ -63,6 +63,9 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
             raise ValueError
         if not n.isdigit() or not m.isdigit():
             raise TypeError
+        quantity, len_of_number = int(m), len(n)
+        if quantity > len_of_number:
+            raise InvalidInput
 
         return n, m
 
