@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
-from math import sqrt, gcd, floor, log, ceil
+from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
 import re
 
@@ -18,6 +18,33 @@ class AlgoInterface(ABC):
         # return name of task
         # user representation
         pass
+
+    @abstractstaticmethod
+    def main_logic(*args, **kwargs):
+        # return name of task
+        # user representation
+        pass
+
+    @abstractstaticmethod
+    def validate_data(*args, **kwargs):
+        # return name of task
+        # user representation
+        pass
+
+
+class TaskWithOneIntValidationParameter(AlgoInterface):
+    @staticmethod
+    def validate_data(input_number):
+
+        s = str(input_number).strip()
+        if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
+            raise TypeError  # raises TypeError if not int
+
+        number = int(input_number)
+
+        if number <= 0:
+            raise ValueError  # raises ValueError if not natural
+        return number
 
 
 class Task178d(AlgoInterface):
@@ -39,43 +66,61 @@ class Task178d(AlgoInterface):
     def name() -> str:
         return "178 d)"
 
+class Task88a(TaskWithOneIntValidationParameter):
+    # input number n, we should check, if 3 is in n^2 number
 
-class Task88a(AlgoInterface):
+    @staticmethod
+    def main_logic(n):
+        if type(n) == int and n > 0:
+            if str(n * n).find("3") != -1:
+                return "YES"
+            else:
+                return "NO"
 
     def execute(self) -> None:
-        n = int(input("Enter number n:"))
-        if str(n * n).find("3") != -1:
-            print("YES")
-        else:
-            print("NO")
+        n = int(input('Input natural number: '))
+        try:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
+            print("Wrong input number")
+            return None
+        k = self.main_logic(n)
+        print('Is 3 in n^2?', k)
         return None
 
     @staticmethod
     def name() -> str:
-        return "88a"
+        return "88 a)"
 
 
-class Task178b(AlgoInterface):
+class Task178b(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
-        try:
-            n = int(input('Enter the size of sequence:'))
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-        print('Enter the elements of sequence:')
-        try:
-            sequence = [int(input()) for i in range(n)]
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-
+    @staticmethod
+    def main_logic(sequence):
         counter = 0
         for element in sequence:
             if element % 3 == 0 and element % 5 != 0:
                 counter += 1
+        return counter
 
-        print('Result:', counter)
+    def execute(self) -> None:
+
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print('Enter the elements of sequence:')
+        sequence = [input() for i in range(n)]
+        for i in range(len(sequence)):
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+
+        print('Result:', self.main_logic(sequence))
 
         return None
 
@@ -84,28 +129,36 @@ class Task178b(AlgoInterface):
         return "178 б)"
 
 
-class Task107(AlgoInterface):
+class Task107(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(m: int) -> int:
+        """
+        Return  the largest integer k, at which 4 ^k < m
+        :rtype: object
+        """
+        k: float = log(m, 4)
+        k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
+        return k
 
     def execute(self) -> None:
         """
-        Return  the largest integer k, at which 4 ^k < m
+        Processes user behavior and displays results
 
         :return: None
         """
+
+        input_data = input("Enter m: ")
+
         try:
-            m = int(input("Enter m: "))
-        except ValueError:
-            print("M must be integer")
-            raise
+            m = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if m < 0:
-            raise ValueError("M can`t be negative")
-
-        k = log(m, 4)
-
-        k = int(k) if k != int(k) or k == 0 else int(k) - 1
+        k = self.main_logic(m)
         print("k =", k)
-        print("4 ^", k, " < ", m)
+        print("4 ^{} < {}".format(k, m))
 
         return None
 
@@ -114,10 +167,10 @@ class Task107(AlgoInterface):
         return "107"
 
 
-class Task243a(AlgoInterface):
+class Task243a(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def check_squares_existence(n: int) -> tuple:
+    def main_logic(n: int) -> tuple:
         """
         Check if there are two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -145,17 +198,18 @@ class Task243a(AlgoInterface):
 
         :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        exists = self.check_squares_existence(n)
+        exists = self.main_logic(n)
         if exists:
-            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+            print(
+                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -166,20 +220,10 @@ class Task243a(AlgoInterface):
         return "243 а)"
 
 
-class Task178c(AlgoInterface):
+class Task178c(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
-        try:
-            n = int(input('Enter the size of array:'))
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
-        print('Enter the elements of sequence:')
-        try:
-            sequence = [int(input()) for i in range(n)]
-        except ValueError:
-            print("ValueError exception thrown")
-            return None
+    @staticmethod
+    def main_logic(sequence):
 
         counter = 0
         for element in sequence:
@@ -187,7 +231,26 @@ class Task178c(AlgoInterface):
             if root ** 2 == element and root % 2 == 0:
                 counter += 1
 
-        print('Result:', counter)
+        return counter
+
+    def execute(self) -> None:
+
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print('Enter the elements of sequence:')
+        sequence = [input() for i in range(n)]
+        for i in range(len(sequence)):
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+
+        print('Result:', self.main_logic(sequence))
         return None
 
     @staticmethod
@@ -195,17 +258,26 @@ class Task178c(AlgoInterface):
         return "178 в)"
 
 
-class Task86a(AlgoInterface):
+class Task86a(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(number):
+        return len(str(number))
 
     def execute(self) -> None:
         ''' input natural number N \n
         find amount of its digits '''
+        input_data = input("Enter number: ")
 
-        if not (number := input("Enter number N: ")).isdigit():
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("Wrong input!")
             return None
+
         # number must be natural
-        print(len(number))
+        print(self.main_logic(number))
+
         return None
 
     @staticmethod
@@ -213,9 +285,11 @@ class Task86a(AlgoInterface):
         return "86 a)"
 
 
-class Task554(AlgoInterface):
+class Task554(TaskWithOneIntValidationParameter):
 
-    def pythagorean(self, num):
+    @staticmethod
+    def main_logic(num):
+        res = []
         for m in range(2, ceil(sqrt(num))):
             for n in range(1, m):
                 # m and n are coprime and not both odd
@@ -227,21 +301,23 @@ class Task554(AlgoInterface):
                         a, b = b, a
                     k = 1
                     while k * c < num:
+                        res.append([k * a, k * b, k * c])
                         print(k * a, k * b, k * c)
                         k += 1
-        return None
+        return res
 
     def execute(self) -> None:
         """
         Finds triples using Euclid's formula
         (Modified to print not only primitive triples)
         """
+        number = input('Enter n: ')
         try:
-            num = int(input('Enter the number:')) + 1
+            num = self.validate_data(number)
         except ValueError:
             print("ValueError exception thrown")
             return None
-        self.pythagorean(num)
+        self.main_logic(num + 1)
         return None
 
     @staticmethod
@@ -268,7 +344,8 @@ class Task87(AlgoInterface):
         else:
             for i in range(quantity):
                 sum += int(n[len_of_number - i - 1])
-            print("The sum of the last {} digits of number {} is".format(quantity, n), sum)
+            print("The sum of the last {} digits of number {} is".format(
+                quantity, n), sum)
 
         return None
 
@@ -277,17 +354,25 @@ class Task87(AlgoInterface):
         return "87"
 
 
-class Task86b(AlgoInterface):
+class Task86b(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(number):
+        return sum(map(int, list(str(number))))
 
     def execute(self) -> None:
         ''' input natural number N \n
          find sum of its digits '''
-        if not (number := input("Enter number N: ")).isdigit():
+
+        input_data = input("Enter number N: ")
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("Wrong input!")
             return None
 
-        sum_ = sum(map(int, list(number)))
-        print(sum_)
+        # number must be natural
+        print(self.main_logic(number))
         return None
 
     @staticmethod
@@ -295,20 +380,26 @@ class Task86b(AlgoInterface):
         return "86 б)"
 
 
-class Task330(AlgoInterface):
+class Task330(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def _get_deviders(numb):
+    def _get_dividers(numb):
         # complexity O(sqrt(numb))
 
         # using set to avoid duplicates of deviders
         deviders = {1}
         # starting from 2 because 1 is always devider of natural number
-        for i in range(2, int(numb**0.5) + 2):
+        for i in range(2, int(numb ** 0.5) + 2):
             if numb % i == 0:
-                deviders.add(numb/i)
+                deviders.add(numb // i)
                 deviders.add(i)
         return deviders
+
+    @staticmethod
+    def main_logic(number):
+        for i in range(2, number):
+            if sum(Task330._get_dividers(i)) == i:
+                yield i
 
     def execute(self) -> None:
         ''' input natural number N \n
@@ -317,13 +408,17 @@ class Task330(AlgoInterface):
             "ideal" - number the sum of witch deviders(without the number itself)
             is equal to the number'''
 
-        number = int(input("Enter number N: "))
+        number = input("Enter number N: ")
+        try:
+            number = self.validate_data(number)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
         # general complixity of print all "ideal" numbers till number N
         # O(n*sqrt(n)) <==> O(n^(3/2))
-        for i in range(2, number):
-            if sum(self._get_deviders(i)) == i:
-                print(i)
+        for n in self.main_logic(number):
+            print(n)
 
         # alternative form (cons: print all values after forloop ends)
         # print(*(i for i in range(2, number)  if sum(get_deviders(i)) == i ))
@@ -334,17 +429,25 @@ class Task330(AlgoInterface):
     def name() -> str:
         return "330"
 
-class Task108(AlgoInterface):
-    #input number n, we should find the least number, that is bigger than n and is degree of number 2
-    #complexity - O(1)
+
+class Task108(TaskWithOneIntValidationParameter):
+    # input number n, we should find the least number, that is bigger than n and is degree of number 2
+    # complexity - O(1)
+
+    @staticmethod
+    def main_logic(n):
+        return 2 ** (floor(log(n, 2)) + 1)
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input natural number: '))
-            print('r = ', floor(log(n, 2)) + 1)
-            print('Result (2^r) = ', 2 ** (floor(log(n, 2)) + 1))
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        print('r = ', floor(log(n, 2)) + 1)
+        print('Result (2^r) = ', k)
         return None
 
     @staticmethod
@@ -388,10 +491,9 @@ class Task226(AlgoInterface):
         return "226"
 
 
-class Task178_e(AlgoInterface):
+class Task178e(AlgoInterface):
 
     def execute(self) -> None:
-        import math
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
         print("-" * 60)
@@ -399,7 +501,7 @@ class Task178_e(AlgoInterface):
         sequence = [int(i) for i in input().split(' ')]
         result = 0
         for i in range(len(sequence)):
-            if 2 ** i < sequence[i] and sequence[i] > math.factorial(i):
+            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
                 result += 1
         print("Result:", result)
 
@@ -448,10 +550,10 @@ class Task559(AlgoInterface):
         return "559"
 
 
-class Task243b(AlgoInterface):
+class Task243b(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def find_all_squares(n: int) -> List[Tuple[int, int]]:
+    def main_logic(n: int) -> List[Tuple[int, int]]:
         """
         Find all of the two numbers (x, y) that x ^2 + y ^2 = n
 
@@ -482,19 +584,20 @@ class Task243b(AlgoInterface):
 
             :return: None
         """
+        input_data = input("Enter n: ")
+
         try:
-            n = int(input("Enter n: "))
-        except ValueError:
-            raise ValueError("M must be integer")
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
 
-        if n < 0:
-            raise ValueError("M can`t be negative")
-
-        all_squares = self.find_all_squares(n)
+        all_squares = self.main_logic(n)
 
         if all_squares:
             for pair in all_squares:
-                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+                print(
+                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -507,13 +610,8 @@ class Task243b(AlgoInterface):
 
 class Task555(AlgoInterface):
 
-    def execute(self) -> None:
-        from math import factorial
-        print("-" * 60)
-        print("Task - build first n rows of Pascal's triangle")
-        print("-" * 60)
-        print("Enter natural number:", end=" ")
-        n = int(input())
+    @staticmethod
+    def build_pascals_triangle(n: int):
         for i in range(n):
             for j in range(n - i + 1):
                 print(end=" ")
@@ -523,6 +621,14 @@ class Task555(AlgoInterface):
                 print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
             print()
 
+    def execute(self) -> None:
+        print("-" * 60)
+        print("Task - build first n rows of Pascal's triangle")
+        print("-" * 60)
+        print("Enter natural number:", end=" ")
+        n = int(input())
+        self.build_pascals_triangle(n)
+
         return None
 
     @staticmethod
@@ -530,57 +636,92 @@ class Task555(AlgoInterface):
         return "555"
 
 
-class Task88c(AlgoInterface):
+class Task88c(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n: int) -> int:
+        '''Switches first and last digits of the number'''
+        
+        n = str(n)
+        return int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
-        ''' switches first and last digits of the number '''
-        n = input("Enter N to switch first and last digits of the number : ")
-        print(n[-1] + n[1:-1] + n[0])
+        input_data = input("Enter N to switch first and last digits of the number : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        print("Result: {}".format(self.main_logic(n)))
+
         return None
 
     @staticmethod
     def name() -> str:
-        return "88в"
+        return "88 в)"
 
 
-class Task88d(AlgoInterface):
+class Task88d(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n: int) -> int:
+        '''Inserts digit 1 on the start and last positions'''
+
+        n = str(n)
+        return int('1' + n + '1')
 
     def execute(self) -> None:
-        ''' inserts digit 1 on the start and last positions '''
-        n = input("Enter N to insert digit 1 on the start and last positions of the number : ")
-        print('1' + n + '1')
+        input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        print("Result: {}".format(self.main_logic(n)))
+
         return None
 
     @staticmethod
     def name() -> str:
-        return "88г"
+        return "88 г)"
 
 
-class Task332(AlgoInterface):
+class Task332(TaskWithOneIntValidationParameter):
 
-    def execute(self) -> None:
+    @staticmethod
+    def main_logic(n: int) -> List[int]:
         ''' returns coeficients of distribution of a natural number into 4 squares '''
 
-        n = int(input("Enter N to find Lagrange decomposition coefficients : "))
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]
         for i in xs:
             counter += 1
             if tmp_res != n:
-                while res < n:
+                while res <= n:
                     res = tmp_res + i ** 2
                     i += 1
-                if i == 0:
-                    i = 0
-                elif i == 2:
-                    i = 1
-                else:
-                    i -= 2
+                if i == 0: i = 0
+                elif i == 3 and counter == len(xs) and n == tmp_res + 4: i = 2
+                elif i == 2 and counter == len(xs) and n == tmp_res + 1: i = 1
+                else: i -= 2
                 res = i ** 2
-                print('x' + str(counter) + ' = ' + str(i))
                 tmp_res += res
-            else:
-                print('x' + str(counter) + ' = 0')
+                xs[counter - 1] = i
+
+        return xs
+
+    def execute(self) -> None:
+        input_data = input("Enter N to find Lagrange decomposition coefficients : ")
+        try:
+            n = self.validate_data(input_data)
+        except (ValueError, TypeError):
+            print("Wrong input!")
+            return None
+
+        for i, x in enumerate(self.main_logic(n)):
+            print('x' + str(i) + ' = ' + str(x))
 
         return None
 
@@ -589,30 +730,42 @@ class Task332(AlgoInterface):
         return "332"
 
 
-#for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
-#complexity ~ O(n)
+# for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
+# complexity ~ O(n)
 def check(number, task):
-    exist = False
+    array = []
     for i in range(1, int(ceil(sqrt(number)))):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                print(i, "^2 + ", j, "^2 + ", int(third ** (1 / 2)), "^2")
-                exist = True
+                array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
                 if task == "331 a":
-                    return True
-    return exist
+                    return array
+    return array
 
 
-class Task331a (AlgoInterface):
+class Task331a(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 a")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 a"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
@@ -620,32 +773,55 @@ class Task331a (AlgoInterface):
         return "331 а)"
 
 
-class Task331b(AlgoInterface):
+class Task331b(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(n):
+        result = check(n, "331 b")
+        if not result:
+            return False
+        else:
+            return result
 
     def execute(self) -> None:
+        n = int(input('Input natural number: '))
         try:
-            n = int(input('Input: '))
-            if not check(n, "331 b"):
-                print("It`s impossible!")
-        except ValueError:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
             print("Wrong input!")
+            return None
+        k = self.main_logic(n)
+        if not k:
+            print("It`s impossible!")
+        else:
+            print(k)
         return None
 
     @staticmethod
     def name() -> str:
         return "331 б)"
 
+class Task88b(TaskWithOneIntValidationParameter):
+    # revert number n
 
-class Task88b(AlgoInterface):
+    @staticmethod
+    def main_logic(n):
+        return int("".join(reversed(str(n))))
 
     def execute(self) -> None:
-        n = input("Enter number n:")
-        print(n[::-1])
+        n = int(input('Input natural number: '))
+        try:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
+            print("Wrong input number")
+            return None
+        k = self.main_logic(n)
+        print('Result = ', k)
         return None
 
     @staticmethod
     def name() -> str:
-        return "88b"
+        return "88 б)"
 
 
 class Task322(AlgoInterface):
@@ -676,11 +852,31 @@ class Task322(AlgoInterface):
         return "322"
 
 
+# function for bfs search of endpoint classes
+def get_classes(cls):
+    stack = set(cls.__subclasses__())
+
+    # array for all leaves
+    endpoint_classes = []
+
+    while stack:
+        current = stack.pop()
+
+        # checking if it is an rnd point class
+        if classes := current.__subclasses__():
+            stack |= {c for c in classes}
+            continue
+
+        endpoint_classes.append(current)
+
+    return endpoint_classes
+
+
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = sorted(AlgoInterface.__subclasses__(),
-                   key=lambda x: int(re.search('[0-9]+', x.name())[0]))
+    tasks = sorted(get_classes(AlgoInterface),
+                   key=lambda x: int(re.search("[0-9]+", x.name())[0]))
 
     # Console menu
     print("Choose task from:")
@@ -698,8 +894,9 @@ if __name__ == "__main__":
             continue
 
         # executing algorithm
-        Taskto_execute = tasks[position]()
-        Taskto_execute.execute()
+
+        Task_to_execute = tasks[position]()
+        Task_to_execute.execute()
 
         # exit condition
         if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
