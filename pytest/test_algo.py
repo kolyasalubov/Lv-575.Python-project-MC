@@ -163,3 +163,16 @@ def test_task331a_main_logic(number, expected_value):
     (4, False)])
 def test_task331b_main_logic(number, expected_value):
     assert algo.Task331b.main_logic(number) == expected_value
+
+
+# Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)
+@pytest.mark.parametrize('number, expected_value', [(3, 'NO'), (6, 'YES'), (18, 'YES'), (13, 'NO')])
+def test_task88a_main_logic(number, expected_value):
+    assert algo.Task88a.main_logic(number) == expected_value
+
+
+# Testing task 88b class main logic ( input number n, we should revert it)
+@pytest.mark.parametrize('number, expected_value', [(3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)])
+def test_task88b_main_logic(number, expected_value):
+    assert algo.Task88b.main_logic(number) == expected_value
+

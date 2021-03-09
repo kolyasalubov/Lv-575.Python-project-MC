@@ -66,19 +66,27 @@ class Task178d(AlgoInterface):
     def name() -> str:
         return "178 d)"
 
+class Task88a(TaskWithOneIntValidationParameter):
+    # input number n, we should check, if 3 is in n^2 number
 
-class Task88a(AlgoInterface):
-
-    def execute(self) -> None:
-        n = input("Enter number n:")
+    @staticmethod
+    def main_logic(n):
         if type(n) == int and n > 0:
             if str(n * n).find("3") != -1:
-                print("YES")
+                return "YES"
             else:
-                print("NO")
+                return "NO"
+
+    def execute(self) -> None:
+        n = int(input('Input natural number: '))
+        try:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
+            print("Wrong input number")
             return None
-        else:
-            print("Wrong type of a number")
+        k = self.main_logic(n)
+        print('Is 3 in n^2?', k)
+        return None
 
     @staticmethod
     def name() -> str:
@@ -759,12 +767,22 @@ class Task331b(TaskWithOneIntValidationParameter):
     def name() -> str:
         return "331 б)"
 
+class Task88b(TaskWithOneIntValidationParameter):
+    # revert number n
 
-class Task88b(AlgoInterface):
+    @staticmethod
+    def main_logic(n):
+        return int("".join(reversed(str(n))))
 
     def execute(self) -> None:
-        n = input("Enter number n:")
-        print(n[::-1])
+        n = int(input('Input natural number: '))
+        try:
+            m = self.validate_data(n)
+        except (ValueError, TypeError):
+            print("Wrong input number")
+            return None
+        k = self.main_logic(n)
+        print('Result = ', k)
         return None
 
     @staticmethod
