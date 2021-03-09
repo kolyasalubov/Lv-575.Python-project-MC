@@ -64,10 +64,6 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
         if not n.isdigit() or not m.isdigit():
             raise TypeError
 
-        # m should be less then len(n)
-        quantity, len_of_number = int(m), len(n)
-        if quantity > len_of_number:
-            raise InvalidInput
         return n, m
 
 
@@ -457,28 +453,32 @@ class Task108(TaskWithOneIntValidationParameter):
         return "108"
 
 
-class Task226(AlgoInterface):
-
-    def execute(self) -> None:
+class Task226(TaskWithTwoIntValidationParameters):
+    @staticmethod
+    def main_logic(n, m):
         import math
 
         def lcm(a, b):
             return (a * b) // math.gcd(a, b)
 
-        print("Enter n and m:")
-        try:
-            n, m = input().split()
-        except ValueError:
-            print("Please enter the second value")
-        if not n.isdigit() or not m.isdigit():
-            print("You've entered not natural number")
-            return None
-
         n, m = int(n), int(m)
         lcm = lcm(n, m)
-        result = [i for i in range(lcm, n * m, lcm)]
+        return [i for i in range(lcm, n * m, lcm)]
+
+    def execute(self) -> None:
+        try:
+            input_data = input("Enter n and m:")
+            n, m = self.validate_data(input_data)
+        except ValueError:
+            print("Please enter the second value")
+            return None
+        except TypeError:
+            print("You've entered not natural number")
+            return None
+        # numbers must be natural
+        result = self.main_logic(n, int(m))
         if result:
-            print("All common multiples less then {}: ".format(n * m), end='')
+            print("All common multiples less then {}: ".format(int(n) * int(m)), end='')
             for el in result:
                 print(el, end=', ')
             print()
@@ -514,36 +514,42 @@ class Task178e(AlgoInterface):
         return "178 e)"
 
 
-class Task559(AlgoInterface):
+class Task559(TaskWithOneIntValidationParameter):
+    @staticmethod
+    # Eratosthene's sieve to get primes
+    def eratosthenes(n):
+        sieve = list(range(n + 1))
+        sieve[1] = 0
+        for i in sieve:
+            if i > 1:
+                for j in range(i + i, len(sieve), i):
+                    sieve[j] = 0
+        sieve_without_nulls = set([x for x in sieve if x != 0])
+        return set(sieve_without_nulls)
+
+    @staticmethod
+    # Mersenne numbers
+    def mersen_numbers(n):
+        return set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)])
+
+    @staticmethod
+    def main_logic(number):
+        n = int(number)
+        return list(Task559.eratosthenes(n).intersection(
+            Task559.mersen_numbers(n)))  # Mersenne primes
 
     def execute(self) -> None:
+        input_data = input("Enter n: ")
 
-        from math import log
-
-        # Eratosthene's sieve to get primes
-        def eratosthenes(n):
-            sieve = list(range(n + 1))
-            sieve[1] = 0
-            for i in sieve:
-                if i > 1:
-                    for j in range(i + i, len(sieve), i):
-                        sieve[j] = 0
-            sieve_without_nulls = set([x for x in sieve if x != 0])
-            return set(sieve_without_nulls)
-
-        # Mersenne numbers
-        def mersen_numbers(n):
-            return set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)])
-
-        print("Enter n:")
-        n = input()
-        if n.isdigit():
-            n = int(n)
-            result = list(eratosthenes(n).intersection(
-                mersen_numbers(n)))  # Mersenne primes
-            print("Mersenne primes less than {}:".format(n), sorted(result))
-        else:
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("You've entered not natural number")
+            return None
+
+        # number must be natural
+        result = self.main_logic(number)
+        print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
 
         return None
 
