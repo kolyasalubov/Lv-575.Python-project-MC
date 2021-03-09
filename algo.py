@@ -680,7 +680,6 @@ class Task88d(TaskWithOneIntValidationParameter):
             return None
 
         print("Result: {}".format(self.main_logic(n)))
-
         return None
 
     @staticmethod
