@@ -643,7 +643,7 @@ class Task88c(TaskWithOneIntValidationParameter):
         '''Switches first and last digits of the number'''
         
         n = str(n)
-        return int(n[-1] + n[1:-1] + n[0])
+        return int(n) if len(n)==1 else int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
         input_data = input("Enter N to switch first and last digits of the number : ")
