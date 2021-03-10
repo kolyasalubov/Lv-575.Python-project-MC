@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
 import re
+import logging
 
 
 class AlgoInterface(ABC):
@@ -45,6 +46,43 @@ class TaskWithOneIntValidationParameter(AlgoInterface):
         if number <= 0:
             raise ValueError  # raises ValueError if not natural
         return number
+
+
+class InvalidInput(Exception):
+    pass
+
+
+class TaskWithTwoIntValidationParameters(AlgoInterface):
+
+    @staticmethod
+    def validate_data(input_data):
+
+        try:
+            n, m = input_data.split()
+        except ValueError:
+            raise ValueError
+        if not n.isdigit() or not m.isdigit():
+            raise TypeError
+
+        return n, m
+
+
+class TaskWithTwoIntValidationParametersForTask87(TaskWithTwoIntValidationParameters):
+
+    @staticmethod
+    def validate_data(input_data):
+
+        try:
+            n, m = input_data.split()
+        except ValueError:
+            raise ValueError
+        if not n.isdigit() or not m.isdigit():
+            raise TypeError
+        quantity, len_of_number = int(m), len(n)
+        if quantity > len_of_number:
+            raise InvalidInput
+
+        return n, m
 
 
 class Task178d(AlgoInterface):
@@ -325,27 +363,33 @@ class Task554(TaskWithOneIntValidationParameter):
         return "554"
 
 
-class Task87(AlgoInterface):
+class Task87(TaskWithTwoIntValidationParametersForTask87):
+    @staticmethod
+    def main_logic(n, quantity):
+        sum, len_of_number = 0, len(n)
+        for i in range(quantity):
+            sum += int(n[len_of_number - i - 1])
+        return sum
 
     def execute(self) -> None:
-        print("Enter n and m:")
+        global n
+        global m
         try:
-            n, m = input().split()
+            input_data = input("Enter n and m:")
+            n, m = self.validate_data(input_data)
         except ValueError:
             print("Please enter the second value")
             return None
-        if not n.isdigit() or not m.isdigit():
+        except TypeError:
             print("You've entered not natural number")
             return None
-        sum, quantity = 0, int(m)
-        len_of_number = len(n)
-        if quantity > len_of_number:
+        except InvalidInput:
             print("m must be less than number of digits n")
-        else:
-            for i in range(quantity):
-                sum += int(n[len_of_number - i - 1])
-            print("The sum of the last {} digits of number {} is".format(
-                quantity, n), sum)
+            return None
+        # numbers must be natural
+        result = self.main_logic(n, int(m))
+        print("The sum of the last {} digits of number {} is".format(
+                    int(m), n), result)
 
         return None
 
@@ -455,26 +499,30 @@ class Task108(TaskWithOneIntValidationParameter):
         return "108"
 
 
-class Task226(AlgoInterface):
-
-    def execute(self) -> None:
+class Task226(TaskWithTwoIntValidationParameters):
+    @staticmethod
+    def main_logic(n, m):
         import math
 
         def lcm(a, b):
             return (a * b) // math.gcd(a, b)
 
-        print("Enter n and m:")
+        lcm = lcm(n, m)
+        return [i for i in range(lcm, n * m, lcm)]
+
+    def execute(self) -> None:
         try:
-            n, m = input().split()
+            input_data = input("Enter n and m:")
+            n, m = self.validate_data(input_data)
         except ValueError:
             print("Please enter the second value")
-        if not n.isdigit() or not m.isdigit():
+            return None
+        except TypeError:
             print("You've entered not natural number")
             return None
-
+        # numbers must be natural
         n, m = int(n), int(m)
-        lcm = lcm(n, m)
-        result = [i for i in range(lcm, n * m, lcm)]
+        result = self.main_logic(n, m)
         if result:
             print("All common multiples less then {}: ".format(n * m), end='')
             for el in result:
@@ -512,36 +560,43 @@ class Task178e(AlgoInterface):
         return "178 e)"
 
 
-class Task559(AlgoInterface):
+class Task559(TaskWithOneIntValidationParameter):
+    @staticmethod
+    # Eratosthene's sieve to get primes
+    def eratosthenes(n):
+        sieve = list(range(n + 1))
+        sieve[1] = 0
+        for i in sieve:
+            if i > 1:
+                for j in range(i + i, len(sieve), i):
+                    sieve[j] = 0
+        sieve_without_nulls = set([x for x in sieve if x != 0])
+        return sorted(set(sieve_without_nulls))
+
+    @staticmethod
+    # Mersenne numbers
+    def mersen_numbers(n):
+        return sorted(set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)]))
+
+    @staticmethod
+    def main_logic(number):
+        n = int(number)
+        return sorted(set(Task559.eratosthenes(n)).intersection(
+            set(Task559.mersen_numbers(n))))  # Mersenne primes
 
     def execute(self) -> None:
+        input_data = input("Enter n: ")
 
-        from math import log
-
-        # Eratosthene's sieve to get primes
-        def eratosthenes(n):
-            sieve = list(range(n + 1))
-            sieve[1] = 0
-            for i in sieve:
-                if i > 1:
-                    for j in range(i + i, len(sieve), i):
-                        sieve[j] = 0
-            sieve_without_nulls = set([x for x in sieve if x != 0])
-            return set(sieve_without_nulls)
-
-        # Mersenne numbers
-        def mersen_numbers(n):
-            return set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)])
-
-        print("Enter n:")
-        n = input()
-        if n.isdigit():
-            n = int(n)
-            result = list(eratosthenes(n).intersection(
-                mersen_numbers(n)))  # Mersenne primes
-            print("Mersenne primes less than {}:".format(n), sorted(result))
-        else:
+        try:
+            number = self.validate_data(input_data)
+        except (ValueError, TypeError):
             print("You've entered not natural number")
+            return None
+
+        # number must be natural
+        result = self.main_logic(number)
+        print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
+        print(self.mersen_numbers(int(input_data)))
 
         return None
 
