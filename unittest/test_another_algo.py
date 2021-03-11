@@ -79,3 +79,74 @@ class TestTask559(unittest.TestCase):
         (8000, [3, 7, 31, 127]), (5, [3]), (13172, [3, 7, 31, 127, 8191]),],)
     def test_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task559.main_logic(number), expected_value)
+
+
+class TestTask107(unittest.TestCase):
+
+    @parameterized.expand([
+        (1, 0), (3, 0), (4, 0), (16, 1), (17, 2), (45, 2), (64, 2), (65, 3),
+        (95, 3), (100, 3), (256, 3), (257, 4)
+    ])
+    def test_task107(self, input_value, expected_value):
+        self.assertEqual(algo.Task107.main_logic(input_value), expected_value)
+
+
+class TestTask243a(unittest.TestCase):
+
+    @parameterized.expand([
+        (24, ()), (104, (10, 2)), (328, (18, 2)), (611, ()), (1920, ()), (2311, ()),
+        (9945, (99, 12)), (41410, (197, 51))
+    ])
+    def test_task243a(self, input_value, expected_value):
+        self.assertEqual(algo.Task243a.main_logic(input_value), expected_value)
+
+
+class TestTask243b(unittest.TestCase):
+
+    @parameterized.expand([
+        (24, []), (104, [(10, 2)]), (328, [(18, 2)]), (611, []), (2000, [(44, 8), (40, 20)]), (2311, []),
+        (9945, [(99, 12), (96, 27), (93, 36), (72, 69)]), (41410, [(197, 51), (183, 89), (181, 93), (159, 127)])
+    ])
+    def test_task243b(self, input_value, expected_value):
+        self.assertEqual(algo.Task243b.main_logic(input_value), expected_value)
+
+
+class TestTask108(unittest.TestCase):
+
+    @parameterized.expand([
+        (5, 8), (16, 32),
+        (1, 2), (65, 128),
+        (8, 16), (55, 64),
+        (256, 512), (1000, 1024),
+        (13, 16), (2, 4)
+    ])
+    def test_task108(self, input_value, expected_value):
+        self.assertEqual(algo.Task108.main_logic(input_value), expected_value)
+
+
+class TestTask331a(unittest.TestCase):
+
+    @parameterized.expand([
+        (20, False), (3, ["1^2 + 1^2 + 1^2"]),
+        (26, ["1^2 + 3^2 + 4^2"]), (1, False),
+        (42, ["1^2 + 4^2 + 5^2"]), (4, False),
+        (7, False), (9, ["1^2 + 2^2 + 2^2"]),
+        (6, ["1^2 + 1^2 + 2^2"]), (5, False)
+    ])
+    def test_task331a(self, input_value, expected_value):
+        self.assertEqual(algo.Task331a.main_logic(input_value), expected_value)
+
+
+class TestTask331b(unittest.TestCase):
+
+    @parameterized.expand([
+        (50, ['3^2 + 4^2 + 5^2', '3^2 + 5^2 + 4^2', '4^2 + 3^2 + 5^2', '4^2 + 5^2 + 3^2',
+              '5^2 + 3^2 + 4^2', '5^2 + 4^2 + 3^2']),
+        (45, ['2^2 + 4^2 + 5^2', '2^2 + 5^2 + 4^2', '4^2 + 2^2 + 5^2', '4^2 + 5^2 + 2^2',
+              '5^2 + 2^2 + 4^2', '5^2 + 4^2 + 2^2']),
+        (9, ['1^2 + 2^2 + 2^2', '2^2 + 1^2 + 2^2', '2^2 + 2^2 + 1^2']),
+        (5, False), (1, False)
+    ])
+    def test_task331b(self, input_value, expected_value):
+        self.assertEqual(algo.Task331b.main_logic(input_value), expected_value)
+
