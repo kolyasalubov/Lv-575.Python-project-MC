@@ -1,9 +1,4 @@
 import pytest
-# import algo
-import sys
-
-sys.path.append(
-    '..')
 import algo
 
 
