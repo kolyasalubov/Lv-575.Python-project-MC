@@ -38,7 +38,7 @@ class TaskWithOneIntValidationParameter(AlgoInterface):
     def validate_data(input_number):
 
         s = str(input_number).strip()
-        if not((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
+        if not ((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
             raise TypeError  # raises TypeError if not int
 
         number = int(input_number)
@@ -85,24 +85,42 @@ class TaskWithTwoIntValidationParametersForTask87(TaskWithTwoIntValidationParame
         return n, m
 
 
-class Task178d(AlgoInterface):
-    def execute(self) -> None:
-        print("-" * 60)
-        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
-        print("-" * 60)
-        print("Enter sequence of integer numbers by ' ':")
-        sequence = [int(i) for i in input().split(' ')]
+class Task178d(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(sequence):
         result = 0
         for i in range(1, len(sequence) - 1):
             if sequence[i] < (sequence[i - 1] + sequence[i + 1]) / 2:
                 result += 1
-        print("Result:", result)
+        return result
+
+    def execute(self) -> None:
+        print("-" * 60)
+        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
+        print("-" * 60)
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print("Enter sequence of integer numbers by one in row:")
+        sequence = [int(input()) for i in range(n)]
+        for i in range(len(sequence)):
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+        print("Result:", self.main_logic(sequence))
 
         return None
 
     @staticmethod
     def name() -> str:
-        return "178 d)"
+        return "178 г)"
+
 
 class Task88a(TaskWithOneIntValidationParameter):
     # input number n, we should check, if 3 is in n^2 number
@@ -389,7 +407,7 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
         # numbers must be natural
         result = self.main_logic(n, int(m))
         print("The sum of the last {} digits of number {} is".format(
-                    int(m), n), result)
+            int(m), n), result)
 
         return None
 
@@ -539,25 +557,42 @@ class Task226(TaskWithTwoIntValidationParameters):
         return "226"
 
 
-class Task178e(AlgoInterface):
+class Task178e(TaskWithOneIntValidationParameter):
+
+    @staticmethod
+    def main_logic(sequence):
+        result = 0
+        for i in range(len(sequence)):
+            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
+                result += 1
+        return result
 
     def execute(self) -> None:
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
         print("-" * 60)
         print("Enter sequence of integer numbers by ' ':")
-        sequence = [int(i) for i in input().split(' ')]
-        result = 0
+        n = input('Enter the size of sequence:')
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        print("Enter sequence of integer numbers by one in row:")
+        sequence = [int(input()) for i in range(n)]
         for i in range(len(sequence)):
-            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
-                result += 1
-        print("Result:", result)
+            try:
+                sequence[i] = self.validate_data(sequence[i])
+            except ValueError:
+                print("ValueError exception thrown")
+                return None
+        print("Result:", self.main_logic(sequence))
 
         return None
 
     @staticmethod
     def name() -> str:
-        return "178 e)"
+        return "178 д)"
 
 
 class Task559(TaskWithOneIntValidationParameter):
@@ -663,10 +698,10 @@ class Task243b(TaskWithOneIntValidationParameter):
         return "243 б)"
 
 
-class Task555(AlgoInterface):
+class Task555(TaskWithOneIntValidationParameter):
 
     @staticmethod
-    def build_pascals_triangle(n: int):
+    def main_logic(n: int):
         for i in range(n):
             for j in range(n - i + 1):
                 print(end=" ")
@@ -682,7 +717,12 @@ class Task555(AlgoInterface):
         print("-" * 60)
         print("Enter natural number:", end=" ")
         n = int(input())
-        self.build_pascals_triangle(n)
+        try:
+            n = self.validate_data(n)
+        except ValueError:
+            print("ValueError exception thrown")
+            return None
+        self.main_logic(n)
 
         return None
 
@@ -696,9 +736,9 @@ class Task88c(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n: int) -> int:
         '''Switches first and last digits of the number'''
-        
+
         n = str(n)
-        return int(n) if len(n)==1 else int(n[-1] + n[1:-1] + n[0])
+        return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
         input_data = input("Enter N to switch first and last digits of the number : ")
@@ -756,10 +796,14 @@ class Task332(TaskWithOneIntValidationParameter):
                 while res <= n:
                     res = tmp_res + i ** 2
                     i += 1
-                if i == 0: i = 0
-                elif i == 3 and counter == len(xs) and n == tmp_res + 4: i = 2
-                elif i == 2 and counter == len(xs) and n == tmp_res + 1: i = 1
-                else: i -= 2
+                if i == 0:
+                    i = 0
+                elif i == 3 and counter == len(xs) and n == tmp_res + 4:
+                    i = 2
+                elif i == 2 and counter == len(xs) and n == tmp_res + 1:
+                    i = 1
+                else:
+                    i -= 2
                 res = i ** 2
                 tmp_res += res
                 xs[counter - 1] = i
@@ -855,6 +899,7 @@ class Task331b(TaskWithOneIntValidationParameter):
     def name() -> str:
         return "331 б)"
 
+
 class Task88b(TaskWithOneIntValidationParameter):
     # revert number n
 
@@ -935,7 +980,7 @@ if __name__ == "__main__":
     # Console menu
     print("Choose task from:")
     print("\n".join('\t{}. {}'.format(i, task.name()) for i,
-                    task in enumerate(tasks, 1)))
+                                                          task in enumerate(tasks, 1)))
 
     while True:
         # handaling wrong input
