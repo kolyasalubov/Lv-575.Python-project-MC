@@ -53,6 +53,34 @@ class TestTask332(unittest.TestCase):
         self.assertEqual(algo.Task332.main_logic(input_value), expected_value)
 
 
+class TestTask87(unittest.TestCase):
+
+    @parameterized.expand([
+        ('49850', 2, 5), ('14', 2, 5), ('548736', 4, 24),
+        ('5870', 1, 0), ('247845225', 1, 5), ('558062862', 5, 24)])
+    def test_main_logic(self, number, quantity, expected_value):
+        self.assertEqual(algo.Task87.main_logic(number, quantity), expected_value)
+
+
+class TestTask226(unittest.TestCase):
+
+    @parameterized.expand([
+        (10, 3, []), (6, 15, [30, 60]),
+        (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
+        (71, 140, [])])
+    def test_main_logic(self, number1, number2, expected_value):
+        self.assertEqual(algo.Task226.main_logic(number1, number2), expected_value)
+
+
+class TestTask559(unittest.TestCase):
+
+    @parameterized.expand([
+        (126, [3, 7, 31]), (128, [3, 7, 31, 127]), (1, []), (8, [3, 7]),
+        (8000, [3, 7, 31, 127]), (5, [3]), (13172, [3, 7, 31, 127, 8191]),],)
+    def test_main_logic(self, number, expected_value):
+        self.assertEqual(algo.Task559.main_logic(number), expected_value)
+
+
 class TestTask107(unittest.TestCase):
 
     @parameterized.expand([
