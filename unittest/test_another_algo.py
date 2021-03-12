@@ -198,3 +198,54 @@ class TestTask555(unittest.TestCase):
     def test_task555(self, input_value, expected_value):
         self.assertEqual(
             [*algo.Task555.main_logic(input_value)], expected_value)
+class TestTask86a(unittest.TestCase):
+
+    @parameterized.expand([
+        (15, 2),
+        (441, 3),
+        (9, 1),
+        (123456798, 9),
+        (15263, 5),
+        (10526374859632104512, 20)])
+    def test_task86a(self, input_value, expected_value):
+        self.assertEqual(algo.Task86a.main_logic(input_value), expected_value)
+
+
+class TestTask86b(unittest.TestCase):
+
+    @parameterized.expand([
+        (15, 6),
+        (441, 9),
+        (9, 9),
+        (123456798, 45),
+        (15263, 17),
+        (0, 0),
+        (10000, 1),
+        (11111, 5),
+        (1991, 20)])
+    def test_task86b(self, input_value, expected_value):
+        self.assertEqual(algo.Task86b.main_logic(input_value), expected_value)
+
+
+class TestTask330(unittest.TestCase):
+
+    @parameterized.expand([
+        (15, {1, 3, 5}),
+        (441, {1, 3, 7, 9, 49, 147, 21, 63}),
+        (9, {1, 3}),
+        (1, {1}),
+        (127, {1}),
+        (254, {1, 2, 127}),
+        (1000, {1, 2, 4, 5, 100, 200, 8, 10, 40, 50, 500, 20, 25, 250, 125})])
+    def test_task330_get_dividers(self, number, expected_value):
+        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
+
+    @parameterized.expand([
+        (15, [6]),
+        (441, [6, 28]),
+        (9, [6]),
+        (123456, [6, 28, 496, 8128]),
+        (15263, [6, 28, 496, 8128]),
+        (1000, [6, 28, 496])])
+    def test_task330_main_logic(self, number, expected_value):
+        self.assertEqual([x for x in algo.Task330.main_logic(number)], expected_value)

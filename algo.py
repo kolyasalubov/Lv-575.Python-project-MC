@@ -605,7 +605,9 @@ class Task559(TaskWithOneIntValidationParameter):
             if i > 1:
                 for j in range(i + i, len(sieve), i):
                     sieve[j] = 0
+        sieve.pop(n)
         sieve_without_nulls = set([x for x in sieve if x != 0])
+
         return sorted(set(sieve_without_nulls))
 
     @staticmethod
@@ -631,7 +633,6 @@ class Task559(TaskWithOneIntValidationParameter):
         # number must be natural
         result = self.main_logic(number)
         print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
-        print(self.mersen_numbers(int(input_data)))
 
         return None
 
