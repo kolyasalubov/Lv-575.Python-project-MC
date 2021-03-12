@@ -599,14 +599,19 @@ class Task559(TaskWithOneIntValidationParameter):
     @staticmethod
     # Eratosthene's sieve to get primes
     def eratosthenes(n):
-        sieve = list(range(n))
+        sieve = list(range(n + 1))
         sieve[1] = 0
         for i in sieve:
             if i > 1:
                 for j in range(i + i, len(sieve), i):
                     sieve[j] = 0
         sieve_without_nulls = set([x for x in sieve if x != 0])
-        return sorted(set(sieve_without_nulls))
+        sieve_list = sorted(set(sieve_without_nulls))
+
+        if len(sieve_list):
+            sieve_list.pop(len(sieve_without_nulls) - 1)
+
+        return sieve_list
 
     @staticmethod
     # Mersenne numbers
