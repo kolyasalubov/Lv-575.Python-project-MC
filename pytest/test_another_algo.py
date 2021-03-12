@@ -8,7 +8,8 @@ import algo
     (" 56", 56), ("   +78     ", 78), ("+13   ", 13),
 ])
 def test_TaskWithOneIntValidationParameter_validate_data_right(input_number, expected_number):
-    assert algo.TaskWithOneIntValidationParameter.validate_data(input_number) == expected_number
+    assert algo.TaskWithOneIntValidationParameter.validate_data(
+        input_number) == expected_number
 
 
 @pytest.mark.parametrize("input_number, expected_exception", [
@@ -85,8 +86,10 @@ def test_task243a_main_logic(number, expected_value):
 
 
 @pytest.mark.parametrize('number, expected_value', [
-    (24, []), (104, [(10, 2)]), (328, [(18, 2)]), (611, []), (2000, [(44, 8), (40, 20)]), (2311, []),
-    (9945, [(99, 12), (96, 27), (93, 36), (72, 69)]), (41410, [(197, 51), (183, 89), (181, 93), (159, 127)])
+    (24, []), (104, [(10, 2)]), (328, [(18, 2)]), (611,
+                                                   []), (2000, [(44, 8), (40, 20)]), (2311, []),
+    (9945, [(99, 12), (96, 27), (93, 36), (72, 69)]), (41410,
+                                                       [(197, 51), (183, 89), (181, 93), (159, 127)])
 ])
 def test_task243b_main_logic(number, expected_value):
     assert algo.Task243b.main_logic(number) == expected_value
@@ -122,9 +125,45 @@ def test_task331a(input_value, expected_value):
                                    '5^2 + 3^2 + 4^2', '5^2 + 4^2 + 3^2']),
                              (45, ['2^2 + 4^2 + 5^2', '2^2 + 5^2 + 4^2', '4^2 + 2^2 + 5^2', '4^2 + 5^2 + 2^2',
                                    '5^2 + 2^2 + 4^2', '5^2 + 4^2 + 2^2']),
-                             (9, ['1^2 + 2^2 + 2^2', '2^2 + 1^2 + 2^2', '2^2 + 2^2 + 1^2']),
+                             (9, ['1^2 + 2^2 + 2^2',
+                                  '2^2 + 1^2 + 2^2', '2^2 + 2^2 + 1^2']),
                              (5, False), (1, False)
                          ])
 def test_task331b(input_value, expected_value):
     assert algo.Task331b.main_logic(input_value) == expected_value
 
+
+@pytest.mark.parametrize("input_value, expected_value",
+                         [
+                             ([9, 12, 3], 0),
+                             ([18, 3, 17], 1),
+                             ([18, 3, 17, 78], 2),
+                             ([18, 3, 17, 0], 1),
+                             ([17, 17, 17, 17], 0)
+                         ])
+def test_task178d(input_value, expected_value):
+    assert algo.Task178d.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize("input_value, expected_value",
+                         [
+                             ([12, 45, 3, 8], 2),
+                             ([2, 4, 6, 8, 4], 3),
+                             ([1, 45], 1),
+                             ([2, 2, 2], 1),
+                         ])
+def test_task178e(input_value, expected_value):
+    assert algo.Task178e.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize("input_value, expected_value",
+                         [
+                             (1, [1, '\n']),
+                             (2, [1, '\n', 1, 1, '\n', ]),
+                             (4, [1, '\n', 1, 1, '\n', 1, 2,
+                                  1, '\n', 1, 3, 3, 1, '\n', ]),
+                             (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+                                  '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
+                         ])
+def test_task555(input_value, expected_value):
+    assert [*algo.Task555.main_logic(input_value)] == expected_value
