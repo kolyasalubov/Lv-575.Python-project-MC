@@ -708,8 +708,8 @@ class Task555(TaskWithOneIntValidationParameter):
 
             for j in range(i + 1):
                 # C**k_n = n!/(k!*(n-r)!)
-                print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
-            print()
+                yield factorial(i) // (factorial(j) * factorial(i - j))
+            yield "\n"
 
     def execute(self) -> None:
         print("-" * 60)
@@ -722,7 +722,9 @@ class Task555(TaskWithOneIntValidationParameter):
         except ValueError:
             print("ValueError exception thrown")
             return None
-        self.main_logic(n)
+        print(" ", end="")
+        for i in self.main_logic(n):
+            print(i, end=" ")
 
         return None
 
