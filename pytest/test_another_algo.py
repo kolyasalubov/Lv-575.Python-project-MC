@@ -128,3 +128,8 @@ def test_task331a(input_value, expected_value):
 def test_task331b(input_value, expected_value):
     assert algo.Task331b.main_logic(input_value) == expected_value
 
+
+# @pytest.mark.parametrize("number, expected_value", [(15, 2), (441, 3), (9, 1), (123456798, 9),
+#                                                     (15263, 5), (10526374859632104512, 20)])
+# def test_task86a_main_logic(number, expected_value):
+#     assert algo.Task86a.main_logic(number) == expected_value

@@ -605,13 +605,10 @@ class Task559(TaskWithOneIntValidationParameter):
             if i > 1:
                 for j in range(i + i, len(sieve), i):
                     sieve[j] = 0
+        sieve.pop(n)
         sieve_without_nulls = set([x for x in sieve if x != 0])
-        sieve_list = sorted(set(sieve_without_nulls))
 
-        if len(sieve_list):
-            sieve_list.pop(len(sieve_without_nulls) - 1)
-
-        return sieve_list
+        return sorted(set(sieve_without_nulls))
 
     @staticmethod
     # Mersenne numbers
