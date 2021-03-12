@@ -215,7 +215,7 @@ def test_TaskWithTwoIntValidationParameters_validate_exceptions_task559(data, ex
 @pytest.mark.parametrize('number, expected_value', [
     (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
     (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
-    (61, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
+    (62, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
     (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]),
     ],)
 def test_task559_eratosthenes(number, expected_value):
