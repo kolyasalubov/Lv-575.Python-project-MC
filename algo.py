@@ -599,7 +599,7 @@ class Task559(TaskWithOneIntValidationParameter):
     @staticmethod
     # Eratosthene's sieve to get primes
     def eratosthenes(n):
-        sieve = list(range(n + 1))
+        sieve = list(range(n))
         sieve[1] = 0
         for i in sieve:
             if i > 1:
@@ -631,7 +631,6 @@ class Task559(TaskWithOneIntValidationParameter):
         # number must be natural
         result = self.main_logic(number)
         print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
-        print(self.mersen_numbers(int(input_data)))
 
         return None
 
