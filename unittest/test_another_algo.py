@@ -11,7 +11,8 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         (" 56", 56), ("   +78     ", 78), ("+13   ", 13),
     ])
     def test_TaskWithOneIntValidationParameter_validate_data_right(self, input_number, expected_number):
-        self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(input_number), expected_number)
+        self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(
+            input_number), expected_number)
 
     @parameterized.expand([
         ("five", TypeError), (13.8, TypeError), (2 + 3j, TypeError),
@@ -19,7 +20,8 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         (-60, ValueError), ("  -12  ", ValueError), ("-1001", ValueError),
     ])
     def test_TaskWithOneIntValidationParameter_validate_data_exception(self, input_number, expected_exception):
-        self.assertRaises(expected_exception, algo.TaskWithOneIntValidationParameter.validate_data, input_number)
+        self.assertRaises(
+            expected_exception, algo.TaskWithOneIntValidationParameter.validate_data, input_number)
 
 
 class TestTask88c(unittest.TestCase):
@@ -47,7 +49,8 @@ class TestTask332(unittest.TestCase):
     @parameterized.expand([
         (1, [1, 0, 0, 0]), (4, [2, 0, 0, 0]), (234, [15, 3, 0, 0]),
         (1646, [40, 6, 3, 1]), (2141, [46, 5, 0, 0]), (2137, [46, 4, 2, 1]),
-        (2149, [46, 5, 2, 2]), (12412, [111, 9, 3, 1]), (90475, [300, 21, 5, 3]),
+        (2149, [46, 5, 2, 2]), (12412, [
+            111, 9, 3, 1]), (90475, [300, 21, 5, 3]),
     ])
     def test_task332(self, input_value, expected_value):
         self.assertEqual(algo.Task332.main_logic(input_value), expected_value)
@@ -59,24 +62,27 @@ class TestTask87(unittest.TestCase):
         ('49850', 2, 5), ('14', 2, 5), ('548736', 4, 24),
         ('5870', 1, 0), ('247845225', 1, 5), ('558062862', 5, 24)])
     def test_main_logic(self, number, quantity, expected_value):
-        self.assertEqual(algo.Task87.main_logic(number, quantity), expected_value)
+        self.assertEqual(algo.Task87.main_logic(
+            number, quantity), expected_value)
 
 
 class TestTask226(unittest.TestCase):
 
     @parameterized.expand([
         (10, 3, []), (6, 15, [30, 60]),
-        (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
+        (250, 110, [2750, 5500, 8250, 11000,
+                    13750, 16500, 19250, 22000, 24750]),
         (71, 140, [])])
     def test_main_logic(self, number1, number2, expected_value):
-        self.assertEqual(algo.Task226.main_logic(number1, number2), expected_value)
+        self.assertEqual(algo.Task226.main_logic(
+            number1, number2), expected_value)
 
 
 class TestTask559(unittest.TestCase):
 
     @parameterized.expand([
         (126, [3, 7, 31]), (128, [3, 7, 31, 127]), (1, []), (8, [3, 7]),
-        (8000, [3, 7, 31, 127]), (5, [3]), (13172, [3, 7, 31, 127, 8191]),],)
+        (8000, [3, 7, 31, 127]), (5, [3]), (13172, [3, 7, 31, 127, 8191]), ],)
     def test_main_logic(self, number, expected_value):
         self.assertEqual(algo.Task559.main_logic(number), expected_value)
 
@@ -94,7 +100,8 @@ class TestTask107(unittest.TestCase):
 class TestTask243a(unittest.TestCase):
 
     @parameterized.expand([
-        (24, ()), (104, (10, 2)), (328, (18, 2)), (611, ()), (1920, ()), (2311, ()),
+        (24, ()), (104, (10, 2)), (328, (18, 2)
+                                   ), (611, ()), (1920, ()), (2311, ()),
         (9945, (99, 12)), (41410, (197, 51))
     ])
     def test_task243a(self, input_value, expected_value):
@@ -104,8 +111,10 @@ class TestTask243a(unittest.TestCase):
 class TestTask243b(unittest.TestCase):
 
     @parameterized.expand([
-        (24, []), (104, [(10, 2)]), (328, [(18, 2)]), (611, []), (2000, [(44, 8), (40, 20)]), (2311, []),
-        (9945, [(99, 12), (96, 27), (93, 36), (72, 69)]), (41410, [(197, 51), (183, 89), (181, 93), (159, 127)])
+        (24, []), (104, [(10, 2)]), (328, [(18, 2)]), (611,
+                                                       []), (2000, [(44, 8), (40, 20)]), (2311, []),
+        (9945, [(99, 12), (96, 27), (93, 36), (72, 69)]), (41410,
+                                                           [(197, 51), (183, 89), (181, 93), (159, 127)])
     ])
     def test_task243b(self, input_value, expected_value):
         self.assertEqual(algo.Task243b.main_logic(input_value), expected_value)
@@ -151,6 +160,44 @@ class TestTask331b(unittest.TestCase):
         self.assertEqual(algo.Task331b.main_logic(input_value), expected_value)
 
 
+class TestTask178d(unittest.TestCase):
+
+    @parameterized.expand([
+        ([9, 12, 3], 0),
+        ([18, 3, 17], 1),
+        ([18, 3, 17, 78], 2),
+        ([18, 3, 17, 0], 1),
+        ([17, 17, 17, 17], 0)
+    ])
+    def test_task178d(self, input_value, expected_value):
+        self.assertEqual(algo.Task178d.main_logic(input_value), expected_value)
+
+
+class TestTask178e(unittest.TestCase):
+
+    @parameterized.expand([
+        ([12, 45, 3, 8], 2),
+        ([2, 4, 6, 8, 4], 3),
+        ([1, 45], 1),
+        ([2, 2, 2], 1),
+    ])
+    def test_task178e(self, input_value, expected_value):
+        self.assertEqual(algo.Task178e.main_logic(input_value), expected_value)
+
+
+class TestTask555(unittest.TestCase):
+
+    @parameterized.expand([
+        (1, [1, '\n']),
+        (2, [1, '\n', 1, 1, '\n', ]),
+        (4, [1, '\n', 1, 1, '\n', 1, 2,
+             1, '\n', 1, 3, 3, 1, '\n', ]),
+        (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+             '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
+    ])
+    def test_task555(self, input_value, expected_value):
+        self.assertEqual(
+            [*algo.Task555.main_logic(input_value)], expected_value)
 class TestTask86a(unittest.TestCase):
 
     @parameterized.expand([
