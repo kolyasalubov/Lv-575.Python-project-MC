@@ -973,12 +973,13 @@ def get_classes(cls):
 
     return endpoint_classes
 
-
+    
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = sorted(get_classes(AlgoInterface),
-                   key=lambda x: int(re.search("[0-9]+", x.name())[0]))
+    # and sort them as (int, str)
+    tasks = sorted(get_classes(AlgoInterface), 
+                   key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()))
 
     # Console menu
     print("Choose task from:")
