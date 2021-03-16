@@ -123,8 +123,7 @@ class Task178d(TaskWithOneIntValidationParameter):
 
 
 class Task88a(TaskWithOneIntValidationParameter):
-    # input number n, we should check, if 3 is in n^2 number
-
+    """A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2."""
     @staticmethod
     def main_logic(n):
         if type(n) == int and n > 0:
@@ -134,6 +133,7 @@ class Task88a(TaskWithOneIntValidationParameter):
                 return "NO"
 
     def execute(self) -> None:
+        print(self.__doc__)
         n = int(input('Input natural number: '))
         try:
             m = self.validate_data(n)
@@ -912,13 +912,13 @@ class Task331b(TaskWithOneIntValidationParameter):
 
 
 class Task88b(TaskWithOneIntValidationParameter):
-    # revert number n
-
+    """A natural number n is given. Reverse the order of the digits of the number n."""
     @staticmethod
     def main_logic(n):
         return int("".join(reversed(str(n))))
 
     def execute(self) -> None:
+        print(self.__doc__)
         n = int(input('Input natural number: '))
         try:
             m = self.validate_data(n)
@@ -934,27 +934,34 @@ class Task88b(TaskWithOneIntValidationParameter):
         return "88 б)"
 
 
-class Task322(AlgoInterface):
+def divisor(number):
+    sum_of_divisors = 0
+    for i in range(1, ceil(sqrt(number))):
+        if i * i == number:
+            sum += i
+            break
+        if number % i == 0:
+            sum_of_divisors += i
+            sum_of_divisors += number / i
+    return sum_of_divisors
 
-    def execute(self) -> None:
-        def divisor(number):
-            sum_of_divisors = 0
-            for i in range(1, ceil(sqrt(number))):
-                if i * i == number:
-                    sum += i
-                    break
-                if number % i == 0:
-                    sum_of_divisors += i
-                    sum_of_divisors += number / i
-            return sum_of_divisors
 
+class Task322(TaskWithOneIntValidationParameter):
+    """ Find a natural number from 1 to 10,000 with the maximum
+        the sum of divisors."""
+    def main_logic(self):
         maximal = 0
         number_with_maximal_sum = 0
         for i in range(1, 10001):
             if divisor(i) > maximal:
                 maximal = divisor(i)
                 number_with_maximal_sum = i
-        print("Number with maximal sum of divisors is ", number_with_maximal_sum)
+        return number_with_maximal_sum
+
+    def execute(self) -> None:
+        print(self.__doc__)
+        k = self.main_logic()
+        print('Result = ', k)
         return None
 
     @staticmethod
