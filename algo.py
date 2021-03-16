@@ -390,8 +390,6 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
         return sum
 
     def execute(self) -> None:
-        global n
-        global m
         try:
             input_data = input("Enter n and m:")
             n, m = self.validate_data(input_data)
@@ -709,8 +707,8 @@ class Task555(TaskWithOneIntValidationParameter):
 
             for j in range(i + 1):
                 # C**k_n = n!/(k!*(n-r)!)
-                print(factorial(i) // (factorial(j) * factorial(i - j)), end=" ")
-            print()
+                yield factorial(i) // (factorial(j) * factorial(i - j))
+            yield "\n"
 
     def execute(self) -> None:
         print("-" * 60)
@@ -723,7 +721,9 @@ class Task555(TaskWithOneIntValidationParameter):
         except ValueError:
             print("ValueError exception thrown")
             return None
-        self.main_logic(n)
+        print(" ", end="")
+        for i in self.main_logic(n):
+            print(i, end=" ")
 
         return None
 
@@ -971,12 +971,13 @@ def get_classes(cls):
 
     return endpoint_classes
 
-
+    
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
-    tasks = sorted(get_classes(AlgoInterface),
-                   key=lambda x: int(re.search("[0-9]+", x.name())[0]))
+    # and sort them as (int, str)
+    tasks = sorted(get_classes(AlgoInterface), 
+                   key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()))
 
     # Console menu
     print("Choose task from:")
