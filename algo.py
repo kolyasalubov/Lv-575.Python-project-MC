@@ -315,6 +315,10 @@ class Task178c(TaskWithOneIntValidationParameter):
 
 
 class Task86a(TaskWithOneIntValidationParameter):
+    """
+    86. A natural number n is given. 
+    a) How many digits are in the number n.
+    """
 
     @staticmethod
     def main_logic(number):
@@ -323,6 +327,8 @@ class Task86a(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         ''' input natural number N \n
         find amount of its digits '''
+
+        print(self.__doc__)
         input_data = input("Enter number: ")
 
         try:
@@ -418,6 +424,10 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
 
 
 class Task86b(TaskWithOneIntValidationParameter):
+    """
+    86. A natural number n is given.
+    b) What is the sum of its numbers?
+    """
 
     @staticmethod
     def main_logic(number):
@@ -425,7 +435,9 @@ class Task86b(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         ''' input natural number N \n
-         find sum of its digits '''
+        find sum of its digits '''
+
+        print(self.__doc__)
 
         input_data = input("Enter number N: ")
         try:
@@ -444,6 +456,13 @@ class Task86b(TaskWithOneIntValidationParameter):
 
 
 class Task330(TaskWithOneIntValidationParameter):
+    """
+    330. A natural number is called perfect if it is equal 
+    to the sum of all its divisors, except for itself. 
+    The number 6 is perfect, since 6 = 1 + 2 + 3. 
+    The number 8 is not perfect, since 8 ≠ 1 + 2 + 4. 
+    Given a natural number n. Get all perfect numbers less than n.
+    """
 
     @staticmethod
     def _get_dividers(numb):
@@ -470,6 +489,7 @@ class Task330(TaskWithOneIntValidationParameter):
 
             "ideal" - number the sum of witch deviders(without the number itself)
             is equal to the number'''
+        print(self.__doc__)
 
         number = input("Enter number N: ")
         try:
@@ -640,7 +660,8 @@ class Task559(TaskWithOneIntValidationParameter):
 
         # number must be natural
         result = self.main_logic(number)
-        print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
+        print("Mersenne primes less than {}:".format(
+            int(input_data)), sorted(result))
 
         return None
 
@@ -752,7 +773,8 @@ class Task88c(TaskWithOneIntValidationParameter):
         return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
-        input_data = input("Enter N to switch first and last digits of the number : ")
+        input_data = input(
+            "Enter N to switch first and last digits of the number : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -778,7 +800,8 @@ class Task88d(TaskWithOneIntValidationParameter):
         return int('1' + n + '1')
 
     def execute(self) -> None:
-        input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
+        input_data = input(
+            "Enter N to insert digit 1 on the start and last positions of the number : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -822,7 +845,8 @@ class Task332(TaskWithOneIntValidationParameter):
         return xs
 
     def execute(self) -> None:
-        input_data = input("Enter N to find Lagrange decomposition coefficients : ")
+        input_data = input(
+            "Enter N to find Lagrange decomposition coefficients : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -847,7 +871,8 @@ def check(number, task):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
+                array.append(str(i) + "^2 + " + str(j) + "^2 + " +
+                             str(int(third ** (1 / 2))) + "^2")
                 if task == "331 a":
                     return array
     return array
@@ -981,18 +1006,18 @@ def get_classes(cls):
 
     return endpoint_classes
 
-    
+
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
     # and sort them as (int, str)
-    tasks = sorted(get_classes(AlgoInterface), 
+    tasks = sorted(get_classes(AlgoInterface),
                    key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()))
 
     # Console menu
     print("Choose task from:")
     print("\n".join('\t{}. {}'.format(i, task.name()) for i,
-                                                          task in enumerate(tasks, 1)))
+                    task in enumerate(tasks, 1)))
 
     while True:
         # handaling wrong input
