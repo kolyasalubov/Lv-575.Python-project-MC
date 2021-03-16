@@ -1,5 +1,7 @@
 import unittest
 from parameterized import parameterized
+import sys
+sys.path.append('..')
 import algo
 
 
