@@ -382,6 +382,7 @@ class Task554(TaskWithOneIntValidationParameter):
 
 
 class Task87(TaskWithTwoIntValidationParametersForTask87):
+    """Given natural n, m. Get the sum of the last m digits numbers n."""
     @staticmethod
     def main_logic(n, quantity):
         sum, len_of_number = 0, len(n)
@@ -390,6 +391,8 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
         return sum
 
     def execute(self) -> None:
+        """Combine validation data + main logic"""
+        print(self.__doc__)
         try:
             input_data = input("Enter n and m:")
             n, m = self.validate_data(input_data)
@@ -516,6 +519,7 @@ class Task108(TaskWithOneIntValidationParameter):
 
 
 class Task226(TaskWithTwoIntValidationParameters):
+    """Natural numbers m, n are given. Get all natural common multiples less than mn."""
     @staticmethod
     def main_logic(n, m):
         import math
@@ -527,6 +531,8 @@ class Task226(TaskWithTwoIntValidationParameters):
         return [i for i in range(lcm, n * m, lcm)]
 
     def execute(self) -> None:
+        """Combine validation data + main logic"""
+        print(self.__doc__)
         try:
             input_data = input("Enter n and m:")
             n, m = self.validate_data(input_data)
@@ -594,6 +600,8 @@ class Task178e(TaskWithOneIntValidationParameter):
 
 
 class Task559(TaskWithOneIntValidationParameter):
+    """A natural number n is given. Find all Mersen numbers less than n.
+    (A prime number is called a Mersenne number if it can be represented as 2p - 1, where p is also a prime number.)"""
     @staticmethod
     # Eratosthene's sieve to get primes
     def eratosthenes(n):
@@ -620,6 +628,8 @@ class Task559(TaskWithOneIntValidationParameter):
             set(Task559.mersen_numbers(n))))  # Mersenne primes
 
     def execute(self) -> None:
+        """Combine validation data + main logic"""
+        print(self.__doc__)
         input_data = input("Enter n: ")
 
         try:
