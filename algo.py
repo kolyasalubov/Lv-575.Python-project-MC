@@ -759,15 +759,20 @@ class Task555(TaskWithOneIntValidationParameter):
 
 
 class Task88c(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given. Swap the first and last digits of n
+    """
 
     @staticmethod
     def main_logic(n: int) -> int:
-        '''Switches first and last digits of the number'''
+        """Switches first and last digits of the number"""
 
         n = str(n)
         return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
+        print(self.__doc__)
+
         input_data = input("Enter N to switch first and last digits of the number : ")
         try:
             n = self.validate_data(input_data)
@@ -785,15 +790,20 @@ class Task88c(TaskWithOneIntValidationParameter):
 
 
 class Task88d(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given. Add the number 1 to the beginning and end of n
+    """
 
     @staticmethod
     def main_logic(n: int) -> int:
-        '''Inserts digit 1 on the start and last positions'''
+        """Inserts digit 1 on the start and last positions"""
 
         n = str(n)
         return int('1' + n + '1')
 
     def execute(self) -> None:
+        print(self.__doc__)
+
         input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
         try:
             n = self.validate_data(input_data)
@@ -810,10 +820,14 @@ class Task88d(TaskWithOneIntValidationParameter):
 
 
 class Task332(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given.
+    Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n
+    """
 
     @staticmethod
     def main_logic(n: int) -> List[int]:
-        ''' returns coeficients of distribution of a natural number into 4 squares '''
+        """Returns coefficients of distribution of a natural number into 4 squares"""
 
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]
@@ -838,6 +852,8 @@ class Task332(TaskWithOneIntValidationParameter):
         return xs
 
     def execute(self) -> None:
+        print(self.__doc__)
+
         input_data = input("Enter N to find Lagrange decomposition coefficients : ")
         try:
             n = self.validate_data(input_data)
