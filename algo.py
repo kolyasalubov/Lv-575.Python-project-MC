@@ -124,6 +124,7 @@ class Task178d(TaskWithOneIntValidationParameter):
 
 class Task88a(TaskWithOneIntValidationParameter):
     """A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2."""
+
     @staticmethod
     def main_logic(n):
         if type(n) == int and n > 0:
@@ -150,6 +151,10 @@ class Task88a(TaskWithOneIntValidationParameter):
 
 
 class Task178b(TaskWithOneIntValidationParameter):
+    """
+    Given natural number n and a list of n elements.
+    Find numbers which are multiples of 3 and not multiples of 5
+    """
 
     @staticmethod
     def main_logic(sequence):
@@ -161,6 +166,7 @@ class Task178b(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
 
+        print(self.__doc__)
         n = input('Enter the size of sequence:')
         try:
             n = self.validate_data(n)
@@ -277,6 +283,10 @@ class Task243a(TaskWithOneIntValidationParameter):
 
 
 class Task178c(TaskWithOneIntValidationParameter):
+    """
+    Given natural number n and a list of n elements.
+    Find numbers which are squares of even numbers.
+    """
 
     @staticmethod
     def main_logic(sequence):
@@ -291,6 +301,7 @@ class Task178c(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
 
+        print(self.__doc__)
         n = input('Enter the size of sequence:')
         try:
             n = self.validate_data(n)
@@ -342,6 +353,10 @@ class Task86a(TaskWithOneIntValidationParameter):
 
 
 class Task554(TaskWithOneIntValidationParameter):
+    """
+    Finds triples less than given natural number n using Euclid's formula
+    (Modified to print not only primitive triples)
+    """
 
     @staticmethod
     def main_logic(num):
@@ -363,10 +378,8 @@ class Task554(TaskWithOneIntValidationParameter):
         return res
 
     def execute(self) -> None:
-        """
-        Finds triples using Euclid's formula
-        (Modified to print not only primitive triples)
-        """
+
+        print(self.__doc__)
         number = input('Enter n: ')
         try:
             num = self.validate_data(number)
@@ -383,6 +396,7 @@ class Task554(TaskWithOneIntValidationParameter):
 
 class Task87(TaskWithTwoIntValidationParametersForTask87):
     """Given natural n, m. Get the sum of the last m digits numbers n."""
+
     @staticmethod
     def main_logic(n, quantity):
         sum, len_of_number = 0, len(n)
@@ -520,6 +534,7 @@ class Task108(TaskWithOneIntValidationParameter):
 
 class Task226(TaskWithTwoIntValidationParameters):
     """Natural numbers m, n are given. Get all natural common multiples less than mn."""
+
     @staticmethod
     def main_logic(n, m):
         import math
@@ -602,6 +617,7 @@ class Task178e(TaskWithOneIntValidationParameter):
 class Task559(TaskWithOneIntValidationParameter):
     """A natural number n is given. Find all Mersen numbers less than n.
     (A prime number is called a Mersenne number if it can be represented as 2p - 1, where p is also a prime number.)"""
+
     @staticmethod
     # Eratosthene's sieve to get primes
     def eratosthenes(n):
@@ -916,6 +932,7 @@ class Task331b(TaskWithOneIntValidationParameter):
 
 class Task88b(TaskWithOneIntValidationParameter):
     """A natural number n is given. Reverse the order of the digits of the number n."""
+
     @staticmethod
     def main_logic(n):
         return int("".join(reversed(str(n))))
@@ -952,6 +969,7 @@ def divisor(number):
 class Task322(TaskWithOneIntValidationParameter):
     """ Find a natural number from 1 to 10,000 with the maximum
         the sum of divisors."""
+
     def main_logic(self):
         maximal = 0
         number_with_maximal_sum = 0
@@ -991,12 +1009,12 @@ def get_classes(cls):
 
     return endpoint_classes
 
-    
+
 if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
     # and sort them as (int, str)
-    tasks = sorted(get_classes(AlgoInterface), 
+    tasks = sorted(get_classes(AlgoInterface),
                    key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()))
 
     # Console menu
