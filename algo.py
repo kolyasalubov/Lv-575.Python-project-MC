@@ -743,10 +743,11 @@ class Task555(TaskWithOneIntValidationParameter):
 
 
 class Task88c(TaskWithOneIntValidationParameter):
+    """A natural number n is given. Swap the first and last digits of n."""
 
     @staticmethod
     def main_logic(n: int) -> int:
-        '''Switches first and last digits of the number'''
+        """Switches first and last digits of the number"""
 
         n = str(n)
         return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
@@ -769,10 +770,11 @@ class Task88c(TaskWithOneIntValidationParameter):
 
 
 class Task88d(TaskWithOneIntValidationParameter):
+    """A natural number n is given. Add the number 1 to the beginning and end of n."""
 
     @staticmethod
     def main_logic(n: int) -> int:
-        '''Inserts digit 1 on the start and last positions'''
+        """Inserts digit 1 on the start and last positions"""
 
         n = str(n)
         return int('1' + n + '1')
@@ -794,10 +796,11 @@ class Task88d(TaskWithOneIntValidationParameter):
 
 
 class Task332(TaskWithOneIntValidationParameter):
+    """A natural number n is given. indicate non-negative t, z, y, x such that t^2 + z^2 + y^2 + x^2 = n"""
 
     @staticmethod
     def main_logic(n: int) -> List[int]:
-        ''' returns coeficients of distribution of a natural number into 4 squares '''
+        """returns coefficients of distribution of a natural number into 4 squares"""
 
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]
