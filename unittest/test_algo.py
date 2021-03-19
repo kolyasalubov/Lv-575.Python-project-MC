@@ -354,12 +354,14 @@ class TestTask559(unittest.TestCase):
         self.assertRaises(expected_value, algo.TaskWithOneIntValidationParameter.validate_data, number)
 
     # Testing eratosthenes function in task 559
-    @parameterized.expand([
-        (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
-        (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
-        (62, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
-        (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]),
-    ],)
+    @parameterized.expand(
+        [
+            (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
+            (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
+            (62, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
+            (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]),
+        ],
+    )
     def test_eratosthenes_function(self, number, expected_value):
         """Testing eratosthenes function in task 559"""
         self.assertEqual(algo.Task559.eratosthenes(number), expected_value)

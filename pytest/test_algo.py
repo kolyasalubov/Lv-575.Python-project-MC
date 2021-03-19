@@ -17,9 +17,7 @@ import pytest
 def test_task_with_one_int_validation_parameter_validate_data(number, expected_value):
     """Testing base class with validation method for correct number answer"""
 
-    assert (
-        algo.TaskWithOneIntValidationParameter.validate_data(number) == expected_value
-    )
+    assert algo.TaskWithOneIntValidationParameter.validate_data(number) == expected_value
 
 
 @pytest.mark.parametrize(
@@ -47,17 +45,13 @@ def test_task_with_one_int_validation_parameter_validate_exceptions(number, expe
 
 
 # Testing task 86a class main logic (must return  amount of digits in number)
-@pytest.mark.parametrize(
-    "number, expected_value", [(1, 1), (5888, 4), ("567", 3), (1111111111, 10)]
-)
+@pytest.mark.parametrize("number, expected_value", [(1, 1), (5888, 4), ("567", 3), (1111111111, 10)])
 def test_task86a_main_logic(number, expected_value):
     assert algo.Task86a.main_logic(number) == expected_value
 
 
 # Testing task 86b class main logic (must return sum of digits in number)
-@pytest.mark.parametrize(
-    "number, expected_value", [(1, 1), (5888, 29), ("567", 18), (1111101111, 9)]
-)
+@pytest.mark.parametrize("number, expected_value", [(1, 1), (5888, 29), ("567", 18), (1111101111, 9)])
 def test_task86b_main_logic(number, expected_value):
     assert algo.Task86b.main_logic(number) == expected_value
 
@@ -226,9 +220,7 @@ def test_task243b_main_logic(number, expected_value):
 
 
 # Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)
-@pytest.mark.parametrize(
-    "number, expected_value", [(2, 4), (123, 128), (1034, 2048), (100020, 131072)]
-)
+@pytest.mark.parametrize("number, expected_value", [(2, 4), (123, 128), (1034, 2048), (100020, 131072)])
 def test_task108_main_logic(number, expected_value):
     assert algo.Task108.main_logic(number) == expected_value
 
@@ -283,9 +275,7 @@ def test_task331b_main_logic(number, expected_value):
         ("5555 5", algo.InvalidInput),
     ],
 )
-def test_task_with_two_int_validation_parameters_validate_exceptions_task87(
-    data, expected_value
-):
+def test_task_with_two_int_validation_parameters_validate_exceptions_task87(data, expected_value):
     """Testing base class with validation method for exceptions"""
 
     with pytest.raises(expected_value):
@@ -321,9 +311,7 @@ def test_task87_main_logic(number, quantity, expected_value):
         ("7,5555 456", TypeError),
     ],
 )
-def test_task_with_two_int_validation_parameters_validate_exceptions_task226(
-    data, expected_value
-):
+def test_task_with_two_int_validation_parameters_validate_exceptions_task226(data, expected_value):
     """Testing base class with validation method for exceptions"""
 
     with pytest.raises(expected_value):
@@ -361,21 +349,22 @@ def test_task226_main_logic(number1, number2, expected_value):
         ("+777m", TypeError),
     ],
 )
-def test_task_with_two_int_validation_parameters_validate_exceptions_task559(
-    data, expected_value
-):
+def test_task_with_two_int_validation_parameters_validate_exceptions_task559(data, expected_value):
     """Testing base class with validation method for exceptions"""
     with pytest.raises(expected_value):
         algo.TaskWithOneIntValidationParameter.validate_data(data)
 
 
 # Testing eratosthenes function in task 559
-@pytest.mark.parametrize('number, expected_value', [
-    (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
-    (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
-    (62, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
-    (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83])
-    ])
+@pytest.mark.parametrize(
+    "number, expected_value",
+    [
+        (24, [2, 3, 5, 7, 11, 13, 17, 19, 23]),
+        (50, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]),
+        (62, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]),
+        (88, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]),
+    ],
+)
 def test_task559_eratosthenes(number, expected_value):
     """Testing eratosthenes function in task 559"""
     assert algo.Task559.eratosthenes(number) == expected_value
@@ -413,9 +402,7 @@ def test_task559_main_logic(number, expected_value):
     assert algo.Task559.main_logic(number) == expected_value
 
 
-@pytest.mark.parametrize(
-    "number, expected_value", [(3, "NO"), (6, "YES"), (18, "YES"), (13, "NO")]
-)
+@pytest.mark.parametrize("number, expected_value", [(3, "NO"), (6, "YES"), (18, "YES"), (13, "NO")])
 def test_task88a_main_logic(number, expected_value):
     """Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)"""
     assert algo.Task88a.main_logic(number) == expected_value
