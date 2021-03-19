@@ -111,7 +111,7 @@ class Task178d(TaskWithOneIntValidationParameter):
 
 
 class Task88a(TaskWithOneIntValidationParameter):
-    # input number n, we should check, if 3 is in n^2 number
+    """A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2."""
 
     @staticmethod
     def main_logic(n):
@@ -122,7 +122,8 @@ class Task88a(TaskWithOneIntValidationParameter):
                 return "NO"
 
     def execute(self) -> None:
-        n = int(input("Input natural number: "))
+        print(self.__doc__)
+        n = int(input('Input natural number: '))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
@@ -138,6 +139,10 @@ class Task88a(TaskWithOneIntValidationParameter):
 
 
 class Task178b(TaskWithOneIntValidationParameter):
+    """
+    Given natural number n and a list of n elements.
+    Find numbers which are multiples of 3 and not multiples of 5
+    """
     @staticmethod
     def main_logic(sequence):
         counter = 0
@@ -147,8 +152,8 @@ class Task178b(TaskWithOneIntValidationParameter):
         return counter
 
     def execute(self) -> None:
-
-        n = input("Enter the size of sequence:")
+        print(self.__doc__)
+        n = input('Enter the size of sequence:')
         try:
             n = self.validate_data(n)
         except ValueError:
@@ -261,6 +266,10 @@ class Task243a(TaskWithOneIntValidationParameter):
 
 
 class Task178c(TaskWithOneIntValidationParameter):
+    """
+    Given natural number n and a list of n elements.
+    Find numbers which are squares of even numbers.
+    """
     @staticmethod
     def main_logic(*args, **kwargs):
         sequence, *_ = args
@@ -274,8 +283,8 @@ class Task178c(TaskWithOneIntValidationParameter):
         return counter
 
     def execute(self) -> None:
-
-        n = input("Enter the size of sequence:")
+        print(self.__doc__)
+        n = input('Enter the size of sequence:')
         try:
             n = self.validate_data(n)
         except ValueError:
@@ -325,6 +334,10 @@ class Task86a(TaskWithOneIntValidationParameter):
 
 
 class Task554(TaskWithOneIntValidationParameter):
+    """
+    Finds triples less than given natural number n using Euclid's formula
+    (Modified to print not only primitive triples)
+    """
     @staticmethod
     def main_logic(num):
         res = []
@@ -350,6 +363,9 @@ class Task554(TaskWithOneIntValidationParameter):
         (Modified to print not only primitive triples)
         """
         number = input("Enter n: ")
+
+        print(self.__doc__)
+        number = input('Enter n: ')
         try:
             num = self.validate_data(number)
         except ValueError:
@@ -745,6 +761,9 @@ class Task555(TaskWithOneIntValidationParameter):
 
 
 class Task88c(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given. Swap the first and last digits of n
+    """
     @staticmethod
     def main_logic(n: int) -> int:
         """Switches first and last digits of the number"""
@@ -753,6 +772,8 @@ class Task88c(TaskWithOneIntValidationParameter):
         return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
 
     def execute(self) -> None:
+        print(self.__doc__)
+
         input_data = input("Enter N to switch first and last digits of the number : ")
         try:
             n = self.validate_data(input_data)
@@ -770,6 +791,9 @@ class Task88c(TaskWithOneIntValidationParameter):
 
 
 class Task88d(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given. Add the number 1 to the beginning and end of n
+    """
     @staticmethod
     def main_logic(n: int) -> int:
         """Inserts digit 1 on the start and last positions"""
@@ -778,9 +802,9 @@ class Task88d(TaskWithOneIntValidationParameter):
         return int("1" + n + "1")
 
     def execute(self) -> None:
-        input_data = input(
-            "Enter N to insert digit 1 on the start and last positions of the number : "
-        )
+        print(self.__doc__)
+
+        input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -796,9 +820,13 @@ class Task88d(TaskWithOneIntValidationParameter):
 
 
 class Task332(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given.
+    Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n
+    """
     @staticmethod
     def main_logic(n: int) -> List[int]:
-        """ returns coeficients of distribution of a natural number into 4 squares """
+        """Returns coefficients of distribution of a natural number into 4 squares"""
 
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]
@@ -823,6 +851,8 @@ class Task332(TaskWithOneIntValidationParameter):
         return xs
 
     def execute(self) -> None:
+        print(self.__doc__)
+
         input_data = input("Enter N to find Lagrange decomposition coefficients : ")
         try:
             n = self.validate_data(input_data)
@@ -918,14 +948,15 @@ class Task331b(TaskWithOneIntValidationParameter):
 
 
 class Task88b(TaskWithOneIntValidationParameter):
-    # revert number n
+    """A natural number n is given. Reverse the order of the digits of the number n."""
 
     @staticmethod
     def main_logic(n):
         return int("".join(reversed(str(n))))
 
     def execute(self) -> None:
-        n = int(input("Input natural number: "))
+        print(self.__doc__)
+        n = int(input('Input natural number: '))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
@@ -940,26 +971,35 @@ class Task88b(TaskWithOneIntValidationParameter):
         return "88 б)"
 
 
-class Task322(AlgoInterface):
-    def execute(self) -> None:
-        def divisor(number):
-            sum_of_divisors = 0
-            for i in range(1, ceil(sqrt(number))):
-                if i * i == number:
-                    sum += i
-                    break
-                if number % i == 0:
-                    sum_of_divisors += i
-                    sum_of_divisors += number / i
-            return sum_of_divisors
+def divisor(number):
+    sum_of_divisors = 0
+    for i in range(1, ceil(sqrt(number))):
+        if i * i == number:
+            sum += i
+            break
+        if number % i == 0:
+            sum_of_divisors += i
+            sum_of_divisors += number / i
+    return sum_of_divisors
 
+
+class Task322(TaskWithOneIntValidationParameter):
+    """ Find a natural number from 1 to 10,000 with the maximum
+        the sum of divisors."""
+
+    def main_logic(self):
         maximal = 0
         number_with_maximal_sum = 0
         for i in range(1, 10001):
             if divisor(i) > maximal:
                 maximal = divisor(i)
                 number_with_maximal_sum = i
-        print("Number with maximal sum of divisors is ", number_with_maximal_sum)
+        return number_with_maximal_sum
+
+    def execute(self) -> None:
+        print(self.__doc__)
+        k = self.main_logic()
+        print('Result = ', k)
         return None
 
     @staticmethod
