@@ -239,14 +239,17 @@ class TestTask331b(unittest.TestCase):
 
 
 class TestTask178d(unittest.TestCase):
+    """Testing task class 178d """
     @parameterized.expand(
         [([9, 12, 3], 0), ([18, 3, 17], 1), ([18, 3, 17, 78], 2), ([18, 3, 17, 0], 1), ([17, 17, 17, 17], 0)]
     )
     def test_task178d(self, input_value, expected_value):
+        """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
         self.assertEqual(algo.Task178d.main_logic(input_value), expected_value)
 
 
 class TestTask178e(unittest.TestCase):
+    """Testing task class 178e """
     @parameterized.expand(
         [
             ([12, 45, 3, 8], 2),
@@ -256,10 +259,12 @@ class TestTask178e(unittest.TestCase):
         ]
     )
     def test_task178e(self, input_value, expected_value):
+        """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
         self.assertEqual(algo.Task178e.main_logic(input_value), expected_value)
 
 
 class TestTask555(unittest.TestCase):
+    """Testing task class 555 """
 
     @parameterized.expand([
         (1, [1, '\n']),
@@ -270,6 +275,7 @@ class TestTask555(unittest.TestCase):
              '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
     ])
     def test_task555(self, input_value, expected_value):
+        """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
         self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
 
 
