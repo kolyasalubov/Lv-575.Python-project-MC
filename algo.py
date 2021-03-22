@@ -1,7 +1,16 @@
 from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
-import re
+
+# List of algo tasks
+TASKS = []
+
+def register(cls):
+    """
+    Decorator/funtion for class-task registration (added to list TASKS)
+    """
+    TASKS.append(cls)
+    return cls
 
 
 class AlgoInterface(ABC):
@@ -30,6 +39,7 @@ class AlgoInterface(ABC):
         pass
 
 
+
 class TaskWithOneIntValidationParameter(AlgoInterface):
     @classmethod
     def validate_data(cls, *args, **kwargs):
@@ -51,6 +61,7 @@ class InvalidInput(Exception):
     """Custom extension"""
 
 
+
 class TaskWithTwoIntValidationParameters(AlgoInterface):
     """Class for validation of two int parameters"""
 
@@ -65,7 +76,7 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
 
         return number, number2
 
-
+@register
 class Task178d(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(sequence):
@@ -102,6 +113,7 @@ class Task178d(TaskWithOneIntValidationParameter):
         return "178 г)"
 
 
+@register
 class Task88a(TaskWithOneIntValidationParameter):
     """A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2."""
 
@@ -130,6 +142,7 @@ class Task88a(TaskWithOneIntValidationParameter):
         return "88 a)"
 
 
+@register
 class Task178b(TaskWithOneIntValidationParameter):
     """
     Given natural number n and a list of n elements.
@@ -170,6 +183,7 @@ class Task178b(TaskWithOneIntValidationParameter):
         return "178 б)"
 
 
+@register
 class Task107(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(m: int) -> int:
@@ -207,6 +221,7 @@ class Task107(TaskWithOneIntValidationParameter):
         return "107"
 
 
+@register
 class Task243a(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n: int) -> tuple:
@@ -258,6 +273,7 @@ class Task243a(TaskWithOneIntValidationParameter):
         return "243 а)"
 
 
+@register
 class Task178c(TaskWithOneIntValidationParameter):
     """
     Given natural number n and a list of n elements.
@@ -301,6 +317,7 @@ class Task178c(TaskWithOneIntValidationParameter):
         return "178 в)"
 
 
+@register
 class Task86a(TaskWithOneIntValidationParameter):
     """
     86. A natural number n is given.
@@ -339,6 +356,7 @@ class Task86a(TaskWithOneIntValidationParameter):
         return "86 a)"
 
 
+@register
 class Task554(TaskWithOneIntValidationParameter):
     """
     Finds triples less than given natural number n using Euclid's formula
@@ -386,6 +404,7 @@ class Task554(TaskWithOneIntValidationParameter):
         return "554"
 
 
+@register
 class Task87(TaskWithTwoIntValidationParameters):
     """Given natural n, m. Get the sum of the last m digits numbers n."""
 
@@ -436,6 +455,7 @@ class Task87(TaskWithTwoIntValidationParameters):
         return "87"
 
 
+@register
 class Task86b(TaskWithOneIntValidationParameter):
     """
     86. A natural number n is given.
@@ -472,6 +492,7 @@ class Task86b(TaskWithOneIntValidationParameter):
         return "86 б)"
 
 
+@register
 class Task330(TaskWithOneIntValidationParameter):
     """
     330. A natural number is called perfect if it is equal
@@ -542,6 +563,7 @@ class Task330(TaskWithOneIntValidationParameter):
         return "330"
 
 
+@register
 class Task108(TaskWithOneIntValidationParameter):
     # input number n, we should find the least number, that is bigger than n and is degree of number 2
     # complexity - O(1)
@@ -567,6 +589,7 @@ class Task108(TaskWithOneIntValidationParameter):
         return "108"
 
 
+@register
 class Task226(TaskWithTwoIntValidationParameters):
     """Natural numbers m, n are given. Get all natural common multiples less than mn."""
 
@@ -610,6 +633,7 @@ class Task226(TaskWithTwoIntValidationParameters):
         return "226"
 
 
+@register
 class Task178e(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(sequence):
@@ -647,6 +671,7 @@ class Task178e(TaskWithOneIntValidationParameter):
         return "178 д)"
 
 
+@register
 class Task559(TaskWithOneIntValidationParameter):
     """A natural number n is given. Find all Mersen numbers less than n.
     (A prime number is called a Mersenne number if it can be represented as 2p - 1,\
@@ -701,6 +726,7 @@ class Task559(TaskWithOneIntValidationParameter):
         return "559"
 
 
+@register
 class Task243b(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n: int) -> List[Tuple[int, int]]:
@@ -757,6 +783,7 @@ class Task243b(TaskWithOneIntValidationParameter):
         return "243 б)"
 
 
+@register
 class Task555(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n: int):
@@ -791,6 +818,7 @@ class Task555(TaskWithOneIntValidationParameter):
         return "555"
 
 
+@register
 class Task88c(TaskWithOneIntValidationParameter):
     """
     A natural number n is given. Swap the first and last digits of n
@@ -823,6 +851,7 @@ class Task88c(TaskWithOneIntValidationParameter):
         return "88 в)"
 
 
+@register
 class Task88d(TaskWithOneIntValidationParameter):
     """
     A natural number n is given. Add the number 1 to the beginning and end of n
@@ -853,6 +882,7 @@ class Task88d(TaskWithOneIntValidationParameter):
         return "88 г)"
 
 
+@register
 class Task332(TaskWithOneIntValidationParameter):
     """
     A natural number n is given.
@@ -919,6 +949,7 @@ def check(number, task):
     return array
 
 
+@register
 class Task331a(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n):
@@ -947,6 +978,7 @@ class Task331a(TaskWithOneIntValidationParameter):
         return "331 а)"
 
 
+@register
 class Task331b(TaskWithOneIntValidationParameter):
     @staticmethod
     def main_logic(n):
@@ -975,6 +1007,7 @@ class Task331b(TaskWithOneIntValidationParameter):
         return "331 б)"
 
 
+@register
 class Task88b(TaskWithOneIntValidationParameter):
     """A natural number n is given. Reverse the order of the digits of the number n."""
 
@@ -1011,6 +1044,7 @@ def divisor(number):
     return sum_of_divisors
 
 
+@register
 class Task322(TaskWithOneIntValidationParameter):
     """Find a natural number from 1 to 10,000 with the maximum
     the sum of divisors."""
@@ -1059,35 +1093,3 @@ def get_classes(cls) -> list:
 
     return endpoint_classes
 
-
-if __name__ == "__main__":
-
-    # get all subclasses of AlgoInterface
-    # and sort them as (int, str)
-    tasks = sorted(
-        get_classes(AlgoInterface),
-        key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()),
-    )
-
-    # Console menu
-    print("Choose task from:")
-    print("\n".join("\t{}. {}".format(i, task.name()) for i, task in enumerate(tasks, 1)))
-
-    while True:
-        # handaling wrong input
-        try:
-            position = int(input("Execute task (index): ")) - 1
-            if not (0 <= position < len(tasks)):
-                raise IndexError
-        except (IndexError, ValueError):
-            print("Wrong index!")
-            continue
-
-        # executing algorithm
-
-        Task_to_execute = tasks[position]()
-        Task_to_execute.execute()
-
-        # exit condition
-        if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != "y":
-            break
