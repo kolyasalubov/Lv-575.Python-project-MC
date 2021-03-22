@@ -146,7 +146,6 @@ def test_task554_main_logic(number, expected_value):
     assert algo.Task554.main_logic(number + 1) == expected_value
 
 
-# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -167,10 +166,10 @@ def test_task554_main_logic(number, expected_value):
     ],
 )
 def test_task107_main_logic(number, expected_value):
+    """Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)"""
     assert algo.Task107.main_logic(number) == expected_value
 
 
-# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -187,10 +186,10 @@ def test_task107_main_logic(number, expected_value):
     ],
 )
 def test_task243a_main_logic(number, expected_value):
+    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
     assert algo.Task243a.main_logic(number) == expected_value
 
 
-# Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -216,6 +215,7 @@ def test_task243a_main_logic(number, expected_value):
     ],
 )
 def test_task243b_main_logic(number, expected_value):
+    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
     assert algo.Task243b.main_logic(number) == expected_value
 
 

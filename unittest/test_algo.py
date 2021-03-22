@@ -150,8 +150,8 @@ class TestTask554(unittest.TestCase):
 
 
 class TestTask107(unittest.TestCase):
+    """Testing task 107 class main logic"""
 
-    # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
     @parameterized.expand(
         [
             (1, 0),
@@ -171,12 +171,13 @@ class TestTask107(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
+        """Must return  the largest integer k, at which 4 ^k < m"""
         self.assertEqual(algo.Task107.main_logic(number), expected_value)
 
 
 class TestTask243a(unittest.TestCase):
+    """Testing task 243a class main logic"""
 
-    # Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
     @parameterized.expand(
         [
             (1, ()),
@@ -192,12 +193,13 @@ class TestTask243a(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
+        """Must return True if there are two numbers (x, y) that x ^2 + y ^2 = n"""
         self.assertEqual(algo.Task243a.main_logic(number), expected_value)
 
 
 class TestTask243b(unittest.TestCase):
+    """Testing task 243b class main logic"""
 
-    # Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
     @parameterized.expand(
         [
             (1, []),
@@ -222,6 +224,7 @@ class TestTask243b(unittest.TestCase):
         ]
     )
     def test_task243b_main_logic(self, number, expected_value):
+        """Must return all of the two numbers (x, y) that x ^2 + y ^2 = n"""
         self.assertEqual(algo.Task243b.main_logic(number), expected_value)
 
 
