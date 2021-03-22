@@ -547,9 +547,10 @@ class Task108(TaskWithOneIntValidationParameter):
     # complexity - O(1)
 
     @staticmethod
-    def main_logic(n):
+    def main_logic(*args, **kwargs) -> int:
         """Return the least number, that is bigger than n and is degree of number 2"""
-        return 2 ** (floor(log(n, 2)) + 1)
+        n, *_ = args
+        return int(2 ** (floor(log(n, 2)) + 1))
 
     def execute(self) -> None:
         """Input data"""
@@ -927,12 +928,10 @@ class Task331a(TaskWithOneIntValidationParameter):
 And if yes, show the sum\n"""
 
     @staticmethod
-    def main_logic(n):
+    def main_logic(*args, **kwargs) -> List[str]:
+        n, *_ = args
         result = check(n, "331 a")
-        if not result:
-            return False
-        else:
-            return result
+        return result
 
     def execute(self) -> None:
         print(self.__doc__)
@@ -958,12 +957,10 @@ class Task331b(TaskWithOneIntValidationParameter):
     """\n331 b. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
 And if yes, show all possible sums\n"""
     @staticmethod
-    def main_logic(n):
+    def main_logic(*args, **kwargs) -> List[str]:
+        n, *_ = args
         result = check(n, "331 b")
-        if not result:
-            return False
-        else:
-            return result
+        return result
 
     def execute(self) -> None:
         print(self.__doc__)
