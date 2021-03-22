@@ -543,14 +543,17 @@ class Task330(TaskWithOneIntValidationParameter):
 
 
 class Task108(TaskWithOneIntValidationParameter):
-    # input number n, we should find the least number, that is bigger than n and is degree of number 2
+    """\n108. You should enter the number\nThe aim is to find the least number, that is bigger than n and is degree of number 2\n"""
     # complexity - O(1)
 
     @staticmethod
     def main_logic(n):
+        """Return the least number, that is bigger than n and is degree of number 2"""
         return 2 ** (floor(log(n, 2)) + 1)
 
     def execute(self) -> None:
+        """Input data"""
+        print(self.__doc__)
         n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
@@ -920,6 +923,9 @@ def check(number, task):
 
 
 class Task331a(TaskWithOneIntValidationParameter):
+    """\n331 a. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
+And if yes, show the sum\n"""
+
     @staticmethod
     def main_logic(n):
         result = check(n, "331 a")
@@ -929,6 +935,7 @@ class Task331a(TaskWithOneIntValidationParameter):
             return result
 
     def execute(self) -> None:
+        print(self.__doc__)
         n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
@@ -948,6 +955,8 @@ class Task331a(TaskWithOneIntValidationParameter):
 
 
 class Task331b(TaskWithOneIntValidationParameter):
+    """\n331 b. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
+And if yes, show all possible sums\n"""
     @staticmethod
     def main_logic(n):
         result = check(n, "331 b")
@@ -957,6 +966,7 @@ class Task331b(TaskWithOneIntValidationParameter):
             return result
 
     def execute(self) -> None:
+        print(self.__doc__)
         n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
