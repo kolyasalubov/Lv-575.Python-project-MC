@@ -5,6 +5,7 @@ from typing import List, Tuple
 # List of algo tasks
 TASKS = []
 
+
 def register(cls):
     """
     Decorator/funtion for class-task registration (added to list TASKS)
@@ -39,7 +40,6 @@ class AlgoInterface(ABC):
         pass
 
 
-
 class TaskWithOneIntValidationParameter(AlgoInterface):
     @classmethod
     def validate_data(cls, *args, **kwargs):
@@ -61,7 +61,6 @@ class InvalidInput(Exception):
     """Custom extension"""
 
 
-
 class TaskWithTwoIntValidationParameters(AlgoInterface):
     """Class for validation of two int parameters"""
 
@@ -75,6 +74,7 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
             raise TypeError
 
         return number, number2
+
 
 @register
 class Task178d(TaskWithOneIntValidationParameter):
@@ -262,7 +262,8 @@ class Task243a(TaskWithOneIntValidationParameter):
 
         exists = self.main_logic(n)
         if exists:
-            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+            print(
+                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -328,10 +329,10 @@ class Task86a(TaskWithOneIntValidationParameter):
     def main_logic(*args, **kwargs) -> int:
         """
         Count amount of digits in number
-        Input number: int
-        Returns int
+        :param number: int
+        :return: int
         """
-        number, *_ = args
+        number: int = args[0]
         return len(str(number))
 
     def execute(self) -> None:
@@ -444,7 +445,8 @@ class Task87(TaskWithTwoIntValidationParameters):
         # numbers must be natural
         result = self.main_logic(number, int(quantity_str))
         print(
-            "The sum of the last {} digits of number {} is".format(int(quantity_str), number),
+            "The sum of the last {} digits of number {} is".format(
+                int(quantity_str), number),
             result,
         )
 
@@ -466,10 +468,10 @@ class Task86b(TaskWithOneIntValidationParameter):
     def main_logic(*args, **kwargs) -> int:
         """
         Count sum of digits in the number
-        Input number: int
-        Returns int
+        :param number: int
+        :return: int
         """
-        number, *_ = args
+        number: int = args[0]
         return sum(map(int, list(str(number))))
 
     def execute(self) -> None:
@@ -506,8 +508,8 @@ class Task330(TaskWithOneIntValidationParameter):
     def _get_dividers(numb: int) -> set[int]:
         """
         Finds all deviders of an integer except the number itself
-        Input: number:int
-        Return: set[int]
+        :param number: int
+        :return: set[int]
 
         complexity O(sqrt(numb))
         """
@@ -525,10 +527,10 @@ class Task330(TaskWithOneIntValidationParameter):
     def main_logic(*args, **kwargs) -> int:
         """
         Its a generator that find all numbers that is ideal
-        Input number: int
-        Returns int
+        :param number: int
+        :return: int
         """
-        number, *_ = args
+        number: int = args[0]
         for i in range(2, number):
             if sum(Task330._get_dividers(i)) == i:
                 yield i
@@ -619,7 +621,8 @@ class Task226(TaskWithTwoIntValidationParameters):
         number1, number2 = int(number1), int(number2)
         result = self.main_logic(number1, number2)
         if result:
-            print("All common multiples less then {}: ".format(number1 * number2), end="")
+            print("All common multiples less then {}: ".format(
+                number1 * number2), end="")
             for element in result:
                 print(element, end=", ")
             print()
@@ -701,7 +704,8 @@ class Task559(TaskWithOneIntValidationParameter):
         number_str, *_ = args
         number = int(number_str)
         return sorted(
-            set(Task559.eratosthenes(number)).intersection(set(Task559.mersen_numbers(number)))
+            set(Task559.eratosthenes(number)).intersection(
+                set(Task559.mersen_numbers(number)))
         )  # Mersenne primes
 
     def execute(self) -> None:
@@ -717,7 +721,8 @@ class Task559(TaskWithOneIntValidationParameter):
 
         # number must be natural
         result = self.main_logic(number)
-        print("Mersenne primes less than {}:".format(int(input_data)), sorted(result))
+        print("Mersenne primes less than {}:".format(
+            int(input_data)), sorted(result))
 
         return None
 
@@ -772,7 +777,8 @@ class Task243b(TaskWithOneIntValidationParameter):
 
         if all_squares:
             for pair in all_squares:
-                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+                print(
+                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -834,7 +840,8 @@ class Task88c(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         print(self.__doc__)
 
-        input_data = input("Enter N to switch first and last digits of the number : ")
+        input_data = input(
+            "Enter N to switch first and last digits of the number : ")
 
         try:
             n = self.validate_data(input_data)
@@ -867,7 +874,8 @@ class Task88d(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         print(self.__doc__)
 
-        input_data = input("Enter N to insert digit 1 on the start and last positions of the number : ")
+        input_data = input(
+            "Enter N to insert digit 1 on the start and last positions of the number : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -918,7 +926,8 @@ class Task332(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         print(self.__doc__)
 
-        input_data = input("Enter N to find Lagrange decomposition coefficients : ")
+        input_data = input(
+            "Enter N to find Lagrange decomposition coefficients : ")
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -943,7 +952,8 @@ def check(number, task):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
-                array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
+                array.append(str(i) + "^2 + " + str(j) + "^2 + " +
+                             str(int(third ** (1 / 2))) + "^2")
                 if task == "331 a":
                     return array
     return array
@@ -1092,4 +1102,3 @@ def get_classes(cls) -> list:
         endpoint_classes.append(current)
 
     return endpoint_classes
-
