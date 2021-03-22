@@ -544,26 +544,27 @@ class Task330(TaskWithOneIntValidationParameter):
 
 class Task108(TaskWithOneIntValidationParameter):
     """\n108. You should enter the number\nThe aim is to find the least number, that is bigger than n and is degree of number 2\n"""
+
     # complexity - O(1)
 
     @staticmethod
     def main_logic(*args, **kwargs) -> int:
         """Return the least number, that is bigger than n and is degree of number 2"""
-        n, *_ = args
-        return int(2 ** (floor(log(n, 2)) + 1))
+        number: int = args[0]
+        return int(2 ** (floor(log(number, 2)) + 1))
 
     def execute(self) -> None:
         """Input data"""
         print(self.__doc__)
-        n = int(input("Input natural number: "))
+        number = int(input("Input natural number: "))
         try:
-            m = self.validate_data(n)
+            number = self.validate_data(number)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
-        k = self.main_logic(n)
-        print("r = ", floor(log(n, 2)) + 1)
-        print("Result (2^r) = ", k)
+        result = self.main_logic(number)
+        print("r = ", floor(log(number, 2)) + 1)
+        print("Result (2^r) = ", result)
         return None
 
     @staticmethod
@@ -912,6 +913,7 @@ class Task332(TaskWithOneIntValidationParameter):
 # for task 331. Checking whether we can represent given number as a sum of 3 number in power 2
 # complexity ~ O(n)
 def check(number, task):
+    """Function to check in tasks 331a and 331b"""
     array = []
     for i in range(1, int(ceil(sqrt(number)))):
         for j in range(1, int(ceil(sqrt(number - i ** 2)))):
@@ -925,27 +927,27 @@ def check(number, task):
 
 class Task331a(TaskWithOneIntValidationParameter):
     """\n331 a. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
-And if yes, show the sum\n"""
+    And if yes, show the sum\n"""
 
     @staticmethod
     def main_logic(*args, **kwargs) -> List[str]:
-        n, *_ = args
-        result = check(n, "331 a")
+        number: int = args[0]
+        result = check(number, "331 a")
         return result
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = int(input("Input natural number: "))
+        number = int(input("Input natural number: "))
         try:
-            m = self.validate_data(n)
+            number = self.validate_data(number)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
-        k = self.main_logic(n)
-        if not k:
+        result = self.main_logic(number)
+        if not result:
             print("It`s impossible!")
         else:
-            print(k)
+            print(result)
         return None
 
     @staticmethod
@@ -955,26 +957,27 @@ And if yes, show the sum\n"""
 
 class Task331b(TaskWithOneIntValidationParameter):
     """\n331 b. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
-And if yes, show all possible sums\n"""
+    And if yes, show all possible sums\n"""
+
     @staticmethod
     def main_logic(*args, **kwargs) -> List[str]:
-        n, *_ = args
-        result = check(n, "331 b")
+        number: int = args[0]
+        result = check(number, "331 b")
         return result
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = int(input("Input natural number: "))
+        number = int(input("Input natural number: "))
         try:
-            m = self.validate_data(n)
+            number = self.validate_data(number)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
-        k = self.main_logic(n)
-        if not k:
+        result = self.main_logic(number)
+        if not result:
             print("It`s impossible!")
         else:
-            print(k)
+            print(result)
         return None
 
     @staticmethod
