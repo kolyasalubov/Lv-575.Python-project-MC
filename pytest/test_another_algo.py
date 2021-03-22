@@ -18,7 +18,8 @@ import algo
 )
 def test_task_with_one_int_validation_parameter_validate_data_right(input_number, expected_number):
     """Testing base class with validation method for correct number answer"""
-    assert algo.TaskWithOneIntValidationParameter.validate_data(input_number) == expected_number
+    assert algo.TaskWithOneIntValidationParameter.validate_data(
+        input_number) == expected_number
 
 
 @pytest.mark.parametrize(
@@ -116,7 +117,8 @@ def test_task87_main_logic(number, quantity, expected_value):
     [
         (10, 3, []),
         (6, 15, [30, 60]),
-        (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
+        (250, 110, [2750, 5500, 8250, 11000,
+         13750, 16500, 19250, 22000, 24750]),
         (71, 140, []),
     ],
 )
@@ -280,6 +282,7 @@ def test_task331b(input_value, expected_value):
     ],
 )
 def test_task178d(input_value, expected_value):
+    """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
     assert algo.Task178d.main_logic(input_value) == expected_value
 
 
@@ -293,25 +296,86 @@ def test_task178d(input_value, expected_value):
     ],
 )
 def test_task178e(input_value, expected_value):
+    """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
     assert algo.Task178e.main_logic(input_value) == expected_value
 
 
-@pytest.mark.parametrize("input_value, expected_value",
-                         [
-                             (1, [1, '\n']),
-                             (2, [1, '\n', 1, 1, '\n', ]),
-                             (4, [1, '\n', 1, 1, '\n', 1, 2,
-                                  1, '\n', 1, 3, 3, 1, '\n', ]),
-                             (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
-                                  '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
-                         ])
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (1, [1, "\n"]),
+        (
+            2,
+            [
+                1,
+                "\n",
+                1,
+                1,
+                "\n",
+            ],
+        ),
+        (
+            4,
+            [
+                1,
+                "\n",
+                1,
+                1,
+                "\n",
+                1,
+                2,
+                1,
+                "\n",
+                1,
+                3,
+                3,
+                1,
+                "\n",
+            ],
+        ),
+        (
+            6,
+            [
+                1,
+                "\n",
+                1,
+                1,
+                "\n",
+                1,
+                2,
+                1,
+                "\n",
+                1,
+                3,
+                3,
+                1,
+                "\n",
+                1,
+                4,
+                6,
+                4,
+                1,
+                "\n",
+                1,
+                5,
+                10,
+                10,
+                5,
+                1,
+                "\n",
+            ],
+        ),
+    ],
+)
 def test_task555(input_value, expected_value):
-    assert [*algo.Task555.main_logic(input_value)] == expected_value
+    """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+    assert list(algo.Task555.main_logic(input_value)) == expected_value
 
 
 @pytest.mark.parametrize(
     "number, expected_value",
-    [(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)],
+    [(15, 2), (441, 3), (9, 1), (123456798, 9),
+     (15263, 5), (10526374859632104512, 20)],
 )
 def test_task86a_main_logic(number, expected_value):
     """Testing task 86a class main logic (must return  amount of digits in number)"""

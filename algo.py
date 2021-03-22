@@ -5,8 +5,8 @@ import re
 
 
 class AlgoInterface(ABC):
-    # interface for algo tasks
-    # subclasees must be only algo tasks
+    """interface for algo tasks
+    subclasees must be only algo tasks"""
 
     @abstractmethod
     def execute(self) -> None:
@@ -15,26 +15,26 @@ class AlgoInterface(ABC):
 
     @abstractstaticmethod
     def name() -> str:
-        # return name of task
-        # user representation
+        """return name of task
+        user representation"""
         pass
 
     @abstractstaticmethod
     def main_logic(*args, **kwargs):
-        # return name of task
-        # user representation
+        """return task's answer"""
         pass
 
     @abstractstaticmethod
     def validate_data(*args, **kwargs):
-        # return name of task
-        # user representation
+        """Validation of input data"""
         pass
 
 
 class TaskWithOneIntValidationParameter(AlgoInterface):
     @classmethod
     def validate_data(cls, *args, **kwargs):
+        """Validation of data with one parameter
+        Input number must be an natural"""
         input_number, *_ = args
         string = str(input_number).strip()
         if not ((((string.startswith("-") or string.startswith("+")) and string[1:].isdigit())) or string.isdigit()):
@@ -56,6 +56,8 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
 
     @classmethod
     def validate_data(cls, *args, **kwargs):
+        """Validation of data with 2 parameters
+        Input numbers must be integers"""
         input_data, *_ = args
         number, number2 = input_data.split()
         if not number.isdigit() or not number2.isdigit():
@@ -300,8 +302,19 @@ class Task178c(TaskWithOneIntValidationParameter):
 
 
 class Task86a(TaskWithOneIntValidationParameter):
+    """
+    86. A natural number n is given.
+    a) How many digits are in the number n.
+    """
+
     @staticmethod
-    def main_logic(number):
+    def main_logic(*args, **kwargs) -> int:
+        """
+        Count amount of digits in number
+        Input number: int
+        Returns int
+        """
+        number, *_ = args
         return len(str(number))
 
     def execute(self) -> None:
@@ -322,6 +335,7 @@ class Task86a(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def name() -> str:
+        """Returns name of a class in user representation"""
         return "86 a)"
 
 
@@ -423,8 +437,19 @@ class Task87(TaskWithTwoIntValidationParameters):
 
 
 class Task86b(TaskWithOneIntValidationParameter):
+    """
+    86. A natural number n is given.
+    b) What is the sum of its numbers?
+    """
+
     @staticmethod
-    def main_logic(number):
+    def main_logic(*args, **kwargs) -> int:
+        """
+        Count sum of digits in the number
+        Input number: int
+        Returns int
+        """
+        number, *_ = args
         return sum(map(int, list(str(number))))
 
     def execute(self) -> None:
@@ -448,9 +473,23 @@ class Task86b(TaskWithOneIntValidationParameter):
 
 
 class Task330(TaskWithOneIntValidationParameter):
+    """
+    330. A natural number is called perfect if it is equal
+    to the sum of all its divisors, except for itself.
+    The number 6 is perfect, since 6 = 1 + 2 + 3.
+    The number 8 is not perfect, since 8 ≠ 1 + 2 + 4.
+    Given a natural number n. Get all perfect numbers less than n.
+    """
+
     @staticmethod
-    def _get_dividers(numb):
-        # complexity O(sqrt(numb))
+    def _get_dividers(numb: int) -> set[int]:
+        """
+        Finds all deviders of an integer except the number itself
+        Input: number:int
+        Return: set[int]
+
+        complexity O(sqrt(numb))
+        """
 
         # using set to avoid duplicates of deviders
         deviders = {1}
@@ -462,7 +501,13 @@ class Task330(TaskWithOneIntValidationParameter):
         return deviders
 
     @staticmethod
-    def main_logic(number):
+    def main_logic(*args, **kwargs) -> int:
+        """
+        Its a generator that find all numbers that is ideal
+        Input number: int
+        Returns int
+        """
+        number, *_ = args
         for i in range(2, number):
             if sum(Task330._get_dividers(i)) == i:
                 yield i
@@ -473,6 +518,7 @@ class Task330(TaskWithOneIntValidationParameter):
 
         "ideal" - number the sum of witch deviders(without the number itself)
         is equal to the number"""
+        print(self.__doc__)
 
         number = input("Enter number N: ")
         try:
@@ -483,8 +529,8 @@ class Task330(TaskWithOneIntValidationParameter):
 
         # general complixity of print all "ideal" numbers till number N
         # O(n*sqrt(n)) <==> O(n^(3/2))
-        for n in self.main_logic(number):
-            print(n)
+        for numb in self.main_logic(number):
+            print(numb)
 
         # alternative form (cons: print all values after forloop ends)
         # print(*(i for i in range(2, number)  if sum(get_deviders(i)) == i ))
@@ -761,6 +807,7 @@ class Task88c(TaskWithOneIntValidationParameter):
         print(self.__doc__)
 
         input_data = input("Enter N to switch first and last digits of the number : ")
+
         try:
             n = self.validate_data(input_data)
         except (ValueError, TypeError):
@@ -989,7 +1036,12 @@ class Task322(TaskWithOneIntValidationParameter):
 
 
 # function for bfs search of endpoint classes
-def get_classes(cls):
+def get_classes(cls) -> list:
+    """
+    Search endpoint classes in class hierarchy
+    Input: class subclasees of which you want to find
+    Returns list of endpoint subclasses
+    """
     stack = set(cls.__subclasses__())
 
     # array for all leaves
