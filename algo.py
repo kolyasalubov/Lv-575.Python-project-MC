@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
 import re
-import logging
 
 
 class AlgoInterface(ABC):
@@ -34,11 +33,11 @@ class AlgoInterface(ABC):
 
 
 class TaskWithOneIntValidationParameter(AlgoInterface):
-    @staticmethod
-    def validate_data(input_number):
-
-        s = str(input_number).strip()
-        if not ((((s.startswith('-') or s.startswith('+')) and s[1:].isdigit())) or s.isdigit()):
+    @classmethod
+    def validate_data(cls, *args, **kwargs):
+        input_number, *_ = args
+        string = str(input_number).strip()
+        if not ((((string.startswith("-") or string.startswith("+")) and string[1:].isdigit())) or string.isdigit()):
             raise TypeError  # raises TypeError if not int
 
         number = int(input_number)
@@ -49,44 +48,23 @@ class TaskWithOneIntValidationParameter(AlgoInterface):
 
 
 class InvalidInput(Exception):
-    pass
+    """Custom extension"""
 
 
 class TaskWithTwoIntValidationParameters(AlgoInterface):
+    """Class for validation of two int parameters"""
 
-    @staticmethod
-    def validate_data(input_data):
-
-        try:
-            n, m = input_data.split()
-        except ValueError:
-            raise ValueError
-        if not n.isdigit() or not m.isdigit():
+    @classmethod
+    def validate_data(cls, *args, **kwargs):
+        input_data, *_ = args
+        number, number2 = input_data.split()
+        if not number.isdigit() or not number2.isdigit():
             raise TypeError
 
-        return n, m
-
-
-class TaskWithTwoIntValidationParametersForTask87(TaskWithTwoIntValidationParameters):
-
-    @staticmethod
-    def validate_data(input_data):
-
-        try:
-            n, m = input_data.split()
-        except ValueError:
-            raise ValueError
-        if not n.isdigit() or not m.isdigit():
-            raise TypeError
-        quantity, len_of_number = int(m), len(n)
-        if quantity > len_of_number:
-            raise InvalidInput
-
-        return n, m
+        return number, number2
 
 
 class Task178d(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(sequence):
         result = 0
@@ -99,7 +77,7 @@ class Task178d(TaskWithOneIntValidationParameter):
         print("-" * 60)
         print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
         print("-" * 60)
-        n = input('Enter the size of sequence:')
+        n = input("Enter the size of sequence:")
         try:
             n = self.validate_data(n)
         except ValueError:
@@ -135,14 +113,14 @@ class Task88a(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = int(input('Input natural number: '))
+        n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
             print("Wrong input number")
             return None
         k = self.main_logic(n)
-        print('Is 3 in n^2?', k)
+        print("Is 3 in n^2?", k)
         return None
 
     @staticmethod
@@ -165,15 +143,14 @@ class Task178b(TaskWithOneIntValidationParameter):
         return counter
 
     def execute(self) -> None:
-
         print(self.__doc__)
-        n = input('Enter the size of sequence:')
+        n = input("Enter the size of sequence:")
         try:
             n = self.validate_data(n)
         except ValueError:
             print("ValueError exception thrown")
             return None
-        print('Enter the elements of sequence:')
+        print("Enter the elements of sequence:")
         sequence = [input() for i in range(n)]
         for i in range(len(sequence)):
             try:
@@ -182,7 +159,7 @@ class Task178b(TaskWithOneIntValidationParameter):
                 print("ValueError exception thrown")
                 return None
 
-        print('Result:', self.main_logic(sequence))
+        print("Result:", self.main_logic(sequence))
 
         return None
 
@@ -192,7 +169,6 @@ class Task178b(TaskWithOneIntValidationParameter):
 
 
 class Task107(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(m: int) -> int:
         """
@@ -230,7 +206,6 @@ class Task107(TaskWithOneIntValidationParameter):
 
 
 class Task243a(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(n: int) -> tuple:
         """
@@ -270,8 +245,7 @@ class Task243a(TaskWithOneIntValidationParameter):
 
         exists = self.main_logic(n)
         if exists:
-            print(
-                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -289,8 +263,9 @@ class Task178c(TaskWithOneIntValidationParameter):
     """
 
     @staticmethod
-    def main_logic(sequence):
-
+    def main_logic(*args, **kwargs):
+        sequence, *_ = args
+        print(sequence, _, args)
         counter = 0
         for element in sequence:
             root = sqrt(element)
@@ -300,15 +275,14 @@ class Task178c(TaskWithOneIntValidationParameter):
         return counter
 
     def execute(self) -> None:
-
         print(self.__doc__)
-        n = input('Enter the size of sequence:')
+        n = input("Enter the size of sequence:")
         try:
             n = self.validate_data(n)
         except ValueError:
             print("ValueError exception thrown")
             return None
-        print('Enter the elements of sequence:')
+        print("Enter the elements of sequence:")
         sequence = [input() for i in range(n)]
         for i in range(len(sequence)):
             try:
@@ -317,7 +291,7 @@ class Task178c(TaskWithOneIntValidationParameter):
                 print("ValueError exception thrown")
                 return None
 
-        print('Result:', self.main_logic(sequence))
+        print("Result:", self.main_logic(sequence))
         return None
 
     @staticmethod
@@ -326,14 +300,13 @@ class Task178c(TaskWithOneIntValidationParameter):
 
 
 class Task86a(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(number):
         return len(str(number))
 
     def execute(self) -> None:
-        ''' input natural number N \n
-        find amount of its digits '''
+        """input natural number N \n
+        find amount of its digits"""
         input_data = input("Enter number: ")
 
         try:
@@ -378,9 +351,14 @@ class Task554(TaskWithOneIntValidationParameter):
         return res
 
     def execute(self) -> None:
+        """
+        Finds triples using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        number = input("Enter n: ")
 
         print(self.__doc__)
-        number = input('Enter n: ')
+        number = input("Enter n: ")
         try:
             num = self.validate_data(number)
         except ValueError:
@@ -394,22 +372,33 @@ class Task554(TaskWithOneIntValidationParameter):
         return "554"
 
 
-class Task87(TaskWithTwoIntValidationParametersForTask87):
+class Task87(TaskWithTwoIntValidationParameters):
     """Given natural n, m. Get the sum of the last m digits numbers n."""
 
     @staticmethod
-    def main_logic(n, quantity):
-        sum, len_of_number = 0, len(n)
+    def main_logic(*args, **kwargs):
+        number, quantity, *_ = args
+        sum_, len_of_number = 0, len(number)
         for i in range(quantity):
-            sum += int(n[len_of_number - i - 1])
-        return sum
+            sum_ += int(number[len_of_number - i - 1])
+        return sum_
+
+    @classmethod
+    def validate_data(cls, *args, **kwargs):
+        input_data, *_ = args
+        number, quantity_str = super().validate_data(input_data)
+        quantity, len_of_number = int(quantity_str), len(number)
+        if quantity > len_of_number:
+            raise InvalidInput
+
+        return number, quantity_str
 
     def execute(self) -> None:
         """Combine validation data + main logic"""
         print(self.__doc__)
         try:
-            input_data = input("Enter n and m:")
-            n, m = self.validate_data(input_data)
+            input_data = input("Enter number and m:")
+            number, quantity_str = self.validate_data(input_data)
         except ValueError:
             print("Please enter the second value")
             return None
@@ -417,12 +406,14 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
             print("You've entered not natural number")
             return None
         except InvalidInput:
-            print("m must be less than number of digits n")
+            print("m must be less than number of digits number")
             return None
         # numbers must be natural
-        result = self.main_logic(n, int(m))
-        print("The sum of the last {} digits of number {} is".format(
-            int(m), n), result)
+        result = self.main_logic(number, int(quantity_str))
+        print(
+            "The sum of the last {} digits of number {} is".format(int(quantity_str), number),
+            result,
+        )
 
         return None
 
@@ -432,14 +423,13 @@ class Task87(TaskWithTwoIntValidationParametersForTask87):
 
 
 class Task86b(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(number):
         return sum(map(int, list(str(number))))
 
     def execute(self) -> None:
-        ''' input natural number N \n
-         find sum of its digits '''
+        """input natural number N \n
+        find sum of its digits"""
 
         input_data = input("Enter number N: ")
         try:
@@ -458,7 +448,6 @@ class Task86b(TaskWithOneIntValidationParameter):
 
 
 class Task330(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def _get_dividers(numb):
         # complexity O(sqrt(numb))
@@ -479,11 +468,11 @@ class Task330(TaskWithOneIntValidationParameter):
                 yield i
 
     def execute(self) -> None:
-        ''' input natural number N \n
-            find all "ideal" numbers that is less than N \n
+        """input natural number N \n
+        find all "ideal" numbers that is less than N \n
 
-            "ideal" - number the sum of witch deviders(without the number itself)
-            is equal to the number'''
+        "ideal" - number the sum of witch deviders(without the number itself)
+        is equal to the number"""
 
         number = input("Enter number N: ")
         try:
@@ -516,15 +505,15 @@ class Task108(TaskWithOneIntValidationParameter):
         return 2 ** (floor(log(n, 2)) + 1)
 
     def execute(self) -> None:
-        n = int(input('Input natural number: '))
+        n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
         k = self.main_logic(n)
-        print('r = ', floor(log(n, 2)) + 1)
-        print('Result (2^r) = ', k)
+        print("r = ", floor(log(n, 2)) + 1)
+        print("Result (2^r) = ", k)
         return None
 
     @staticmethod
@@ -536,21 +525,21 @@ class Task226(TaskWithTwoIntValidationParameters):
     """Natural numbers m, n are given. Get all natural common multiples less than mn."""
 
     @staticmethod
-    def main_logic(n, m):
-        import math
+    def main_logic(*args, **kwargs):
+        value1, value2, *_ = args
 
-        def lcm(a, b):
-            return (a * b) // math.gcd(a, b)
+        def lcm(var1, var2):
+            return (var1 * var2) // gcd(var1, var2)
 
-        lcm = lcm(n, m)
-        return [i for i in range(lcm, n * m, lcm)]
+        lcm = lcm(value1, value2)
+        return list(range(lcm, value1 * value2, lcm))
 
     def execute(self) -> None:
         """Combine validation data + main logic"""
         print(self.__doc__)
         try:
             input_data = input("Enter n and m:")
-            n, m = self.validate_data(input_data)
+            number1, number2 = self.validate_data(input_data)
         except ValueError:
             print("Please enter the second value")
             return None
@@ -558,12 +547,12 @@ class Task226(TaskWithTwoIntValidationParameters):
             print("You've entered not natural number")
             return None
         # numbers must be natural
-        n, m = int(n), int(m)
-        result = self.main_logic(n, m)
+        number1, number2 = int(number1), int(number2)
+        result = self.main_logic(number1, number2)
         if result:
-            print("All common multiples less then {}: ".format(n * m), end='')
-            for el in result:
-                print(el, end=', ')
+            print("All common multiples less then {}: ".format(number1 * number2), end="")
+            for element in result:
+                print(element, end=", ")
             print()
         else:
             print("There are no such values")
@@ -572,12 +561,10 @@ class Task226(TaskWithTwoIntValidationParameters):
 
     @staticmethod
     def name() -> str:
-        # Todo
         return "226"
 
 
 class Task178e(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(sequence):
         result = 0
@@ -591,7 +578,7 @@ class Task178e(TaskWithOneIntValidationParameter):
         print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
         print("-" * 60)
         print("Enter sequence of integer numbers by ' ':")
-        n = input('Enter the size of sequence:')
+        n = input("Enter the size of sequence:")
         try:
             n = self.validate_data(n)
         except ValueError:
@@ -616,32 +603,35 @@ class Task178e(TaskWithOneIntValidationParameter):
 
 class Task559(TaskWithOneIntValidationParameter):
     """A natural number n is given. Find all Mersen numbers less than n.
-    (A prime number is called a Mersenne number if it can be represented as 2p - 1, where p is also a prime number.)"""
+    (A prime number is called a Mersenne number if it can be represented as 2p - 1,\
+    where p is also a prime number.)"""
 
     @staticmethod
-    # Eratosthene's sieve to get primes
-    def eratosthenes(n):
-        sieve = list(range(n + 1))
+    def eratosthenes(number):
+        """Eratosthene's sieve to get primes"""
+        sieve = list(range(number + 1))
         sieve[1] = 0
         for i in sieve:
             if i > 1:
                 for j in range(i + i, len(sieve), i):
                     sieve[j] = 0
-        sieve.pop(n)
-        sieve_without_nulls = set([x for x in sieve if x != 0])
+        sieve.pop(number)
+        sieve_without_nulls = {x for x in sieve if x != 0}
 
         return sorted(set(sieve_without_nulls))
 
     @staticmethod
-    # Mersenne numbers
-    def mersen_numbers(n):
-        return sorted(set([2 ** i - 1 for i in range(2, int(log(n + 1, 2)) + 1)]))
+    def mersen_numbers(value):
+        """Mersenne numbers"""
+        return sorted({2 ** i - 1 for i in range(2, int(log(value + 1, 2)) + 1)})
 
     @staticmethod
-    def main_logic(number):
-        n = int(number)
-        return sorted(set(Task559.eratosthenes(n)).intersection(
-            set(Task559.mersen_numbers(n))))  # Mersenne primes
+    def main_logic(*args, **kwargs):
+        number_str, *_ = args
+        number = int(number_str)
+        return sorted(
+            set(Task559.eratosthenes(number)).intersection(set(Task559.mersen_numbers(number)))
+        )  # Mersenne primes
 
     def execute(self) -> None:
         """Combine validation data + main logic"""
@@ -666,7 +656,6 @@ class Task559(TaskWithOneIntValidationParameter):
 
 
 class Task243b(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(n: int) -> List[Tuple[int, int]]:
         """
@@ -695,9 +684,9 @@ class Task243b(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         """
-            Processes user behavior and displays results
+        Processes user behavior and displays results
 
-            :return: None
+        :return: None
         """
         input_data = input("Enter n: ")
 
@@ -711,8 +700,7 @@ class Task243b(TaskWithOneIntValidationParameter):
 
         if all_squares:
             for pair in all_squares:
-                print(
-                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -724,7 +712,6 @@ class Task243b(TaskWithOneIntValidationParameter):
 
 
 class Task555(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(n: int):
         for i in range(n):
@@ -800,7 +787,7 @@ class Task88d(TaskWithOneIntValidationParameter):
         """Inserts digit 1 on the start and last positions"""
 
         n = str(n)
-        return int('1' + n + '1')
+        return int("1" + n + "1")
 
     def execute(self) -> None:
         print(self.__doc__)
@@ -863,7 +850,7 @@ class Task332(TaskWithOneIntValidationParameter):
             return None
 
         for i, x in enumerate(self.main_logic(n)):
-            print('x' + str(i) + ' = ' + str(x))
+            print("x" + str(i) + " = " + str(x))
 
         return None
 
@@ -887,7 +874,6 @@ def check(number, task):
 
 
 class Task331a(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(n):
         result = check(n, "331 a")
@@ -897,7 +883,7 @@ class Task331a(TaskWithOneIntValidationParameter):
             return result
 
     def execute(self) -> None:
-        n = int(input('Input natural number: '))
+        n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
@@ -916,7 +902,6 @@ class Task331a(TaskWithOneIntValidationParameter):
 
 
 class Task331b(TaskWithOneIntValidationParameter):
-
     @staticmethod
     def main_logic(n):
         result = check(n, "331 b")
@@ -926,7 +911,7 @@ class Task331b(TaskWithOneIntValidationParameter):
             return result
 
     def execute(self) -> None:
-        n = int(input('Input natural number: '))
+        n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
@@ -953,14 +938,14 @@ class Task88b(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = int(input('Input natural number: '))
+        n = int(input("Input natural number: "))
         try:
             m = self.validate_data(n)
         except (ValueError, TypeError):
             print("Wrong input number")
             return None
         k = self.main_logic(n)
-        print('Result = ', k)
+        print("Result = ", k)
         return None
 
     @staticmethod
@@ -981,8 +966,8 @@ def divisor(number):
 
 
 class Task322(TaskWithOneIntValidationParameter):
-    """ Find a natural number from 1 to 10,000 with the maximum
-        the sum of divisors."""
+    """Find a natural number from 1 to 10,000 with the maximum
+    the sum of divisors."""
 
     def main_logic(self):
         maximal = 0
@@ -996,7 +981,7 @@ class Task322(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         print(self.__doc__)
         k = self.main_logic()
-        print('Result = ', k)
+        print("Result = ", k)
         return None
 
     @staticmethod
@@ -1028,13 +1013,14 @@ if __name__ == "__main__":
 
     # get all subclasses of AlgoInterface
     # and sort them as (int, str)
-    tasks = sorted(get_classes(AlgoInterface),
-                   key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()))
+    tasks = sorted(
+        get_classes(AlgoInterface),
+        key=lambda x: (int(re.search("[0-9]+", x.name())[0]), x.name()),
+    )
 
     # Console menu
     print("Choose task from:")
-    print("\n".join('\t{}. {}'.format(i, task.name()) for i,
-                                                          task in enumerate(tasks, 1)))
+    print("\n".join("\t{}. {}".format(i, task.name()) for i, task in enumerate(tasks, 1)))
 
     while True:
         # handaling wrong input
@@ -1052,5 +1038,5 @@ if __name__ == "__main__":
         Task_to_execute.execute()
 
         # exit condition
-        if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != 'y':
+        if input("Do you want to continue? (y-yes, ANY_KEY for exit) ").lower() != "y":
             break
