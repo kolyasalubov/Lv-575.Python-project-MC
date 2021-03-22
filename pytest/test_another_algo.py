@@ -219,6 +219,7 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
+    """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
@@ -238,6 +239,7 @@ def test_task108(input_value, expected_value):
     ],
 )
 def test_task331a(input_value, expected_value):
+    """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
     assert algo.Task331a.main_logic(input_value) == expected_value
 
 
@@ -272,6 +274,8 @@ def test_task331a(input_value, expected_value):
     ],
 )
 def test_task331b(input_value, expected_value):
+    """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
+    n)"""
     assert algo.Task331b.main_logic(input_value) == expected_value
 
 
@@ -286,6 +290,7 @@ def test_task331b(input_value, expected_value):
     ],
 )
 def test_task178d(input_value, expected_value):
+    """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
     assert algo.Task178d.main_logic(input_value) == expected_value
 
 
@@ -299,6 +304,7 @@ def test_task178d(input_value, expected_value):
     ],
 )
 def test_task178e(input_value, expected_value):
+    """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
     assert algo.Task178e.main_logic(input_value) == expected_value
 
 
@@ -370,7 +376,8 @@ def test_task178e(input_value, expected_value):
     ],
 )
 def test_task555(input_value, expected_value):
-    assert [*algo.Task555.main_logic(input_value)] == expected_value
+    """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+    assert list(algo.Task555.main_logic(input_value)) == expected_value
 
 
 @pytest.mark.parametrize(

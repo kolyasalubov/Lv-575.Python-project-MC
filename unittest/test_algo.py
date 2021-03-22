@@ -42,22 +42,27 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
 
 
 class TestTask86a(unittest.TestCase):
+    """Test class for task 86a"""
 
     # Testing task 86a class main logic (must return  amount of digits in number)
     @parameterized.expand([(1, 1), (5888, 4), ("567", 3), (1111111111, 10)])
     def test_main_logic(self, number, expected_value):
+        """Testing task 86a class main logic (must return  amount of digits in number)"""
         self.assertEqual(algo.Task86a.main_logic(number), expected_value)
 
 
 class TestTask86b(unittest.TestCase):
+    """Test class for task 86b"""
 
     # Testing task 86b class main logic (must return sum of digits in number)
     @parameterized.expand([(1, 1), (5888, 29), ("567", 18), (1111011111, 9)])
     def test_main_logic(self, number, expected_value):
+        """Testing task 86b class main logic (must return sum of digits in number)"""
         self.assertEqual(algo.Task86b.main_logic(number), expected_value)
 
 
 class TestTask330(unittest.TestCase):
+    """Test class for task 330"""
 
     # Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)
     @parameterized.expand(
@@ -71,6 +76,7 @@ class TestTask330(unittest.TestCase):
         ],
     )
     def test_get_dividers(self, number, expected_value):
+        """Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)"""
         self.assertEqual(algo.Task330._get_dividers(number), expected_value)
 
     # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
@@ -87,7 +93,7 @@ class TestTask330(unittest.TestCase):
         ],
     )
     def test_main_logic(self, number, expected_value):
-        self.assertEqual([res for res in algo.Task330.main_logic(number)], expected_value)
+        self.assertEqual(list(algo.Task330.main_logic(number)), expected_value)
 
 
 class TestTask178b(unittest.TestCase):

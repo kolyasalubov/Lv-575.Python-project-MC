@@ -47,12 +47,14 @@ def test_task_with_one_int_validation_parameter_validate_exceptions(number, expe
 # Testing task 86a class main logic (must return  amount of digits in number)
 @pytest.mark.parametrize("number, expected_value", [(1, 1), (5888, 4), ("567", 3), (1111111111, 10)])
 def test_task86a_main_logic(number, expected_value):
+    """Testing task 86b class main logic (must return sum of digits in number)"""
     assert algo.Task86a.main_logic(number) == expected_value
 
 
 # Testing task 86b class main logic (must return sum of digits in number)
 @pytest.mark.parametrize("number, expected_value", [(1, 1), (5888, 29), ("567", 18), (1111101111, 9)])
 def test_task86b_main_logic(number, expected_value):
+    """Testing task 86b class main logic (must return sum of digits in number)"""
     assert algo.Task86b.main_logic(number) == expected_value
 
 
@@ -87,7 +89,8 @@ def test_task330_get_dividers(number, expected_value):
     ],
 )
 def test_task330_main_logic(number, expected_value):
-    assert [res for res in algo.Task330.main_logic(number)] == expected_value
+    """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
+    assert list(algo.Task330.main_logic(number)) == expected_value
 
 
 # Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
