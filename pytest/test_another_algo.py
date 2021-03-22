@@ -18,8 +18,7 @@ import algo
 )
 def test_task_with_one_int_validation_parameter_validate_data_right(input_number, expected_number):
     """Testing base class with validation method for correct number answer"""
-    assert algo.TaskWithOneIntValidationParameter.validate_data(
-        input_number) == expected_number
+    assert algo.TaskWithOneIntValidationParameter.validate_data(input_number) == expected_number
 
 
 @pytest.mark.parametrize(
@@ -117,8 +116,7 @@ def test_task87_main_logic(number, quantity, expected_value):
     [
         (10, 3, []),
         (6, 15, [30, 60]),
-        (250, 110, [2750, 5500, 8250, 11000,
-         13750, 16500, 19250, 22000, 24750]),
+        (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
         (71, 140, []),
     ],
 )
@@ -215,6 +213,7 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
+    """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
@@ -234,6 +233,7 @@ def test_task108(input_value, expected_value):
     ],
 )
 def test_task331a(input_value, expected_value):
+    """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
     assert algo.Task331a.main_logic(input_value) == expected_value
 
 
@@ -268,6 +268,8 @@ def test_task331a(input_value, expected_value):
     ],
 )
 def test_task331b(input_value, expected_value):
+    """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
+    n)"""
     assert algo.Task331b.main_logic(input_value) == expected_value
 
 
@@ -374,8 +376,7 @@ def test_task555(input_value, expected_value):
 
 @pytest.mark.parametrize(
     "number, expected_value",
-    [(15, 2), (441, 3), (9, 1), (123456798, 9),
-     (15263, 5), (10526374859632104512, 20)],
+    [(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)],
 )
 def test_task86a_main_logic(number, expected_value):
     """Testing task 86a class main logic (must return  amount of digits in number)"""

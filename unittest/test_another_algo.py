@@ -178,14 +178,19 @@ class TestTask243b(unittest.TestCase):
 
 
 class TestTask108(unittest.TestCase):
+    """Testing task 108"""
+
     @parameterized.expand(
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
     )
     def test_task108(self, input_value, expected_value):
+        """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
         self.assertEqual(algo.Task108.main_logic(input_value), expected_value)
 
 
 class TestTask331a(unittest.TestCase):
+    """Testing task 331a"""
+
     @parameterized.expand(
         [
             (20, False),
@@ -201,10 +206,13 @@ class TestTask331a(unittest.TestCase):
         ]
     )
     def test_task331a(self, input_value, expected_value):
+        """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
         self.assertEqual(algo.Task331a.main_logic(input_value), expected_value)
 
 
 class TestTask331b(unittest.TestCase):
+    """Testing task 331b"""
+
     @parameterized.expand(
         [
             (
@@ -235,11 +243,14 @@ class TestTask331b(unittest.TestCase):
         ]
     )
     def test_task331b(self, input_value, expected_value):
+        """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
+        n)"""
         self.assertEqual(algo.Task331b.main_logic(input_value), expected_value)
 
 
 class TestTask178d(unittest.TestCase):
     """Testing task class 178d """
+
     @parameterized.expand(
         [([9, 12, 3], 0), ([18, 3, 17], 1), ([18, 3, 17, 78], 2), ([18, 3, 17, 0], 1), ([17, 17, 17, 17], 0)]
     )
@@ -250,6 +261,7 @@ class TestTask178d(unittest.TestCase):
 
 class TestTask178e(unittest.TestCase):
     """Testing task class 178e """
+
     @parameterized.expand(
         [
             ([12, 45, 3, 8], 2),
@@ -266,14 +278,72 @@ class TestTask178e(unittest.TestCase):
 class TestTask555(unittest.TestCase):
     """Testing task class 555 """
 
-    @parameterized.expand([
-        (1, [1, '\n']),
-        (2, [1, '\n', 1, 1, '\n', ]),
-        (4, [1, '\n', 1, 1, '\n', 1, 2,
-             1, '\n', 1, 3, 3, 1, '\n', ]),
-        (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
-             '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
-    ])
+    @parameterized.expand(
+        [
+            (1, [1, "\n"]),
+            (
+                2,
+                [
+                    1,
+                    "\n",
+                    1,
+                    1,
+                    "\n",
+                ],
+            ),
+            (
+                4,
+                [
+                    1,
+                    "\n",
+                    1,
+                    1,
+                    "\n",
+                    1,
+                    2,
+                    1,
+                    "\n",
+                    1,
+                    3,
+                    3,
+                    1,
+                    "\n",
+                ],
+            ),
+            (
+                6,
+                [
+                    1,
+                    "\n",
+                    1,
+                    1,
+                    "\n",
+                    1,
+                    2,
+                    1,
+                    "\n",
+                    1,
+                    3,
+                    3,
+                    1,
+                    "\n",
+                    1,
+                    4,
+                    6,
+                    4,
+                    1,
+                    "\n",
+                    1,
+                    5,
+                    10,
+                    10,
+                    5,
+                    1,
+                    "\n",
+                ],
+            ),
+        ]
+    )
     def test_task555(self, input_value, expected_value):
         """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
         self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
