@@ -286,72 +286,15 @@ class TestTask178e(unittest.TestCase):
 
 class TestTask555(unittest.TestCase):
     """Testing task class 555 """
-    @parameterized.expand(
-        [
-            (1, [1, "\n"]),
-            (
-                2,
-                [
-                    1,
-                    "\n",
-                    1,
-                    1,
-                    "\n",
-                ],
-            ),
-            (
-                4,
-                [
-                    1,
-                    "\n",
-                    1,
-                    1,
-                    "\n",
-                    1,
-                    2,
-                    1,
-                    "\n",
-                    1,
-                    3,
-                    3,
-                    1,
-                    "\n",
-                ],
-            ),
-            (
-                6,
-                [
-                    1,
-                    "\n",
-                    1,
-                    1,
-                    "\n",
-                    1,
-                    2,
-                    1,
-                    "\n",
-                    1,
-                    3,
-                    3,
-                    1,
-                    "\n",
-                    1,
-                    4,
-                    6,
-                    4,
-                    1,
-                    "\n",
-                    1,
-                    5,
-                    10,
-                    10,
-                    5,
-                    1,
-                    "\n",
-                ],
-            ),
-        ]
-    )
+
+    @parameterized.expand([
+        (1, [1, '\n']),
+        (2, [1, '\n', 1, 1, '\n', ]),
+        (4, [1, '\n', 1, 1, '\n', 1, 2,
+             1, '\n', 1, 3, 3, 1, '\n', ]),
+        (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+             '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
+    ])
     def test_task555(self, input_value, expected_value):
         """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
         self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
