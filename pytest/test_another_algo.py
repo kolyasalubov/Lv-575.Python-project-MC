@@ -56,6 +56,7 @@ def test_task_with_one_int_validation_parameter_validate_data_exception(input_nu
     ],
 )
 def test_task88c(input_value, expected_value):
+    """Testing task 88c class main logic (Swap the first and last digits of n)"""
     assert algo.Task88c.main_logic(input_value) == expected_value
 
 
@@ -74,6 +75,7 @@ def test_task88c(input_value, expected_value):
     ],
 )
 def test_task88d(input_value, expected_value):
+    """Testing task 88d class main logic (Add the number 1 to the beginning and end of n)"""
     assert algo.Task88d.main_logic(input_value) == expected_value
 
 
@@ -92,6 +94,7 @@ def test_task88d(input_value, expected_value):
     ],
 )
 def test_task332(input_value, expected_value):
+    """Testing task 332 class main logic (Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n)"""
     assert algo.Task332.main_logic(input_value) == expected_value
 
 
@@ -142,6 +145,7 @@ def test_task559_main_logic(number, expected_value):
     assert algo.Task559.main_logic(number) == expected_value
 
 
+# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
@@ -163,6 +167,7 @@ def test_task107_main_logic(input_value, expected_value):
     assert algo.Task107.main_logic(input_value) == expected_value
 
 
+# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -180,6 +185,7 @@ def test_task243a_main_logic(number, expected_value):
     assert algo.Task243a.main_logic(number) == expected_value
 
 
+# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [

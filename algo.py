@@ -185,34 +185,33 @@ class Task178b(TaskWithOneIntValidationParameter):
 
 @register
 class Task107(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given.
+    Find the largest integer k such that 4 ^k < m
+    """
+
     @staticmethod
-    def main_logic(m: int) -> int:
-        """
-        Return  the largest integer k, at which 4 ^k < m
-        :rtype: object
-        """
-        k: float = log(m, 4)
+    def main_logic(*args, **kwargs) -> int:
+        """Return  the largest integer k, at which 4 ^k < m"""
+        m_number: int = args[0]
+        k: float = log(m_number, 4)
         k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
         return k
 
     def execute(self) -> None:
-        """
-        Processes user behavior and displays results
-
-        :return: None
-        """
+        print(self.__doc__)
 
         input_data = input("Enter m: ")
 
         try:
-            m = self.validate_data(input_data)
+            m_number = self.validate_data(input_data)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
 
-        k = self.main_logic(m)
+        k = self.main_logic(m_number)
         print("k =", k)
-        print("4 ^{} < {}".format(k, m))
+        print("4 ^{} < {}".format(k, m_number))
 
         return None
 
@@ -223,47 +222,46 @@ class Task107(TaskWithOneIntValidationParameter):
 
 @register
 class Task243a(TaskWithOneIntValidationParameter):
-    @staticmethod
-    def main_logic(n: int) -> tuple:
-        """
-        Check if there are two numbers (x, y) that x ^2 + y ^2 = n
+    """
+    A natural number n is given.
+    Can you imagine it as a sum of two squares of natural numbers?
+    If yes, find a pair x, y of such natural numbers that n = x ^2 + y ^2
+    """
 
-        :param n: int
-        :return: tuple
-        """
-        sq = sqrt(n)
-        for y in range(1, int(sqrt(n)) + 1):
+    @staticmethod
+    def main_logic(*args, **kwargs) -> tuple:
+        """Check if there are two numbers (x, y) that x ^2 + y ^2 = n"""
+        n_number: int = args[0]
+        n_number_square: float = sqrt(n_number)
+
+        for y_number in range(1, int(sqrt(n_number)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
-            x = sqrt((sq + y) * (sq - y))
-            if int(x) == x:
-                if int(x) >= y:
-                    return int(x), y
+            x_number = sqrt((n_number_square + y_number) * (n_number_square - y_number))
+            if int(x_number) == x_number:
+                if int(x_number) >= y_number:
+                    return int(x_number), y_number
 
-            elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
-                if round(x) >= y:
-                    return round(x), y
+            elif abs(round(x_number) - x_number) < 0.0000000001:  # prevention of calculation errors
+                if round(x_number) >= y_number:
+                    return round(x_number), y_number
 
         return ()
 
     def execute(self) -> None:
-        """
-        Processes user behavior and displays results
+        print(self.__doc__)
 
-        :return: None
-        """
         input_data = input("Enter n: ")
 
         try:
-            n = self.validate_data(input_data)
+            n_number = self.validate_data(input_data)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
 
-        exists = self.main_logic(n)
+        exists = self.main_logic(n_number)
         if exists:
-            print(
-                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n))
+            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n_number))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -738,52 +736,50 @@ class Task559(TaskWithOneIntValidationParameter):
 
 @register
 class Task243b(TaskWithOneIntValidationParameter):
+    """
+    A natural number n is given.
+    Can you imagine it as a sum of two squares of natural numbers?
+    If yes, find all of the pairs x, y of such natural numbers that n = x ^2 + y ^2
+    """
+
     @staticmethod
-    def main_logic(n: int) -> List[Tuple[int, int]]:
-        """
-        Find all of the two numbers (x, y) that x ^2 + y ^2 = n
+    def main_logic(*args, **kwargs) -> List[Tuple[int, int]]:
+        """Find all of the two numbers (x, y) that x ^2 + y ^2 = n"""
+        n_number: int = args[0]
+        n_number_square: float = sqrt(n_number)
 
-        :param n: int
-        :return:  list[tuple[int, int]]
-        """
-
-        sq = sqrt(n)
         squares_numbers = []
 
-        for y in range(1, int(sqrt(n)) + 1):
+        for y_number in range(1, int(sqrt(n_number)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
-            x = sqrt((sq + y) * (sq - y))
-            if int(x) == x:
-                if int(x) >= y:
-                    squares_numbers.append((int(x), y))
+            x_number = sqrt((n_number_square + y_number) * (n_number_square - y_number))
+            if int(x_number) == x_number:
+                if int(x_number) >= y_number:
+                    squares_numbers.append((int(x_number), y_number))
 
-            elif abs(round(x) - x) < 0.0000000001:  # prevention of calculation errors
-                if round(x) >= y:
-                    squares_numbers.append((round(x), y))
+            elif abs(round(x_number) - x_number) < 0.0000000001:  # prevention of calculation errors
+                if round(x_number) >= y_number:
+                    squares_numbers.append((round(x_number), y_number))
 
         return squares_numbers
 
     def execute(self) -> None:
-        """
-        Processes user behavior and displays results
+        print(self.__doc__)
 
-        :return: None
-        """
         input_data = input("Enter n: ")
 
         try:
-            n = self.validate_data(input_data)
+            n_number = self.validate_data(input_data)
         except (ValueError, TypeError):
             print("Wrong input!")
             return None
 
-        all_squares = self.main_logic(n)
+        all_squares = self.main_logic(n_number)
 
         if all_squares:
             for pair in all_squares:
-                print(
-                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n))
+                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n_number))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -865,6 +861,7 @@ class Task88c(TaskWithOneIntValidationParameter):
 
 @register
 class Task88d(TaskWithOneIntValidationParameter):
+
     """
     A natural number n is given. Add the number 1 to the beginning and end of n
     """

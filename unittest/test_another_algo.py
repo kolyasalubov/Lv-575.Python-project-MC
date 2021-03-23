@@ -45,6 +45,8 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
 
 
 class TestTask88c(unittest.TestCase):
+    """Testing task 88c class main logic"""
+
     @parameterized.expand(
         [
             (1, 1),
@@ -59,10 +61,13 @@ class TestTask88c(unittest.TestCase):
         ]
     )
     def test_task88c(self, input_value, expected_value):
+        """Swap the first and last digits of n"""
         self.assertEqual(algo.Task88c.main_logic(input_value), expected_value)
 
 
 class TestTask88d(unittest.TestCase):
+    """Testing task 88d class main logic"""
+
     @parameterized.expand(
         [
             (1, 111),
@@ -77,10 +82,13 @@ class TestTask88d(unittest.TestCase):
         ]
     )
     def test_task88d(self, input_value, expected_value):
+        """Add the number 1 to the beginning and end of n"""
         self.assertEqual(algo.Task88d.main_logic(input_value), expected_value)
 
 
 class TestTask332(unittest.TestCase):
+    """esting task 332 class main logic"""
+
     @parameterized.expand(
         [
             (1, [1, 0, 0, 0]),
@@ -95,6 +103,7 @@ class TestTask332(unittest.TestCase):
         ]
     )
     def test_task332(self, input_value, expected_value):
+        """Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n"""
         self.assertEqual(algo.Task332.main_logic(input_value), expected_value)
 
 
@@ -277,7 +286,6 @@ class TestTask178e(unittest.TestCase):
 
 class TestTask555(unittest.TestCase):
     """Testing task class 555 """
-
     @parameterized.expand(
         [
             (1, [1, "\n"]),
