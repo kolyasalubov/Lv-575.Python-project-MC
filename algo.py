@@ -78,6 +78,11 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
 
 @register
 class Task178d(TaskWithOneIntValidationParameter):
+    """
+    178) Natural numbers n, a1,…, an are given. Define
+    number of members ak of the sequence a1,…, an:
+    d) which satisfy the condition: Ak < (Ak-1 + Ak+1) / 2.
+    """
     @staticmethod
     def main_logic(sequence):
         result = 0
@@ -87,20 +92,18 @@ class Task178d(TaskWithOneIntValidationParameter):
         return result
 
     def execute(self) -> None:
-        print("-" * 60)
-        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
-        print("-" * 60)
-        n = input("Enter the size of sequence:")
+        print(self.__doc__)
+        size = input("Enter the size of sequence:")
         try:
-            n = self.validate_data(n)
+            size = self.validate_data(size)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print("Enter sequence of integer numbers by one in row:")
-        sequence = [int(input()) for i in range(n)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for i in range(size)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(sequence[i])
             except ValueError:
                 print("ValueError exception thrown")
                 return None
