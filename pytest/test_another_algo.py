@@ -213,6 +213,10 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
+    """
+    Testing task 108 class main logic
+    (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
+    """
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
