@@ -1,5 +1,8 @@
-from algo import TASKS
+"""
+Entry point for algo_task program
+"""
 import re
+from algo import TASKS
 
 if __name__ == "__main__":
 
@@ -19,7 +22,7 @@ if __name__ == "__main__":
         # handaling wrong input
         try:
             position = int(input("Execute task (index): ")) - 1
-            if not (0 <= position < len(tasks)):
+            if not 0 <= position < len(tasks):
                 raise IndexError
         except (IndexError, ValueError):
             print("Wrong index!")

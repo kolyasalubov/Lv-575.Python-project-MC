@@ -1,3 +1,6 @@
+"""
+Tests for algo (unittest)
+"""
 import unittest
 from parameterized import parameterized
 import algo
@@ -17,7 +20,7 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
             (" 12", 12),
         ]
     )
-    def test_main_logic(self, number, expected_value):
+    def test_validation(self, number, expected_value):
         self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(number), expected_value)
 
     # Testing base class with validation method for exceptions
@@ -37,7 +40,7 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
             ("+7m", TypeError),
         ]
     )
-    def test_main_logic(self, number, expected_value):
+    def test_validation_exception(self, number, expected_value):
         self.assertRaises(expected_value, algo.TaskWithOneIntValidationParameter.validate_data, number)
 
 
@@ -76,10 +79,10 @@ class TestTask330(unittest.TestCase):
         ],
     )
     def test_get_dividers(self, number, expected_value):
-        """Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)"""
-        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
+        """Testing task 330 class  dividers func (must return set of all dividers of the number except number itself)"""
+        self.assertEqual(algo.Task330.get_dividers(number), expected_value)
 
-    # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
+    # Testing task 330 class main logic (must return number that's sum of dividers is equal to the number)
     @parameterized.expand(
         [
             (10, [6]),

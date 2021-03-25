@@ -1,3 +1,6 @@
+"""
+Tests for algo (pytest)
+"""
 import algo
 import pytest
 
@@ -71,7 +74,7 @@ def test_task86b_main_logic(number, expected_value):
     ],
 )
 def test_task330_get_dividers(number, expected_value):
-    assert algo.Task330._get_dividers(number) == expected_value
+    assert algo.Task330.get_dividers(number) == expected_value
 
 
 # Testing task 330 class main logic (must return number thats sum of dividers(from get_dividers) is equal to the number)
