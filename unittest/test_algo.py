@@ -91,8 +91,8 @@ class TestTask330(unittest.TestCase):
 
 
 class TestTask178b(unittest.TestCase):
+    """Test class for task 178b"""
 
-    # Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
     @parameterized.expand(
         [
             ([5], 0),
@@ -104,12 +104,16 @@ class TestTask178b(unittest.TestCase):
         ]
     )
     def test_main_logic(self, sequence, expected_value):
+        """
+        Testing task 178b class main logic
+        (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
+        """
         self.assertEqual(algo.Task178b.main_logic(sequence), expected_value)
 
 
 class TestTask178c(unittest.TestCase):
+    """Test class for task 178b"""
 
-    # Testing task 178c class main logic (must return amount of numbers which are the square of the even number)
     @parameterized.expand(
         [
             ([5], 0),
@@ -121,12 +125,16 @@ class TestTask178c(unittest.TestCase):
         ]
     )
     def test_main_logic(self, sequence, expected_value):
+        """
+        Testing task 178c class main logic
+        (must return amount of numbers which are the square of the even number)
+        """
         self.assertEqual(algo.Task178c.main_logic(sequence), expected_value)
 
 
 class TestTask554(unittest.TestCase):
+    """Test class for task 178b"""
 
-    # Testing task 554 class main logic (must return list of pythagorean triplets)
     @parameterized.expand(
         [
             (
@@ -146,6 +154,10 @@ class TestTask554(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
+        """
+        Testing task 554 class main logic
+        (must return list of pythagorean triplets)
+        """
         self.assertEqual(algo.Task554.main_logic(number + 1), expected_value)
 
 
