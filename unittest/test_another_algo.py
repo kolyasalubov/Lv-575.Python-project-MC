@@ -178,18 +178,20 @@ class TestTask243b(unittest.TestCase):
 
 
 class TestTask108(unittest.TestCase):
+    """Test class for task 108"""
     @parameterized.expand(
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
     )
     def test_task108(self, input_value, expected_value):
         """
-        Testing task 331a class main logic
+        Testing task 108 class main logic
         (must find the least number, that is bigger than n and is degree of number 2)
         """
         self.assertEqual(algo.Task108.main_logic(input_value), expected_value)
 
 
 class TestTask331a(unittest.TestCase):
+    """Test class for task 331a"""
     @parameterized.expand(
         [
             (20, []),
@@ -213,6 +215,7 @@ class TestTask331a(unittest.TestCase):
 
 
 class TestTask331b(unittest.TestCase):
+    """Test class for task 331b"""
     @parameterized.expand(
         [
             (
