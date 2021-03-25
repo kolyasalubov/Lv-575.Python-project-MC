@@ -222,27 +222,33 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
-    """Testing task 108 class main logic
-    ( must return the least number, that is bigger than n and is degree of number 2)"""
+    """
+    Testing task 108 class main logic
+    (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
+    """
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
-        (20, False),
+        (20, []),
         (3, ["1^2 + 1^2 + 1^2"]),
         (26, ["1^2 + 3^2 + 4^2"]),
-        (1, False),
+        (1, []),
         (42, ["1^2 + 4^2 + 5^2"]),
-        (4, False),
-        (7, False),
+        (4, []),
+        (7, []),
         (9, ["1^2 + 2^2 + 2^2"]),
         (6, ["1^2 + 1^2 + 2^2"]),
-        (5, False),
+        (5, []),
     ],
 )
 def test_task331a(input_value, expected_value):
+    """
+    Testing task 331a class main logic
+    (must return number as a sum of 3 squared numbers)
+    """
     """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
     assert algo.Task331a.main_logic(input_value) == expected_value
 
@@ -273,13 +279,15 @@ def test_task331a(input_value, expected_value):
             ],
         ),
         (9, ["1^2 + 2^2 + 2^2", "2^2 + 1^2 + 2^2", "2^2 + 2^2 + 1^2"]),
-        (5, False),
-        (1, False),
+        (5, []),
+        (1, []),
     ],
 )
 def test_task331b(input_value, expected_value):
-    """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
-    n)"""
+    """
+    Testing task 331b class main logic
+    (must return number as all of combinations of sums of 3 squared numbers)
+    """
     assert algo.Task331b.main_logic(input_value) == expected_value
 
 

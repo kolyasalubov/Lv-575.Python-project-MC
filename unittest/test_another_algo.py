@@ -187,74 +187,81 @@ class TestTask243b(unittest.TestCase):
 
 
 class TestTask108(unittest.TestCase):
-    """Testing task 108"""
+    """Test class for task 108"""
 
     @parameterized.expand(
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
     )
     def test_task108(self, input_value, expected_value):
-        """Testing task 108 class main logic
-        ( must return the least number, that is bigger than n and is degree of number 2)"""
+        """
+        Testing task 108 class main logic
+        (must find the least number, that is bigger than n and is degree of number 2)
+        """
         self.assertEqual(algo.Task108.main_logic(input_value), expected_value)
 
 
 class TestTask331a(unittest.TestCase):
-    """Testing task 331a"""
+    """Test class for task 331a"""
 
     @parameterized.expand(
         [
-            (20, False),
+            (20, []),
             (3, ["1^2 + 1^2 + 1^2"]),
             (26, ["1^2 + 3^2 + 4^2"]),
-            (1, False),
+            (1, []),
             (42, ["1^2 + 4^2 + 5^2"]),
-            (4, False),
-            (7, False),
+            (4, []),
+            (7, []),
             (9, ["1^2 + 2^2 + 2^2"]),
             (6, ["1^2 + 1^2 + 2^2"]),
-            (5, False),
+            (5, []),
         ]
     )
     def test_task331a(self, input_value, expected_value):
-        """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
+        """
+        Testing task 331a class main logic
+        (must return number as a sum of 3 squared numbers)
+        """
         self.assertEqual(algo.Task331a.main_logic(input_value), expected_value)
 
 
 class TestTask331b(unittest.TestCase):
-    """Testing task 331b"""
+    """Test class for task 331b"""
 
     @parameterized.expand(
         [
             (
-                50,
-                [
-                    "3^2 + 4^2 + 5^2",
-                    "3^2 + 5^2 + 4^2",
-                    "4^2 + 3^2 + 5^2",
-                    "4^2 + 5^2 + 3^2",
-                    "5^2 + 3^2 + 4^2",
-                    "5^2 + 4^2 + 3^2",
-                ],
+                    50,
+                    [
+                        "3^2 + 4^2 + 5^2",
+                        "3^2 + 5^2 + 4^2",
+                        "4^2 + 3^2 + 5^2",
+                        "4^2 + 5^2 + 3^2",
+                        "5^2 + 3^2 + 4^2",
+                        "5^2 + 4^2 + 3^2",
+                    ],
             ),
             (
-                45,
-                [
-                    "2^2 + 4^2 + 5^2",
-                    "2^2 + 5^2 + 4^2",
-                    "4^2 + 2^2 + 5^2",
-                    "4^2 + 5^2 + 2^2",
-                    "5^2 + 2^2 + 4^2",
-                    "5^2 + 4^2 + 2^2",
-                ],
+                    45,
+                    [
+                        "2^2 + 4^2 + 5^2",
+                        "2^2 + 5^2 + 4^2",
+                        "4^2 + 2^2 + 5^2",
+                        "4^2 + 5^2 + 2^2",
+                        "5^2 + 2^2 + 4^2",
+                        "5^2 + 4^2 + 2^2",
+                    ],
             ),
             (9, ["1^2 + 2^2 + 2^2", "2^2 + 1^2 + 2^2", "2^2 + 2^2 + 1^2"]),
-            (5, False),
-            (1, False),
+            (5, []),
+            (1, []),
         ]
     )
     def test_task331b(self, input_value, expected_value):
-        """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
-        n)"""
+        """
+        Testing task 331b class main logic
+        (must return number as all of combinations of sums of 3 squared numbers)
+        """
         self.assertEqual(algo.Task331b.main_logic(input_value), expected_value)
 
 

@@ -96,7 +96,6 @@ def test_task330_main_logic(number, expected_value):
     assert list(algo.Task330.main_logic(number)) == expected_value
 
 
-# Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
 @pytest.mark.parametrize(
     "sequence, expected_value",
     [
@@ -109,10 +108,13 @@ def test_task330_main_logic(number, expected_value):
     ],
 )
 def test_task178b_main_logic(sequence, expected_value):
+    """
+    Testing task 178b class main logic
+    (must find the least number, that is bigger than n and is degree of number 2)
+    """
     assert algo.Task178b.main_logic(sequence) == expected_value
 
 
-# Testing task 178c class main logic (must return amount of numbers which are the square of the even number)
 @pytest.mark.parametrize(
     "sequence, expected_value",
     [
@@ -125,10 +127,13 @@ def test_task178b_main_logic(sequence, expected_value):
     ],
 )
 def test_task178c_main_logic(sequence, expected_value):
+    """
+    Testing task 178c class main logic
+    (must return amount of numbers which are the square of the even number)
+    """
     assert algo.Task178c.main_logic(sequence) == expected_value
 
 
-# Testing task 554 class main logic (must return list of pythagorean triplets)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -149,6 +154,10 @@ def test_task178c_main_logic(sequence, expected_value):
     ],
 )
 def test_task554_main_logic(number, expected_value):
+    """
+    Testing task 554 class main logic
+    (must return list of pythagorean triplets)
+    """
     assert algo.Task554.main_logic(number + 1) == expected_value
 
 

@@ -145,12 +145,18 @@ class Task88a(TaskWithOneIntValidationParameter):
 @register
 class Task178b(TaskWithOneIntValidationParameter):
     """
-    Given natural number n and a list of n elements.
-    Find numbers which are multiples of 3 and not multiples of 5
+    178) Natural numbers n, a1,…, an are given. Define
+    number of members ak of the sequence a1,…, an:
+    b) multiples of 3 and not multiples of 5;
     """
 
     @staticmethod
-    def main_logic(sequence):
+    def main_logic(*args, **kwargs) -> int:
+        """
+        Given natural number n and a list of n elements.
+        Find numbers which are multiples of 3 and not multiples of 5
+        """
+        sequence: list = args[0]
         counter = 0
         for element in sequence:
             if element % 3 == 0 and element % 5 != 0:
@@ -159,14 +165,14 @@ class Task178b(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = input("Enter the size of sequence:")
+        size = input("Enter the size of sequence:")
         try:
-            n = self.validate_data(n)
+            size = self.validate_data(size)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for i in range(n)]
+        sequence = [input() for _ in range(size)]
         for i in range(len(sequence)):
             try:
                 sequence[i] = self.validate_data(sequence[i])
@@ -275,14 +281,18 @@ class Task243a(TaskWithOneIntValidationParameter):
 @register
 class Task178c(TaskWithOneIntValidationParameter):
     """
-    Given natural number n and a list of n elements.
-    Find numbers which are squares of even numbers.
+    178) Natural numbers n, a1,…, an are given. Define
+    number of members ak of the sequence a1,…, an:
+    c) which are squares of even numbers;
     """
 
     @staticmethod
-    def main_logic(*args, **kwargs):
-        sequence, *_ = args
-        print(sequence, _, args)
+    def main_logic(*args, **kwargs) -> int:
+        """
+        Given natural number n and a list of n elements.
+        Find numbers which are squares of even numbers.
+        """
+        sequence: list = args[0]
         counter = 0
         for element in sequence:
             root = sqrt(element)
@@ -293,14 +303,14 @@ class Task178c(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        n = input("Enter the size of sequence:")
+        number = input("Enter the size of sequence:")
         try:
-            n = self.validate_data(n)
+            number = self.validate_data(number)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for i in range(n)]
+        sequence = [input() for i in range(number)]
         for i in range(len(sequence)):
             try:
                 sequence[i] = self.validate_data(sequence[i])
@@ -358,36 +368,36 @@ class Task86a(TaskWithOneIntValidationParameter):
 @register
 class Task554(TaskWithOneIntValidationParameter):
     """
-    Finds triples less than given natural number n using Euclid's formula
-    (Modified to print not only primitive triples)
+    A natural number n is given. Get all Pythagorean
+    triples of natural numbers, each of which does not exceed n, i.e.
+    all triples of natural numbers a, b, c such that
+    a^2 + b^2 = c^2 (a ≤ b ≤ c ≤ n).
     """
 
     @staticmethod
-    def main_logic(num):
+    def main_logic(*args, **kwargs) -> list:
+        """
+        Finds triples less than given natural number n using Euclid's formula
+        (Modified to print not only primitive triples)
+        """
+        num: int = args[0]
         res = []
-        for m in range(2, ceil(sqrt(num))):
-            for n in range(1, m):
+        for m_var in range(2, ceil(sqrt(num))):
+            for n_var in range(1, m_var):
                 # m and n are coprime and not both odd
-                if gcd(m, n) == 1 and (m - n) % 2 and (m ** 2 + n ** 2) < num:
-                    a = m ** 2 - n ** 2
-                    b = 2 * m * n
-                    c = m ** 2 + n ** 2
-                    if a > b:
-                        a, b = b, a
-                    k = 1
-                    while k * c < num:
-                        res.append([k * a, k * b, k * c])
-                        print(k * a, k * b, k * c)
-                        k += 1
+                if gcd(m_var, n_var) == 1 and (m_var - n_var) % 2 and (m_var ** 2 + n_var ** 2) < num:
+                    a_var = m_var ** 2 - n_var ** 2
+                    b_var = 2 * m_var * n_var
+                    c_var = m_var ** 2 + n_var ** 2
+                    if a_var > b_var:
+                        a_var, b_var = b_var, a_var
+                    k_var = 1
+                    while k_var * c_var < num:
+                        res.append([k_var * a_var, k_var * b_var, k_var * c_var])
+                        k_var += 1
         return res
 
     def execute(self) -> None:
-        """
-        Finds triples using Euclid's formula
-        (Modified to print not only primitive triples)
-        """
-        number = input("Enter n: ")
-
         print(self.__doc__)
         number = input("Enter n: ")
         try:
@@ -395,7 +405,11 @@ class Task554(TaskWithOneIntValidationParameter):
         except ValueError:
             print("ValueError exception thrown")
             return None
-        self.main_logic(num + 1)
+        res = self.main_logic(num + 1)
+        for row in res:
+            for el in row:
+                print(el, end=' ')
+            print()
         return None
 
     @staticmethod
