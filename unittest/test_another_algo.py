@@ -1,8 +1,8 @@
-import sys
+"""
+Tests for somebody algo (unittest)
+"""
 import unittest
 from parameterized import parameterized
-
-sys.path.append("..")
 import algo
 
 
@@ -193,7 +193,8 @@ class TestTask108(unittest.TestCase):
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
     )
     def test_task108(self, input_value, expected_value):
-        """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
+        """Testing task 108 class main logic
+        ( must return the least number, that is bigger than n and is degree of number 2)"""
         self.assertEqual(algo.Task108.main_logic(input_value), expected_value)
 
 
@@ -264,7 +265,8 @@ class TestTask178d(unittest.TestCase):
         [([9, 12, 3], 0), ([18, 3, 17], 1), ([18, 3, 17, 78], 2), ([18, 3, 17, 0], 1), ([17, 17, 17, 17], 0)]
     )
     def test_task178d(self, input_value, expected_value):
-        """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+        """Testing task 178d class main logic
+        (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
         self.assertEqual(algo.Task178d.main_logic(input_value), expected_value)
 
 
@@ -336,7 +338,7 @@ class TestTask330(unittest.TestCase):
     )
     def test_task330_get_dividers(self, number, expected_value):
         """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
-        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
+        self.assertEqual(algo.Task330.get_dividers(number), expected_value)
 
     @parameterized.expand(
         [

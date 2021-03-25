@@ -1,3 +1,6 @@
+"""
+Algo tasks realisation
+"""
 from abc import ABC, abstractmethod, abstractstaticmethod
 from math import sqrt, gcd, floor, log, ceil, factorial
 from typing import List, Tuple
@@ -20,27 +23,24 @@ class AlgoInterface(ABC):
 
     @abstractmethod
     def execute(self) -> None:
-        # implement your algo task here
-        pass
+        """implement your algo task here"""
 
     @abstractstaticmethod
     def name() -> str:
         """return name of task
         user representation"""
-        pass
 
     @abstractstaticmethod
     def main_logic(*args, **kwargs):
         """return task's answer"""
-        pass
 
     @abstractstaticmethod
     def validate_data(*args, **kwargs):
         """Validation of input data"""
-        pass
 
 
 class TaskWithOneIntValidationParameter(AlgoInterface):
+    """Abstract class for validation data with one parameter"""
     @classmethod
     def validate_data(cls, *args, **kwargs):
         """Validation of data with one parameter
@@ -503,7 +503,7 @@ class Task330(TaskWithOneIntValidationParameter):
     """
 
     @staticmethod
-    def _get_dividers(numb: int) -> set[int]:
+    def get_dividers(numb: int) -> set[int]:
         """
         Finds all deviders of an integer except the number itself
         :param number: int
@@ -530,7 +530,7 @@ class Task330(TaskWithOneIntValidationParameter):
         """
         number: int = args[0]
         for i in range(2, number):
-            if sum(Task330._get_dividers(i)) == i:
+            if sum(Task330.get_dividers(i)) == i:
                 yield i
 
     def execute(self) -> None:
@@ -565,7 +565,8 @@ class Task330(TaskWithOneIntValidationParameter):
 
 @register
 class Task108(TaskWithOneIntValidationParameter):
-    """\n108. You should enter the number\nThe aim is to find the least number, that is bigger than n and is degree of number 2\n"""
+    """\n108. You should enter the number\nThe aim is to find the least number,
+    that is bigger than n and is degree of number 2\n"""
 
     # complexity - O(1)
 
@@ -964,7 +965,8 @@ def check(number, task):
 
 @register
 class Task331a(TaskWithOneIntValidationParameter):
-    """\n331 a. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
+    """\n331 a. You should enter the number.\n
+    The aim is to check whether we can represent given number as a sum of 3 number in power 2.
     And if yes, show the sum\n"""
 
     @staticmethod
@@ -995,7 +997,8 @@ class Task331a(TaskWithOneIntValidationParameter):
 
 @register
 class Task331b(TaskWithOneIntValidationParameter):
-    """\n331 b. You should enter the number.\nThe aim is to check whether we can represent given number as a sum of 3 number in power 2.
+    """\n331 b. You should enter the number.\n
+    The aim is to check whether we can represent given number as a sum of 3 number in power 2.
     And if yes, show all possible sums\n"""
 
     @staticmethod
@@ -1084,28 +1087,3 @@ class Task322(TaskWithOneIntValidationParameter):
     @staticmethod
     def name() -> str:
         return "322"
-
-
-# function for bfs search of endpoint classes
-def get_classes(cls) -> list:
-    """
-    Search endpoint classes in class hierarchy
-    Input: class subclasees of which you want to find
-    Returns list of endpoint subclasses
-    """
-    stack = set(cls.__subclasses__())
-
-    # array for all leaves
-    endpoint_classes = []
-
-    while stack:
-        current = stack.pop()
-
-        # checking if it is an rnd point class
-        if classes := current.__subclasses__():
-            stack |= {c for c in classes}
-            continue
-
-        endpoint_classes.append(current)
-
-    return endpoint_classes

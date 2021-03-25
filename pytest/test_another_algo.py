@@ -1,3 +1,6 @@
+"""
+Tests for somebody algo (pytest)
+"""
 import pytest
 import algo
 
@@ -219,7 +222,8 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
-    """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
+    """Testing task 108 class main logic
+    ( must return the least number, that is bigger than n and is degree of number 2)"""
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
@@ -290,7 +294,8 @@ def test_task331b(input_value, expected_value):
     ],
 )
 def test_task178d(input_value, expected_value):
-    """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+    """Testing task 178d class main logic
+    (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
     assert algo.Task178d.main_logic(input_value) == expected_value
 
 
@@ -364,7 +369,7 @@ def test_task86b_main_logic(number, expected_value):
 )
 def test_task330_get_dividers(number, expected_value):
     """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
-    assert algo.Task330._get_dividers(number) == expected_value
+    assert algo.Task330.get_dividers(number) == expected_value
 
 
 @pytest.mark.parametrize(
