@@ -1,3 +1,6 @@
+"""
+Tests for algo (unittest)
+"""
 import unittest
 from parameterized import parameterized
 import algo
@@ -17,7 +20,7 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
             (" 12", 12),
         ]
     )
-    def test_main_logic(self, number, expected_value):
+    def test_validation(self, number, expected_value):
         self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(number), expected_value)
 
     # Testing base class with validation method for exceptions
@@ -37,27 +40,32 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
             ("+7m", TypeError),
         ]
     )
-    def test_main_logic(self, number, expected_value):
+    def test_validation_exception(self, number, expected_value):
         self.assertRaises(expected_value, algo.TaskWithOneIntValidationParameter.validate_data, number)
 
 
 class TestTask86a(unittest.TestCase):
+    """Test class for task 86a"""
 
     # Testing task 86a class main logic (must return  amount of digits in number)
     @parameterized.expand([(1, 1), (5888, 4), ("567", 3), (1111111111, 10)])
     def test_main_logic(self, number, expected_value):
+        """Testing task 86a class main logic (must return  amount of digits in number)"""
         self.assertEqual(algo.Task86a.main_logic(number), expected_value)
 
 
 class TestTask86b(unittest.TestCase):
+    """Test class for task 86b"""
 
     # Testing task 86b class main logic (must return sum of digits in number)
     @parameterized.expand([(1, 1), (5888, 29), ("567", 18), (1111011111, 9)])
     def test_main_logic(self, number, expected_value):
+        """Testing task 86b class main logic (must return sum of digits in number)"""
         self.assertEqual(algo.Task86b.main_logic(number), expected_value)
 
 
 class TestTask330(unittest.TestCase):
+    """Test class for task 330"""
 
     # Testing task 330 class  deviders func (must return set of all deviders of the number excpet number itself)
     @parameterized.expand(
@@ -71,9 +79,10 @@ class TestTask330(unittest.TestCase):
         ],
     )
     def test_get_dividers(self, number, expected_value):
-        self.assertEqual(algo.Task330._get_dividers(number), expected_value)
+        """Testing task 330 class  dividers func (must return set of all dividers of the number except number itself)"""
+        self.assertEqual(algo.Task330.get_dividers(number), expected_value)
 
-    # Testing task 330 class main logic (must return number thats sum of deviders(from get_deviders) is equal to the number)
+    # Testing task 330 class main logic (must return number that's sum of dividers is equal to the number)
     @parameterized.expand(
         [
             (10, [6]),
@@ -87,7 +96,7 @@ class TestTask330(unittest.TestCase):
         ],
     )
     def test_main_logic(self, number, expected_value):
-        self.assertEqual([res for res in algo.Task330.main_logic(number)], expected_value)
+        self.assertEqual(list(algo.Task330.main_logic(number)), expected_value)
 
 
 class TestTask178b(unittest.TestCase):
@@ -162,8 +171,8 @@ class TestTask554(unittest.TestCase):
 
 
 class TestTask107(unittest.TestCase):
+    """Testing task 107 class main logic"""
 
-    # Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
     @parameterized.expand(
         [
             (1, 0),
@@ -183,12 +192,13 @@ class TestTask107(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
+        """Must return  the largest integer k, at which 4 ^k < m"""
         self.assertEqual(algo.Task107.main_logic(number), expected_value)
 
 
 class TestTask243a(unittest.TestCase):
+    """Testing task 243a class main logic"""
 
-    # Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
     @parameterized.expand(
         [
             (1, ()),
@@ -204,12 +214,13 @@ class TestTask243a(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
+        """Must return True if there are two numbers (x, y) that x ^2 + y ^2 = n"""
         self.assertEqual(algo.Task243a.main_logic(number), expected_value)
 
 
 class TestTask243b(unittest.TestCase):
+    """Testing task 243b class main logic"""
 
-    # Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
     @parameterized.expand(
         [
             (1, []),
@@ -234,6 +245,7 @@ class TestTask243b(unittest.TestCase):
         ]
     )
     def test_task243b_main_logic(self, number, expected_value):
+        """Must return all of the two numbers (x, y) that x ^2 + y ^2 = n"""
         self.assertEqual(algo.Task243b.main_logic(number), expected_value)
 
 
