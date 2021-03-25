@@ -1,8 +1,5 @@
-import sys
 import unittest
 from parameterized import parameterized
-
-sys.path.append("..")
 import algo
 
 
@@ -179,6 +176,7 @@ class TestTask243b(unittest.TestCase):
 
 class TestTask108(unittest.TestCase):
     """Test class for task 108"""
+
     @parameterized.expand(
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
     )
@@ -192,6 +190,7 @@ class TestTask108(unittest.TestCase):
 
 class TestTask331a(unittest.TestCase):
     """Test class for task 331a"""
+
     @parameterized.expand(
         [
             (20, []),
@@ -216,6 +215,7 @@ class TestTask331a(unittest.TestCase):
 
 class TestTask331b(unittest.TestCase):
     """Test class for task 331b"""
+
     @parameterized.expand(
         [
             (
