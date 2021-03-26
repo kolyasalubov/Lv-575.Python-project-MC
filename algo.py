@@ -105,7 +105,7 @@ class Task178d(TaskWithOneIntValidationParameter):
         sequence = [int(input()) for i in range(size)]
         for i in sequence:
             try:
-                i = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
