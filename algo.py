@@ -670,13 +670,13 @@ class Task178e(TaskWithOneIntValidationParameter):
     def main_logic(sequence):
         result = 0
         for i in sequence:
-            if 2 ** i < i and i > factorial(i):
+            if 2 ** (sequence.index(i) + 1) < i and i < factorial((sequence.index(i) + 1)):
                 result += 1
         return result
 
     def execute(self) -> None:
         print(self.__doc__)
-        size = input("Enter the size of sequence:")
+        size = input("Enter the size of sequence: ")
         try:
             size = self.validate_data(size)
         except ValueError:
@@ -686,7 +686,7 @@ class Task178e(TaskWithOneIntValidationParameter):
         sequence = [int(input()) for i in range(size)]
         for i in sequence:
             try:
-                i = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
