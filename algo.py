@@ -78,6 +78,12 @@ class TaskWithTwoIntValidationParameters(AlgoInterface):
 
 @register
 class Task178d(TaskWithOneIntValidationParameter):
+    """
+    178) Natural numbers n, a1,…, an are given.
+    Define number of members ak of the sequence a1,…, an:
+    d) which satisfy the condition: Ak < (Ak-1 + Ak+1) / 2.
+    """
+
     @staticmethod
     def main_logic(sequence):
         result = 0
@@ -87,20 +93,18 @@ class Task178d(TaskWithOneIntValidationParameter):
         return result
 
     def execute(self) -> None:
-        print("-" * 60)
-        print("Task - find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.")
-        print("-" * 60)
-        n = input("Enter the size of sequence:")
+        print(self.__doc__)
+        size = input("Enter the size of sequence:")
         try:
-            n = self.validate_data(n)
+            size = self.validate_data(size)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print("Enter sequence of integer numbers by one in row:")
-        sequence = [int(input()) for i in range(n)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for i in range(size)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(sequence[i])
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -656,30 +660,33 @@ class Task226(TaskWithTwoIntValidationParameters):
 
 @register
 class Task178e(TaskWithOneIntValidationParameter):
+    """
+    178) Natural numbers n, a1,…, an are given.
+    Define number of members ak of the sequence a1,…, an:
+    e) which satisfy the condition: 2**k < Ak < k!"
+    """
+
     @staticmethod
     def main_logic(sequence):
         result = 0
-        for i in range(len(sequence)):
-            if 2 ** i < sequence[i] and sequence[i] > factorial(i):
+        for i in sequence:
+            if 2 ** (sequence.index(i) + 1) < i and i < factorial((sequence.index(i) + 1)):
                 result += 1
         return result
 
     def execute(self) -> None:
-        print("-" * 60)
-        print("Task - find amount of elements, which satisfy the condition\n2**k < Ak < k!")
-        print("-" * 60)
-        print("Enter sequence of integer numbers by ' ':")
-        n = input("Enter the size of sequence:")
+        print(self.__doc__)
+        size = input("Enter the size of sequence: ")
         try:
-            n = self.validate_data(n)
+            size = self.validate_data(size)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print("Enter sequence of integer numbers by one in row:")
-        sequence = [int(input()) for i in range(n)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for i in range(size)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -807,30 +814,37 @@ class Task243b(TaskWithOneIntValidationParameter):
 
 @register
 class Task555(TaskWithOneIntValidationParameter):
+    """
+    Pascal's triangle is a numerical triangle in which there are ones
+    at the edges, and each number inside is equal to the sum of the
+    two above it in the nearest line above.
+    Given natural n. Get first n rows of a triangle Pascal.
+    """
+
     @staticmethod
     def main_logic(n: int):
         for i in range(n):
             for j in range(n - i + 1):
-                print(end=" ")
+                print(end=' ')
 
             for j in range(i + 1):
                 # C**k_n = n!/(k!*(n-r)!)
                 yield factorial(i) // (factorial(j) * factorial(i - j))
+            # for j in range(n - i + 1):
+            #     print(end=" ")
             yield "\n"
 
     def execute(self) -> None:
-        print("-" * 60)
-        print("Task - build first n rows of Pascal's triangle")
-        print("-" * 60)
-        print("Enter natural number:", end=" ")
-        n = int(input())
+        print(self.__doc__)
+        print("Enter natural number: ", end=" ")
+        number = int(input())
         try:
-            n = self.validate_data(n)
+            number = self.validate_data(number)
         except ValueError:
             print("ValueError exception thrown")
             return None
         print(" ", end="")
-        for i in self.main_logic(n):
+        for i in self.main_logic(number):
             print(i, end=" ")
 
         return None

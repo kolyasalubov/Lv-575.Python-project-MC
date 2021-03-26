@@ -310,10 +310,10 @@ def test_task178d(input_value, expected_value):
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
-        ([12, 45, 3, 8], 2),
-        ([2, 4, 6, 8, 4], 3),
-        ([1, 45], 1),
-        ([2, 2, 2], 1),
+        ([12, 45, 3, 19], 1),
+        ([2, 4, 6, 8, 21, 34], 0),
+        ([1, 45], 0),
+        ([2, 2, 2], 0),
     ],
 )
 def test_task178e(input_value, expected_value):
@@ -333,6 +333,54 @@ def test_task178e(input_value, expected_value):
 def test_task555(input_value, expected_value):
     """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
     assert list(algo.Task555.main_logic(input_value)) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([3, 6, 9, 12], 4),
+        ([9, 15, 21, 33], 3),
+        ([1, 45], 0),
+        ([15, 2, 4], 0),
+    ],
+)
+def test_task178b(input_value, expected_value):
+    """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+    assert algo.Task178b.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([4, 4, 4, 4], 4),
+        ([16, 36], 2),
+        ([1, 3], 0),
+        ([16, 13, 4], 2),
+    ],
+)
+def test_task178c(input_value, expected_value):
+    """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+    assert algo.Task178c.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (
+            10,
+            [
+                [3, 4, 5],
+                [6, 8, 10],
+            ],
+        ),
+        (6, [[3, 4, 5]]),
+        (11, [[3, 4, 5], [6, 8, 10]]),
+        (2, []),
+    ],
+)
+def test_task554(input_value, expected_value):
+    """Testing task 554 class main logic (return list of pythagorean triplets)"""
+    assert algo.Task554.main_logic(input_value + 1) == expected_value
 
 
 @pytest.mark.parametrize(
