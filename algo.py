@@ -85,7 +85,8 @@ class Task178d(TaskWithOneIntValidationParameter):
     """
 
     @staticmethod
-    def main_logic(sequence):
+    def main_logic(*args, **kwargs) -> int:
+        sequence: list = args[0]
         result = 0
         for i in range(1, len(sequence) - 1):
             if sequence[i] < (sequence[i - 1] + sequence[i + 1]) / 2:
@@ -667,7 +668,8 @@ class Task178e(TaskWithOneIntValidationParameter):
     """
 
     @staticmethod
-    def main_logic(sequence):
+    def main_logic(*args, **kwargs) -> int:
+        sequence: list = args[0]
         result = 0
         for i in sequence:
             if 2 ** (sequence.index(i) + 1) < i and i < factorial((sequence.index(i) + 1)):
