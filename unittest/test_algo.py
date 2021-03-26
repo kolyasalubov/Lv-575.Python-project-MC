@@ -170,6 +170,50 @@ class TestTask554(unittest.TestCase):
         self.assertEqual(algo.Task554.main_logic(number + 1), expected_value)
 
 
+class TestTask178d(unittest.TestCase):
+    """Testing task class 178d """
+
+    @parameterized.expand(
+        [([18, 3, 17], 1), ([9, 12, 3], 0), ([12, 13, 13, 14], 1), ([16, 16, 16, 16], 0)]
+    )
+    def test_task178d(self, input_value, expected_value):
+        """Testing task 178d class main logic
+        (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+        self.assertEqual(algo.Task178d.main_logic(input_value), expected_value)
+
+
+class TestTask178e(unittest.TestCase):
+    """Testing task class 178e """
+
+    @parameterized.expand(
+        [
+            ([22, 33, 13, 19], 1),
+            ([3, 6, 9, 8, 21, 37], 0),
+            ([40, 60], 0),
+            ([8, 8, 8], 0),
+        ]
+    )
+    def test_task178e(self, input_value, expected_value):
+        """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
+        self.assertEqual(algo.Task178e.main_logic(input_value), expected_value)
+
+
+class TestTask555(unittest.TestCase):
+    """Testing task class 555 """
+
+    @parameterized.expand([
+        (1, [1, '\n']),
+        (2, [1, '\n', 1, 1, '\n', ]),
+        (4, [1, '\n', 1, 1, '\n', 1, 2,
+             1, '\n', 1, 3, 3, 1, '\n']),
+        (5, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+             '\n', 1, 4, 6, 4, 1, '\n',]),
+    ])
+    def test_task555(self, input_value, expected_value):
+        """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+        self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
+
+
 class TestTask107(unittest.TestCase):
     """Testing task 107 class main logic"""
 

@@ -105,7 +105,7 @@ class Task178d(TaskWithOneIntValidationParameter):
         sequence = [int(input()) for i in range(size)]
         for i in sequence:
             try:
-                i = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -177,10 +177,10 @@ class Task178b(TaskWithOneIntValidationParameter):
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for _ in range(size)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for _ in range(size)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -315,10 +315,10 @@ class Task178c(TaskWithOneIntValidationParameter):
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for i in range(number)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for i in range(number)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -824,9 +824,11 @@ class Task555(TaskWithOneIntValidationParameter):
     """
 
     @staticmethod
-    def main_logic(n: int):
-        for i in range(n):
-            for j in range(n - i + 1):
+    def main_logic(*args, **kwargs) -> int:
+
+        number: int = args[0]
+        for i in range(number):
+            for j in range(number - i + 1):
                 print(end=' ')
 
             for j in range(i + 1):
