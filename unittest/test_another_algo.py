@@ -282,10 +282,10 @@ class TestTask178e(unittest.TestCase):
 
     @parameterized.expand(
         [
-            ([12, 45, 3, 8], 2),
-            ([2, 4, 6, 8, 4], 3),
-            ([1, 45], 1),
-            ([2, 2, 2], 1),
+            ([12, 45, 3, 19], 1),
+            ([2, 4, 6, 8, 21, 34], 0),
+            ([1, 45], 0),
+            ([2, 2, 2], 0),
         ]
     )
     def test_task178e(self, input_value, expected_value):
