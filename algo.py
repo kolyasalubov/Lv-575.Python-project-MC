@@ -40,7 +40,9 @@ class AlgoInterface(ABC):
 
 
 class TaskWithOneIntValidationParameter(AlgoInterface):
-    """Abstract class for validation data with one parameter"""
+    """
+    Abstract class for validation data with one parameter
+    """
     @classmethod
     def validate_data(cls, *args, **kwargs):
         """Validation of data with one parameter
@@ -251,12 +253,14 @@ class Task243a(TaskWithOneIntValidationParameter):
         for y_number in range(1, int(sqrt(n_number)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
-            x_number = sqrt((n_number_square + y_number) * (n_number_square - y_number))
+            x_number = sqrt((n_number_square + y_number)
+                            * (n_number_square - y_number))
             if int(x_number) == x_number:
                 if int(x_number) >= y_number:
                     return int(x_number), y_number
 
-            elif abs(round(x_number) - x_number) < 0.0000000001:  # prevention of calculation errors
+            # prevention of calculation errors
+            elif abs(round(x_number) - x_number) < 0.0000000001:
                 if round(x_number) >= y_number:
                     return round(x_number), y_number
 
@@ -275,7 +279,8 @@ class Task243a(TaskWithOneIntValidationParameter):
 
         exists = self.main_logic(n_number)
         if exists:
-            print("{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n_number))
+            print(
+                "{x1} ^2 + {x2} ^2 = {N}".format(x1=exists[0], x2=exists[1], N=n_number))
         else:
             print("This number cannot be represented as the sum of two squares")
 
@@ -357,6 +362,7 @@ class Task86a(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         """input natural number N \n
         find amount of its digits"""
+        print(self.__doc__)
         input_data = input("Enter number: ")
 
         try:
@@ -404,7 +410,8 @@ class Task554(TaskWithOneIntValidationParameter):
                         a_var, b_var = b_var, a_var
                     k_var = 1
                     while k_var * c_var < num:
-                        res.append([k_var * a_var, k_var * b_var, k_var * c_var])
+                        res.append(
+                            [k_var * a_var, k_var * b_var, k_var * c_var])
                         k_var += 1
         return res
 
@@ -503,6 +510,7 @@ class Task86b(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         """input natural number N \n
         find sum of its digits"""
+        print(self.__doc__)
 
         input_data = input("Enter number N: ")
         try:
@@ -786,12 +794,14 @@ class Task243b(TaskWithOneIntValidationParameter):
         for y_number in range(1, int(sqrt(n_number)) + 1):
             # n = x^2 + y^2
             # x^2 = sqrt(n)^2 - y^2 = (sq + y) * (sq - y)
-            x_number = sqrt((n_number_square + y_number) * (n_number_square - y_number))
+            x_number = sqrt((n_number_square + y_number)
+                            * (n_number_square - y_number))
             if int(x_number) == x_number:
                 if int(x_number) >= y_number:
                     squares_numbers.append((int(x_number), y_number))
 
-            elif abs(round(x_number) - x_number) < 0.0000000001:  # prevention of calculation errors
+            # prevention of calculation errors
+            elif abs(round(x_number) - x_number) < 0.0000000001:
                 if round(x_number) >= y_number:
                     squares_numbers.append((round(x_number), y_number))
 
@@ -812,7 +822,8 @@ class Task243b(TaskWithOneIntValidationParameter):
 
         if all_squares:
             for pair in all_squares:
-                print("{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n_number))
+                print(
+                    "{x1} ^2 + {x2} ^2 = {N}".format(x1=pair[0], x2=pair[1], N=n_number))
         else:
             print("This number cannot be represented as the sum of two squares")
 
