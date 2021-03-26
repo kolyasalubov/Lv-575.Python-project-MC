@@ -177,10 +177,10 @@ class Task178b(TaskWithOneIntValidationParameter):
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for _ in range(size)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for _ in range(size)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
@@ -315,10 +315,10 @@ class Task178c(TaskWithOneIntValidationParameter):
             print("ValueError exception thrown")
             return None
         print("Enter the elements of sequence:")
-        sequence = [input() for i in range(number)]
-        for i in range(len(sequence)):
+        sequence = [int(input()) for i in range(number)]
+        for i in sequence:
             try:
-                sequence[i] = self.validate_data(sequence[i])
+                i = self.validate_data(i)
             except ValueError:
                 print("ValueError exception thrown")
                 return None
