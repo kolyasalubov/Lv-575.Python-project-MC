@@ -309,6 +309,60 @@ class TestTask555(unittest.TestCase):
         self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
 
 
+class TestTask178b(unittest.TestCase):
+    """Testing task class 178e """
+
+    @parameterized.expand(
+        [
+            ([3, 6, 9, 12], 4),
+            ([9, 15, 21, 33], 3),
+            ([1, 45], 0),
+            ([15, 2, 4], 0),
+        ]
+    )
+    def test_task178b(self, input_value, expected_value):
+        """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+        self.assertEqual(algo.Task178b.main_logic(input_value), expected_value)
+
+
+class TestTask178c(unittest.TestCase):
+    """Testing task class 178e """
+
+    @parameterized.expand(
+        [
+            ([4, 4, 4, 4], 4),
+            ([16, 36], 2),
+            ([1, 3], 0),
+            ([16, 13, 4], 2),
+        ]
+    )
+    def test_task178c(self, input_value, expected_value):
+        """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+        self.assertEqual(algo.Task178c.main_logic(input_value), expected_value)
+
+
+class TestTask554(unittest.TestCase):
+    """Testing task class 178e """
+
+    @parameterized.expand(
+        [
+            (
+                10,
+                [
+                    [3, 4, 5],
+                    [6, 8, 10],
+                ],
+            ),
+            (6, [[3, 4, 5]]),
+            (11, [[3, 4, 5], [6, 8, 10]]),
+            (2, []),
+        ],
+    )
+    def test_task554(self, input_value, expected_value):
+        """Testing task 554 class main logic (return list of pythagorean triplets)"""
+        self.assertEqual(algo.Task554.main_logic(input_value + 1), expected_value)
+
+
 class TestTask86a(unittest.TestCase):
     """Testing all methods of task 86a class"""
 

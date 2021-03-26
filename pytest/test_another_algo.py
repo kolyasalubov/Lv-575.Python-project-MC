@@ -336,6 +336,54 @@ def test_task555(input_value, expected_value):
 
 
 @pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([3, 6, 9, 12], 4),
+        ([9, 15, 21, 33], 3),
+        ([1, 45], 0),
+        ([15, 2, 4], 0),
+    ],
+)
+def test_task178b(input_value, expected_value):
+    """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+    assert algo.Task178b.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([4, 4, 4, 4], 4),
+        ([16, 36], 2),
+        ([1, 3], 0),
+        ([16, 13, 4], 2),
+    ],
+)
+def test_task178c(input_value, expected_value):
+    """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+    assert algo.Task178c.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (
+            10,
+            [
+                [3, 4, 5],
+                [6, 8, 10],
+            ],
+        ),
+        (6, [[3, 4, 5]]),
+        (11, [[3, 4, 5], [6, 8, 10]]),
+        (2, []),
+    ],
+)
+def test_task554(input_value, expected_value):
+    """Testing task 554 class main logic (return list of pythagorean triplets)"""
+    assert algo.Task554.main_logic(input_value + 1) == expected_value
+
+
+@pytest.mark.parametrize(
     "number, expected_value",
     [(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)],
 )
