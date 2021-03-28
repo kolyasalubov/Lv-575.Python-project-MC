@@ -464,12 +464,16 @@ class TestTask559(unittest.TestCase):
 
 
 class TestTask88a(unittest.TestCase):
+    """Testing all methods of task 88a class"""
     @parameterized.expand([(3, "NO"), (6, "YES"), (18, "YES"), (13, "NO")])
     def test_task88a_main_logic(self, number, expected_value):
+        """Testing task 88a class main logic"""
         self.assertEqual(algo.Task88a.main_logic(number), expected_value)
 
 
 class TestTask88b(unittest.TestCase):
+    """Testing all methods of task 88b class"""
     @parameterized.expand([(3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)])
     def test_task88b_main_logic(self, number, expected_value):
+        """Testing task 88b class main logic"""
         self.assertEqual(algo.Task88b.main_logic(number), expected_value)

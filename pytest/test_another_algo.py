@@ -123,7 +123,6 @@ def test_task87_main_logic(number, quantity, expected_value):
         (10, 3, []),
         (6, 15, [30, 60]),
         (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
-        (71, 140, []),
     ],
 )
 def test_task226_main_logic(number1, number2, expected_value):
@@ -139,7 +138,6 @@ def test_task226_main_logic(number1, number2, expected_value):
         (1, []),
         (8, [3, 7]),
         (8000, [3, 7, 31, 127]),
-        (5, [3]),
         (13172, [3, 7, 31, 127, 8191]),
     ],
 )
@@ -160,7 +158,6 @@ def test_task559_main_logic(number, expected_value):
         (45, 2),
         (64, 2),
         (65, 3),
-        (95, 3),
         (100, 3),
         (256, 3),
         (257, 4),
