@@ -108,14 +108,17 @@ class TestTask332(unittest.TestCase):
 
 
 class TestTask87(unittest.TestCase):
+    """Testing task 87"""
     @parameterized.expand(
         [("49850", 2, 5), ("14", 2, 5), ("548736", 4, 24), ("5870", 1, 0), ("247845225", 1, 5), ("558062862", 5, 24)]
     )
     def test_main_logic(self, number, quantity, expected_value):
+        """Testing task 87 class main logic"""
         self.assertEqual(algo.Task87.main_logic(number, quantity), expected_value)
 
 
 class TestTask226(unittest.TestCase):
+    """Testing task 226"""
     @parameterized.expand(
         [
             (10, 3, []),
@@ -125,10 +128,12 @@ class TestTask226(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number1, number2, expected_value):
+        """Testing task 226 class main logic"""
         self.assertEqual(algo.Task226.main_logic(number1, number2), expected_value)
 
 
 class TestTask559(unittest.TestCase):
+    """Testing task 559"""
     @parameterized.expand(
         [
             (126, [3, 7, 31]),
@@ -141,6 +146,7 @@ class TestTask559(unittest.TestCase):
         ],
     )
     def test_main_logic(self, number, expected_value):
+        """Testing task 559 class main logic"""
         self.assertEqual(algo.Task559.main_logic(number), expected_value)
 
 
