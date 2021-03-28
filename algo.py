@@ -556,7 +556,7 @@ class Task108(TaskWithOneIntValidationParameter):
     def execute(self) -> None:
         """Input data"""
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
@@ -915,8 +915,8 @@ class Task332(TaskWithOneIntValidationParameter):
 def check(number, task):
     """Function to check in tasks 331a and 331b"""
     array = []
-    for i in range(1, int(ceil(sqrt(number)))):
-        for j in range(1, int(ceil(sqrt(number - i ** 2)))):
+    for i in range(1, int(sqrt(number))):
+        for j in range(1, int(sqrt(number - i ** 2))):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
                 array.append(str(i) + "^2 + " + str(j) + "^2 + " + str(int(third ** (1 / 2))) + "^2")
@@ -931,13 +931,14 @@ class Task331a(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(*args, **kwargs) -> List[str]:
+        """Method return the sum of 3 squares"""
         number: int = args[0]
         result = check(number, "331 a")
         return result
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
@@ -961,13 +962,14 @@ class Task331b(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(*args, **kwargs) -> List[str]:
+        """Method return list of all possible sums of 3 squares"""
         number: int = args[0]
         result = check(number, "331 b")
         return result
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
