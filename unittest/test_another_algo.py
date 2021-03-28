@@ -193,16 +193,16 @@ class TestTask331a(unittest.TestCase):
 
     @parameterized.expand(
         [
-            (20, False),
+            (20, []),
             (3, ["1^2 + 1^2 + 1^2"]),
             (26, ["1^2 + 3^2 + 4^2"]),
-            (1, False),
+            (1, []),
             (42, ["1^2 + 4^2 + 5^2"]),
-            (4, False),
-            (7, False),
+            (4, []),
+            (7, []),
             (9, ["1^2 + 2^2 + 2^2"]),
             (6, ["1^2 + 1^2 + 2^2"]),
-            (5, False),
+            (5, []),
         ]
     )
     def test_task331a(self, input_value, expected_value):
@@ -238,8 +238,8 @@ class TestTask331b(unittest.TestCase):
                 ],
             ),
             (9, ["1^2 + 2^2 + 2^2", "2^2 + 1^2 + 2^2", "2^2 + 2^2 + 1^2"]),
-            (5, False),
-            (1, False),
+            (5, []),
+            (1, []),
         ]
     )
     def test_task331b(self, input_value, expected_value):

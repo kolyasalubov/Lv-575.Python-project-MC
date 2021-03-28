@@ -232,22 +232,41 @@ class TestTask243b(unittest.TestCase):
 
 
 class TestTask108(unittest.TestCase):
+    """
+    Testing task 108
+    """
     @parameterized.expand([(2, 4), (123, 128), (1034, 2048), (100020, 131072)])
     def test_task108_main_logic(self, number, expected_value):
+        """
+        Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)
+        :param: int
+        :return: int
+        """
         self.assertEqual(algo.Task108.main_logic(number), expected_value)
 
 
 class TestTask331a(unittest.TestCase):
-    @parameterized.expand([(19, ["1^2 + 3^2 + 3^2"]), (20, False), (75, ["1^2 + 5^2 + 7^2"]), (4, False)])
+    """
+    Testing task 331a
+    """
+    @parameterized.expand([(19, ["1^2 + 3^2 + 3^2"]), (20, []), (75, ["1^2 + 5^2 + 7^2"]), (4, [])])
     def test_task331a_main_logic(self, number, expected_value):
+        """
+        Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)
+        :param int
+        :return: list
+        """
         self.assertEqual(algo.Task331a.main_logic(number), expected_value)
 
 
 class TestTask331b(unittest.TestCase):
+    """
+    Testing task 331b
+    """
     @parameterized.expand(
         [
             (19, ["1^2 + 3^2 + 3^2", "3^2 + 1^2 + 3^2", "3^2 + 3^2 + 1^2"]),
-            (20, False),
+            (20, []),
             (
                 75,
                 [
@@ -260,10 +279,16 @@ class TestTask331b(unittest.TestCase):
                     "7^2 + 5^2 + 1^2",
                 ],
             ),
-            (4, False),
+            (4, []),
         ]
     )
     def test_task331b_main_logic(self, number, expected_value):
+        """
+        Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2,
+        that is equal to n)
+        :param int
+        :return: list
+        """
         self.assertEqual(algo.Task331b.main_logic(number), expected_value)
 
 
