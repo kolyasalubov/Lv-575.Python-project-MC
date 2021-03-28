@@ -179,6 +179,9 @@ class Task178b(TaskWithOneIntValidationParameter):
         except ValueError:
             print("ValueError exception thrown")
             return None
+        except TypeError:
+            print("TypeError exception thrown")
+            return None
         print("Enter the elements of sequence:")
         sequence = [int(input()) for _ in range(size)]
         for i in sequence:
@@ -328,6 +331,9 @@ class Task178c(TaskWithOneIntValidationParameter):
             except ValueError:
                 print("ValueError exception thrown")
                 return None
+            except TypeError:
+                print("TypeError exception thrown")
+                return None
 
         print("Result:", self.main_logic(sequence))
         return None
@@ -417,6 +423,9 @@ class Task554(TaskWithOneIntValidationParameter):
             num = self.validate_data(number)
         except ValueError:
             print("ValueError exception thrown")
+            return None
+        except TypeError:
+            print("TypeError exception thrown")
             return None
         res = self.main_logic(num + 1)
         for row in res:
