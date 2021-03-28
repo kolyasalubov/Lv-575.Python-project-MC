@@ -1,3 +1,6 @@
+"""
+Tests for somebody algo (pytest)
+"""
 import pytest
 import algo
 
@@ -56,6 +59,7 @@ def test_task_with_one_int_validation_parameter_validate_data_exception(input_nu
     ],
 )
 def test_task88c(input_value, expected_value):
+    """Testing task 88c class main logic (Swap the first and last digits of n)"""
     assert algo.Task88c.main_logic(input_value) == expected_value
 
 
@@ -74,6 +78,7 @@ def test_task88c(input_value, expected_value):
     ],
 )
 def test_task88d(input_value, expected_value):
+    """Testing task 88d class main logic (Add the number 1 to the beginning and end of n)"""
     assert algo.Task88d.main_logic(input_value) == expected_value
 
 
@@ -92,6 +97,7 @@ def test_task88d(input_value, expected_value):
     ],
 )
 def test_task332(input_value, expected_value):
+    """Testing task 332 class main logic (Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n)"""
     assert algo.Task332.main_logic(input_value) == expected_value
 
 
@@ -117,7 +123,6 @@ def test_task87_main_logic(number, quantity, expected_value):
         (10, 3, []),
         (6, 15, [30, 60]),
         (250, 110, [2750, 5500, 8250, 11000, 13750, 16500, 19250, 22000, 24750]),
-        (71, 140, []),
     ],
 )
 def test_task226_main_logic(number1, number2, expected_value):
@@ -133,7 +138,6 @@ def test_task226_main_logic(number1, number2, expected_value):
         (1, []),
         (8, [3, 7]),
         (8000, [3, 7, 31, 127]),
-        (5, [3]),
         (13172, [3, 7, 31, 127, 8191]),
     ],
 )
@@ -142,6 +146,7 @@ def test_task559_main_logic(number, expected_value):
     assert algo.Task559.main_logic(number) == expected_value
 
 
+# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
@@ -153,7 +158,6 @@ def test_task559_main_logic(number, expected_value):
         (45, 2),
         (64, 2),
         (65, 3),
-        (95, 3),
         (100, 3),
         (256, 3),
         (257, 4),
@@ -163,6 +167,7 @@ def test_task107_main_logic(input_value, expected_value):
     assert algo.Task107.main_logic(input_value) == expected_value
 
 
+# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -180,6 +185,7 @@ def test_task243a_main_logic(number, expected_value):
     assert algo.Task243a.main_logic(number) == expected_value
 
 
+# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -213,27 +219,33 @@ def test_task243b_main_logic(number, expected_value):
     ],
 )
 def test_task108(input_value, expected_value):
-    """Testing task 108 class main logic ( must return the least number, that is bigger than n and is degree of number 2)"""
+    """
+    Testing task 108 class main logic
+    (must return the least number, that is bigger than n and is degree of number 2)
+    """
     assert algo.Task108.main_logic(input_value) == expected_value
 
 
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
-        (20, False),
+        (20, []),
         (3, ["1^2 + 1^2 + 1^2"]),
         (26, ["1^2 + 3^2 + 4^2"]),
-        (1, False),
+        (1, []),
         (42, ["1^2 + 4^2 + 5^2"]),
-        (4, False),
-        (7, False),
+        (4, []),
+        (7, []),
         (9, ["1^2 + 2^2 + 2^2"]),
         (6, ["1^2 + 1^2 + 2^2"]),
-        (5, False),
+        (5, []),
     ],
 )
 def test_task331a(input_value, expected_value):
-    """Testing task 331a class main logic ( must return the sum of 3 integers in power 2, that is equal to n)"""
+    """
+    Testing task 331a class main logic
+    (must return number as a sum of 3 squared numbers)
+    """
     assert algo.Task331a.main_logic(input_value) == expected_value
 
 
@@ -263,13 +275,15 @@ def test_task331a(input_value, expected_value):
             ],
         ),
         (9, ["1^2 + 2^2 + 2^2", "2^2 + 1^2 + 2^2", "2^2 + 2^2 + 1^2"]),
-        (5, False),
-        (1, False),
+        (5, []),
+        (1, []),
     ],
 )
 def test_task331b(input_value, expected_value):
-    """Testing task 331b class main logic ( must return the array of sums of 3 integers in power 2, that is equal to
-    n)"""
+    """
+    Testing task 331b class main logic
+    (must return number as all of combinations of sums of 3 squared numbers)
+    """
     assert algo.Task331b.main_logic(input_value) == expected_value
 
 
@@ -284,17 +298,18 @@ def test_task331b(input_value, expected_value):
     ],
 )
 def test_task178d(input_value, expected_value):
-    """Testing task 178d class main logic (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+    """Testing task 178d class main logic
+    (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
     assert algo.Task178d.main_logic(input_value) == expected_value
 
 
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
-        ([12, 45, 3, 8], 2),
-        ([2, 4, 6, 8, 4], 3),
-        ([1, 45], 1),
-        ([2, 2, 2], 1),
+        ([12, 45, 3, 19], 1),
+        ([2, 4, 6, 8, 21, 34], 0),
+        ([1, 45], 0),
+        ([2, 2, 2], 0),
     ],
 )
 def test_task178e(input_value, expected_value):
@@ -302,76 +317,66 @@ def test_task178e(input_value, expected_value):
     assert algo.Task178e.main_logic(input_value) == expected_value
 
 
-@pytest.mark.parametrize(
-    "input_value, expected_value",
-    [
-        (1, [1, "\n"]),
-        (
-            2,
-            [
-                1,
-                "\n",
-                1,
-                1,
-                "\n",
-            ],
-        ),
-        (
-            4,
-            [
-                1,
-                "\n",
-                1,
-                1,
-                "\n",
-                1,
-                2,
-                1,
-                "\n",
-                1,
-                3,
-                3,
-                1,
-                "\n",
-            ],
-        ),
-        (
-            6,
-            [
-                1,
-                "\n",
-                1,
-                1,
-                "\n",
-                1,
-                2,
-                1,
-                "\n",
-                1,
-                3,
-                3,
-                1,
-                "\n",
-                1,
-                4,
-                6,
-                4,
-                1,
-                "\n",
-                1,
-                5,
-                10,
-                10,
-                5,
-                1,
-                "\n",
-            ],
-        ),
-    ],
-)
+@pytest.mark.parametrize("input_value, expected_value",
+                         [
+                             (1, [1, '\n']),
+                             (2, [1, '\n', 1, 1, '\n', ]),
+                             (4, [1, '\n', 1, 1, '\n', 1, 2,
+                                  1, '\n', 1, 3, 3, 1, '\n', ]),
+                             (6, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+                                  '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
+                         ])
 def test_task555(input_value, expected_value):
     """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
     assert list(algo.Task555.main_logic(input_value)) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([3, 6, 9, 12], 4),
+        ([9, 15, 21, 33], 3),
+        ([1, 45], 0),
+        ([15, 2, 4], 0),
+    ],
+)
+def test_task178b(input_value, expected_value):
+    """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+    assert algo.Task178b.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([4, 4, 4, 4], 4),
+        ([16, 36], 2),
+        ([1, 3], 0),
+        ([16, 13, 4], 2),
+    ],
+)
+def test_task178c(input_value, expected_value):
+    """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+    assert algo.Task178c.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (
+            10,
+            [
+                [3, 4, 5],
+                [6, 8, 10],
+            ],
+        ),
+        (6, [[3, 4, 5]]),
+        (11, [[3, 4, 5], [6, 8, 10]]),
+        (2, []),
+    ],
+)
+def test_task554(input_value, expected_value):
+    """Testing task 554 class main logic (return list of pythagorean triplets)"""
+    assert algo.Task554.main_logic(input_value + 1) == expected_value
 
 
 @pytest.mark.parametrize(
@@ -416,7 +421,7 @@ def test_task86b_main_logic(number, expected_value):
 )
 def test_task330_get_dividers(number, expected_value):
     """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
-    assert algo.Task330._get_dividers(number) == expected_value
+    assert algo.Task330.get_dividers(number) == expected_value
 
 
 @pytest.mark.parametrize(

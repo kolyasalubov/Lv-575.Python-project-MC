@@ -1,3 +1,6 @@
+"""
+Tests for algo (pytest)
+"""
 import algo
 import pytest
 
@@ -71,7 +74,7 @@ def test_task86b_main_logic(number, expected_value):
     ],
 )
 def test_task330_get_dividers(number, expected_value):
-    assert algo.Task330._get_dividers(number) == expected_value
+    assert algo.Task330.get_dividers(number) == expected_value
 
 
 # Testing task 330 class main logic (must return number thats sum of dividers(from get_dividers) is equal to the number)
@@ -93,7 +96,6 @@ def test_task330_main_logic(number, expected_value):
     assert list(algo.Task330.main_logic(number)) == expected_value
 
 
-# Testing task 178b class main logic (must return amount of numbers divided by 3 and not divided by 5 in a sequence)
 @pytest.mark.parametrize(
     "sequence, expected_value",
     [
@@ -106,10 +108,13 @@ def test_task330_main_logic(number, expected_value):
     ],
 )
 def test_task178b_main_logic(sequence, expected_value):
+    """
+    Testing task 178b class main logic
+    (must find the least number, that is bigger than n and is degree of number 2)
+    """
     assert algo.Task178b.main_logic(sequence) == expected_value
 
 
-# Testing task 178c class main logic (must return amount of numbers which are the square of the even number)
 @pytest.mark.parametrize(
     "sequence, expected_value",
     [
@@ -122,10 +127,56 @@ def test_task178b_main_logic(sequence, expected_value):
     ],
 )
 def test_task178c_main_logic(sequence, expected_value):
+    """
+    Testing task 178c class main logic
+    (must return amount of numbers which are the square of the even number)
+    """
     assert algo.Task178c.main_logic(sequence) == expected_value
 
 
-# Testing task 554 class main logic (must return list of pythagorean triplets)
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([18, 3, 17], 1),
+        ([9, 12, 3], 0),
+        ([12, 13, 13, 14], 1),
+        ([16, 16, 16, 16], 0),
+    ],
+)
+def test_task178d(input_value, expected_value):
+    """Testing task 178d class main logic
+    (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+    assert algo.Task178d.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        ([22, 33, 13, 19], 1),
+        ([3, 6, 9, 8, 21, 37], 0),
+        ([40, 60], 0),
+        ([8, 8, 8], 0),
+    ],
+)
+def test_task178e(input_value, expected_value):
+    """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
+    assert algo.Task178e.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize("input_value, expected_value",
+                         [
+                             (1, [1, '\n']),
+                             (2, [1, '\n', 1, 1, '\n', ]),
+                             (4, [1, '\n', 1, 1, '\n', 1, 2,
+                                  1, '\n', 1, 3, 3, 1, '\n']),
+                             (5, [1, '\n', 1, 1, '\n', 1, 2, 1, '\n', 1, 3, 3, 1,
+                                  '\n', 1, 4, 6, 4, 1, '\n',]),
+                         ])
+def test_task555(input_value, expected_value):
+    """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+    assert list(algo.Task555.main_logic(input_value)) == expected_value
+
+
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -146,10 +197,13 @@ def test_task178c_main_logic(sequence, expected_value):
     ],
 )
 def test_task554_main_logic(number, expected_value):
+    """
+    Testing task 554 class main logic
+    (must return list of pythagorean triplets)
+    """
     assert algo.Task554.main_logic(number + 1) == expected_value
 
 
-# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -170,10 +224,10 @@ def test_task554_main_logic(number, expected_value):
     ],
 )
 def test_task107_main_logic(number, expected_value):
+    """Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)"""
     assert algo.Task107.main_logic(number) == expected_value
 
 
-# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -190,10 +244,10 @@ def test_task107_main_logic(number, expected_value):
     ],
 )
 def test_task243a_main_logic(number, expected_value):
+    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
     assert algo.Task243a.main_logic(number) == expected_value
 
 
-# Testing task 243b class main logic (must return all of the two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -219,6 +273,7 @@ def test_task243a_main_logic(number, expected_value):
     ],
 )
 def test_task243b_main_logic(number, expected_value):
+    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
     assert algo.Task243b.main_logic(number) == expected_value
 
 
