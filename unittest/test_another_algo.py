@@ -23,7 +23,9 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         ]
     )
     def test_task_with_one_int_validation_parameter_validate_data_right(self, input_number, expected_number):
-        """Testing base class with validation method for correct number answer"""
+        """
+        Testing base class with validation method for correct number answer
+        """
         self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(input_number), expected_number)
 
     @parameterized.expand(
@@ -40,7 +42,9 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         ]
     )
     def test_task_with_one_int_validation_parameter_validate_data_exception(self, input_number, expected_exception):
-        """Testing base class with validation method for exceptions"""
+        """
+        Testing base class with validation method for exceptions
+        """
         self.assertRaises(expected_exception, algo.TaskWithOneIntValidationParameter.validate_data, input_number)
 
 
@@ -61,7 +65,9 @@ class TestTask88c(unittest.TestCase):
         ]
     )
     def test_task88c(self, input_value, expected_value):
-        """Swap the first and last digits of n"""
+        """
+        Swap the first and last digits of n
+        """
         self.assertEqual(algo.Task88c.main_logic(input_value), expected_value)
 
 
@@ -82,12 +88,14 @@ class TestTask88d(unittest.TestCase):
         ]
     )
     def test_task88d(self, input_value, expected_value):
-        """Add the number 1 to the beginning and end of n"""
+        """
+        Add the number 1 to the beginning and end of n
+        """
         self.assertEqual(algo.Task88d.main_logic(input_value), expected_value)
 
 
 class TestTask332(unittest.TestCase):
-    """esting task 332 class main logic"""
+    """Testing task 332 class main logic"""
 
     @parameterized.expand(
         [
@@ -103,7 +111,9 @@ class TestTask332(unittest.TestCase):
         ]
     )
     def test_task332(self, input_value, expected_value):
-        """Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n"""
+        """
+        Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n
+        """
         self.assertEqual(algo.Task332.main_logic(input_value), expected_value)
 
 

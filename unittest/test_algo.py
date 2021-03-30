@@ -7,8 +7,8 @@ import algo
 
 
 class TestTaskWithOneIntValidationParameter(unittest.TestCase):
+    """Test class for one validation parameter"""
 
-    # Testing base class with validation method for corrext number answer
     @parameterized.expand(
         [
             (1, 1),
@@ -21,9 +21,11 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         ]
     )
     def test_validation(self, number, expected_value):
+        """
+        Testing base class with validation method for correct number answer
+        """
         self.assertEqual(algo.TaskWithOneIntValidationParameter.validate_data(number), expected_value)
 
-    # Testing base class with validation method for exceptions
     @parameterized.expand(
         [
             ("1.2", TypeError),
@@ -41,6 +43,9 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
         ]
     )
     def test_validation_exception(self, number, expected_value):
+        """
+        Testing base class with validation method for exceptions
+        """
         self.assertRaises(expected_value, algo.TaskWithOneIntValidationParameter.validate_data, number)
 
 
@@ -236,7 +241,9 @@ class TestTask107(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
-        """Must return  the largest integer k, at which 4 ^k < m"""
+        """
+        Must return  the largest integer k, at which 4 ^k < m
+        """
         self.assertEqual(algo.Task107.main_logic(number), expected_value)
 
 
@@ -258,7 +265,9 @@ class TestTask243a(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number, expected_value):
-        """Must return True if there are two numbers (x, y) that x ^2 + y ^2 = n"""
+        """
+        Must return True if there are two numbers (x, y) that x ^2 + y ^2 = n
+        """
         self.assertEqual(algo.Task243a.main_logic(number), expected_value)
 
 
@@ -289,7 +298,9 @@ class TestTask243b(unittest.TestCase):
         ]
     )
     def test_task243b_main_logic(self, number, expected_value):
-        """Must return all of the two numbers (x, y) that x ^2 + y ^2 = n"""
+        """
+        Must return all of the two numbers (x, y) that x ^2 + y ^2 = n
+        """
         self.assertEqual(algo.Task243b.main_logic(number), expected_value)
 
 
