@@ -220,7 +220,9 @@ class TestTask555(unittest.TestCase):
 
 
 class TestTask107(unittest.TestCase):
-    """Testing task 107 class main logic"""
+    """
+    Testing task 107 class main logic
+    """
 
     @parameterized.expand(
         [
@@ -248,7 +250,9 @@ class TestTask107(unittest.TestCase):
 
 
 class TestTask243a(unittest.TestCase):
-    """Testing task 243a class main logic"""
+    """
+    Testing task 243a class main logic
+    """
 
     @parameterized.expand(
         [
@@ -272,7 +276,9 @@ class TestTask243a(unittest.TestCase):
 
 
 class TestTask243b(unittest.TestCase):
-    """Testing task 243b class main logic"""
+    """
+    Testing task 243b class main logic
+    """
 
     @parameterized.expand(
         [

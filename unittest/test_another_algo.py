@@ -7,7 +7,9 @@ import algo
 
 
 class TestTaskWithOneIntValidationParameter(unittest.TestCase):
-    """Class for testing tasks with one int validation parameter"""
+    """
+    Class for testing tasks with one int validation parameter
+    """
 
     @parameterized.expand(
         [
@@ -49,7 +51,9 @@ class TestTaskWithOneIntValidationParameter(unittest.TestCase):
 
 
 class TestTask88c(unittest.TestCase):
-    """Testing task 88c class main logic"""
+    """
+    Testing task 88c class main logic
+    """
 
     @parameterized.expand(
         [
@@ -72,7 +76,9 @@ class TestTask88c(unittest.TestCase):
 
 
 class TestTask88d(unittest.TestCase):
-    """Testing task 88d class main logic"""
+    """
+    Testing task 88d class main logic
+    """
 
     @parameterized.expand(
         [
@@ -95,7 +101,9 @@ class TestTask88d(unittest.TestCase):
 
 
 class TestTask332(unittest.TestCase):
-    """Testing task 332 class main logic"""
+    """
+    Testing task 332 class main logic
+    """
 
     @parameterized.expand(
         [
