@@ -203,19 +203,25 @@ class Task178b(TaskWithOneIntValidationParameter):
 @register
 class Task107(TaskWithOneIntValidationParameter):
     """
-    A natural number n is given.
+    A natural number m is given.
     Find the largest integer k such that 4 ^k < m
     """
 
     @staticmethod
     def main_logic(*args, **kwargs) -> int:
-        """Return  the largest integer k, at which 4 ^k < m"""
+        """
+        Return  the largest integer k, at which 4 ^k < m
+        """
         m_number: int = args[0]
         k: float = log(m_number, 4)
         k: int = int(k) if k != int(k) or k == 0 else int(k) - 1
         return k
 
     def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+        :return: None
+        """
         print(self.__doc__)
 
         input_data = input("Enter m: ")
@@ -247,7 +253,9 @@ class Task243a(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(*args, **kwargs) -> tuple:
-        """Check if there are two numbers (x, y) that x ^2 + y ^2 = n"""
+        """
+        Check if there are two numbers (x, y) that x ^2 + y ^2 = n
+        """
         n_number: int = args[0]
         n_number_square: float = sqrt(n_number)
 
@@ -268,6 +276,10 @@ class Task243a(TaskWithOneIntValidationParameter):
         return ()
 
     def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+        :return: None
+        """
         print(self.__doc__)
 
         input_data = input("Enter n: ")
@@ -786,7 +798,9 @@ class Task243b(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(*args, **kwargs) -> List[Tuple[int, int]]:
-        """Find all of the two numbers (x, y) that x ^2 + y ^2 = n"""
+        """
+        Find all of the two numbers (x, y) that x ^2 + y ^2 = n
+        """
         n_number: int = args[0]
         n_number_square: float = sqrt(n_number)
 
@@ -809,6 +823,10 @@ class Task243b(TaskWithOneIntValidationParameter):
         return squares_numbers
 
     def execute(self) -> None:
+        """
+        Processes user behavior and displays results
+        :return: None
+        """
         print(self.__doc__)
 
         input_data = input("Enter n: ")
