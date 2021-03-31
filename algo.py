@@ -957,7 +957,9 @@ class Task88c(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(n: int) -> int:
-        """Switches first and last digits of the number"""
+        """
+        Switches first and last digits of the number
+        """
 
         n = str(n)
         return int(n) if len(n) == 1 else int(n[-1] + n[1:-1] + n[0])
