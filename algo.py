@@ -160,8 +160,11 @@ class Task88a(TaskWithOneIntValidationParameter):
         number = int(input("Input natural number: "))
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input number")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         print("Is 3 in n^2?", result)
@@ -250,8 +253,11 @@ class Task107(TaskWithOneIntValidationParameter):
 
         try:
             m_number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         k = self.main_logic(m_number)
@@ -308,10 +314,12 @@ class Task243a(TaskWithOneIntValidationParameter):
 
         try:
             n_number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
             return None
-
+        except TypeError:
+            print("Invalid type of input number")
+            return None
         exists = self.main_logic(n_number)
         if exists:
             print(
@@ -404,10 +412,12 @@ class Task86a(TaskWithOneIntValidationParameter):
 
         try:
             number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
             return None
-
+        except TypeError:
+            print("Invalid type of input number")
+            return None
         # number must be natural
         print(self.main_logic(number))
 
@@ -560,8 +570,11 @@ class Task86b(TaskWithOneIntValidationParameter):
         input_data = input("Enter number N: ")
         try:
             number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         # number must be natural
@@ -627,8 +640,11 @@ class Task330(TaskWithOneIntValidationParameter):
         number = input("Enter number N: ")
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         # general complixity of print all "ideal" numbers till number N
@@ -671,8 +687,11 @@ class Task108(TaskWithOneIntValidationParameter):
         number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         print("r = ", floor(log(number, 2)) + 1)
@@ -824,8 +843,11 @@ class Task559(TaskWithOneIntValidationParameter):
 
         try:
             number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("You've entered not natural number")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         # number must be natural
@@ -885,8 +907,11 @@ class Task243b(TaskWithOneIntValidationParameter):
 
         try:
             n_number = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         all_squares = self.main_logic(n_number)
@@ -972,8 +997,11 @@ class Task88c(TaskWithOneIntValidationParameter):
 
         try:
             n = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         print("Result: {}".format(self.main_logic(n)))
@@ -1006,8 +1034,11 @@ class Task88d(TaskWithOneIntValidationParameter):
             "Enter N to insert digit 1 on the start and last positions of the number : ")
         try:
             n = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         print("Result: {}".format(self.main_logic(n)))
@@ -1058,8 +1089,11 @@ class Task332(TaskWithOneIntValidationParameter):
             "Enter N to find Lagrange decomposition coefficients : ")
         try:
             n = self.validate_data(input_data)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
 
         for i, x in enumerate(self.main_logic(n)):
@@ -1110,8 +1144,11 @@ class Task331a(TaskWithOneIntValidationParameter):
         number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         if not result:
@@ -1147,8 +1184,11 @@ class Task331b(TaskWithOneIntValidationParameter):
         number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input!")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         if not result:
@@ -1181,8 +1221,11 @@ class Task88b(TaskWithOneIntValidationParameter):
         number = int(input("Input natural number: "))
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input number")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         print("Result = ", result)
@@ -1235,8 +1278,11 @@ class Task322(TaskWithOneIntValidationParameter):
         number = int(input("Input natural number: "))
         try:
             number = self.validate_data(number)
-        except (ValueError, TypeError):
+        except ValueError:
             print("Wrong input number")
+            return None
+        except TypeError:
+            print("Invalid type of input number")
             return None
         result = self.main_logic(number)
         print("Result = ", result)
