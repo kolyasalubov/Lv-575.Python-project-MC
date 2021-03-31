@@ -18,7 +18,9 @@ import pytest
     ],
 )
 def test_task_with_one_int_validation_parameter_validate_data(number, expected_value):
-    """Testing base class with validation method for correct number answer"""
+    """
+    Testing base class with validation method for correct number answer
+    """
 
     assert algo.TaskWithOneIntValidationParameter.validate_data(number) == expected_value
 
@@ -41,7 +43,9 @@ def test_task_with_one_int_validation_parameter_validate_data(number, expected_v
     ],
 )
 def test_task_with_one_int_validation_parameter_validate_exceptions(number, expected_value):
-    """Testing base class with validation method for exceptions"""
+    """
+    Testing base class with validation method for exceptions
+    """
 
     with pytest.raises(expected_value):
         algo.TaskWithOneIntValidationParameter.validate_data(number)
@@ -224,7 +228,9 @@ def test_task554_main_logic(number, expected_value):
     ],
 )
 def test_task107_main_logic(number, expected_value):
-    """Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)"""
+    """
+    Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
+    """
     assert algo.Task107.main_logic(number) == expected_value
 
 
@@ -244,7 +250,9 @@ def test_task107_main_logic(number, expected_value):
     ],
 )
 def test_task243a_main_logic(number, expected_value):
-    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
+    """
+    Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    """
     assert algo.Task243a.main_logic(number) == expected_value
 
 
@@ -273,7 +281,9 @@ def test_task243a_main_logic(number, expected_value):
     ],
 )
 def test_task243b_main_logic(number, expected_value):
-    """Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)"""
+    """
+    Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    """
     assert algo.Task243b.main_logic(number) == expected_value
 
 

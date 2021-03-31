@@ -20,7 +20,9 @@ import algo
     ],
 )
 def test_task_with_one_int_validation_parameter_validate_data_right(input_number, expected_number):
-    """Testing base class with validation method for correct number answer"""
+    """
+    Testing base class with validation method for correct number answer
+    """
     assert algo.TaskWithOneIntValidationParameter.validate_data(input_number) == expected_number
 
 
@@ -39,7 +41,9 @@ def test_task_with_one_int_validation_parameter_validate_data_right(input_number
     ],
 )
 def test_task_with_one_int_validation_parameter_validate_data_exception(input_number, expected_exception):
-    """Testing base class with validation method for exceptions"""
+    """
+    Testing base class with validation method for exceptions
+    """
     with pytest.raises(expected_exception):
         algo.TaskWithOneIntValidationParameter.validate_data(input_number)
 
@@ -59,7 +63,9 @@ def test_task_with_one_int_validation_parameter_validate_data_exception(input_nu
     ],
 )
 def test_task88c(input_value, expected_value):
-    """Testing task 88c class main logic (Swap the first and last digits of n)"""
+    """
+    Testing task 88c class main logic (Swap the first and last digits of n)
+    """
     assert algo.Task88c.main_logic(input_value) == expected_value
 
 
@@ -78,7 +84,9 @@ def test_task88c(input_value, expected_value):
     ],
 )
 def test_task88d(input_value, expected_value):
-    """Testing task 88d class main logic (Add the number 1 to the beginning and end of n)"""
+    """
+    Testing task 88d class main logic (Add the number 1 to the beginning and end of n)
+    """
     assert algo.Task88d.main_logic(input_value) == expected_value
 
 
@@ -97,7 +105,9 @@ def test_task88d(input_value, expected_value):
     ],
 )
 def test_task332(input_value, expected_value):
-    """Testing task 332 class main logic (Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n)"""
+    """
+    Testing task 332 class main logic (Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n)
+    """
     assert algo.Task332.main_logic(input_value) == expected_value
 
 
