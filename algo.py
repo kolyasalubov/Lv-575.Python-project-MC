@@ -1005,8 +1005,8 @@ class Task332(TaskWithOneIntValidationParameter):
 def check(number, task):
     """Function to check in tasks 331a and 331b"""
     array = []
-    for i in range(1, int(sqrt(number))):
-        for j in range(1, int(sqrt(number - i ** 2))):
+    for i in range(1, int(sqrt(number)+1)):
+        for j in range(1, int(sqrt(number - i ** 2))+1):
             third = number - i ** 2 - j ** 2
             if third > 0 and float(third ** (1 / 2)) % 1 == 0:
                 array.append(str(i) + "^2 + " + str(j) + "^2 + " +
