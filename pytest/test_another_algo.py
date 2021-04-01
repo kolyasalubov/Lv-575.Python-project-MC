@@ -113,7 +113,9 @@ def test_task332(input_value, expected_value):
     ],
 )
 def test_task87_main_logic(number, quantity, expected_value):
-    """Testing task 87 class main logic"""
+    """
+    Testing task 87 class main logic
+    """
     assert algo.Task87.main_logic(number, quantity) == expected_value
 
 
@@ -126,7 +128,9 @@ def test_task87_main_logic(number, quantity, expected_value):
     ],
 )
 def test_task226_main_logic(number1, number2, expected_value):
-    """Testing task 226 class main logic"""
+    """
+    Testing task 226 class main logic
+    """
     assert algo.Task226.main_logic(number1, number2) == expected_value
 
 
@@ -142,7 +146,9 @@ def test_task226_main_logic(number1, number2, expected_value):
     ],
 )
 def test_task559_main_logic(number, expected_value):
-    """Testing task 559 class main logic"""
+    """
+    Testing task 559 class main logic
+    """
     assert algo.Task559.main_logic(number) == expected_value
 
 
@@ -384,7 +390,9 @@ def test_task554(input_value, expected_value):
     [(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)],
 )
 def test_task86a_main_logic(number, expected_value):
-    """Testing task 86a class main logic (must return  amount of digits in number)"""
+    """
+    Testing task 86a class main logic (must return  amount of digits in number)
+    """
     assert algo.Task86a.main_logic(number) == expected_value
 
 
@@ -403,7 +411,9 @@ def test_task86a_main_logic(number, expected_value):
     ],
 )
 def test_task86b_main_logic(number, expected_value):
-    """Testing task 86b class main logic (must return sum of digits in number)"""
+    """
+    Testing task 86b class main logic (must return sum of digits in number)
+    """
     assert algo.Task86b.main_logic(number) == expected_value
 
 
@@ -420,7 +430,9 @@ def test_task86b_main_logic(number, expected_value):
     ],
 )
 def test_task330_get_dividers(number, expected_value):
-    """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
+    """
+    Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)
+    """
     assert algo.Task330.get_dividers(number) == expected_value
 
 
@@ -436,5 +448,7 @@ def test_task330_get_dividers(number, expected_value):
     ],
 )
 def test_task330_main_logic(number, expected_value):
-    """Testing task 330 main logic (must return number that's sum of dividers is equal to the number)"""
+    """
+    Testing task 330 main logic (must return number that's sum of dividers is equal to the number)
+    """
     assert list(algo.Task330.main_logic(number)) == expected_value

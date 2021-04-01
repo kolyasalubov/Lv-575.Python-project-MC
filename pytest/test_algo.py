@@ -462,7 +462,9 @@ def test_task559_main_logic(number, expected_value):
 
 @pytest.mark.parametrize("number, expected_value", [(3, "NO"), (6, "YES"), (18, "YES"), (13, "NO")])
 def test_task88a_main_logic(number, expected_value):
-    """Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)"""
+    """
+    Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)
+    """
     assert algo.Task88a.main_logic(number) == expected_value
 
 
@@ -471,5 +473,7 @@ def test_task88a_main_logic(number, expected_value):
     [(3, 3), (121, 121), (1222, 2221), (1250, 521), (54789, 98745)],
 )
 def test_task88b_main_logic(number, expected_value):
-    """Testing task 88b class main logic ( input number n, we should revert it)"""
+    """
+    Testing task 88b class main logic ( input number n, we should revert it)
+    """
     assert algo.Task88b.main_logic(number) == expected_value

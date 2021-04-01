@@ -122,11 +122,15 @@ class Task178d(TaskWithOneIntValidationParameter):
 
 @register
 class Task88a(TaskWithOneIntValidationParameter):
-    """A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2."""
+    """
+    A natural number n is given. Find out whether the digit 3 is included in the record of the number n^2.
+    """
 
     @staticmethod
     def main_logic(*args, **kwargs) -> str:
-        """Return YES or NO whether the digit 3 is included in the record of the number n^2."""
+        """
+        Return YES or NO whether the digit 3 is included in the record of the number n^2.
+        """
         number: int = args[0]
         if isinstance(number, int) and number > 0:
             if str(number * number).find("3") != -1:
@@ -135,7 +139,7 @@ class Task88a(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
@@ -1082,17 +1086,21 @@ class Task331b(TaskWithOneIntValidationParameter):
 
 @register
 class Task88b(TaskWithOneIntValidationParameter):
-    """A natural number n is given. Reverse the order of the digits of the number n."""
+    """
+    A natural number n is given. Reverse the order of the digits of the number n.
+    """
 
     @staticmethod
     def main_logic(*args, **kwargs) -> int:
-        """Return the reversed number n."""
+        """
+        Return the reversed number n.
+        """
         number: int = args[0]
         return int("".join(reversed(str(number))))
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
@@ -1108,7 +1116,9 @@ class Task88b(TaskWithOneIntValidationParameter):
 
 
 def divisor(number):
-    """find all divisors of the number"""
+    """
+    find all divisors of the number
+    """
     sum_of_divisors = 0
     for i in range(1, ceil(sqrt(number))):
         if i * i == number:
@@ -1122,17 +1132,21 @@ def divisor(number):
 
 @register
 class Task322(TaskWithOneIntValidationParameter):
-    """Find a natural number from 1 to 10,000 with the maximum
-    the sum of divisors."""
+    """
+    Find a natural number from 1 to n with the maximum
+    the sum of divisors.
+    """
 
     @staticmethod
     def main_logic(*args, **kwargs) -> int:
-        """Return a number with the maximum sum of divisors"""
+        """
+        Return a number with the maximum sum of divisors
+        """
         number: int = args[0]
         number += 1
         maximal = 0
         number_with_maximal_sum = 0
-        for i in range(1, 10001):
+        for i in range(1, number):
             if divisor(i) > maximal:
                 maximal = divisor(i)
                 number_with_maximal_sum = i
@@ -1140,7 +1154,7 @@ class Task322(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except (ValueError, TypeError):
