@@ -22,10 +22,11 @@ if __name__ == "__main__":
         # handaling wrong input
         try:
             position = int(input("Execute task (index): ")) - 1
-            if not 0 <= position < len(tasks):
-                raise IndexError
-        except (IndexError, ValueError):
-            print("Wrong index!")
+        except ValueError:
+            print("Not a valid input")
+            continue
+        if not 0 <= position < len(tasks):
+            print("Index out of range!")
             continue
 
         # executing algorithm
