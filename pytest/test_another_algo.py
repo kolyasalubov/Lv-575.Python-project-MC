@@ -123,7 +123,9 @@ def test_task332(input_value, expected_value):
     ],
 )
 def test_task87_main_logic(number, quantity, expected_value):
-    """Testing task 87 class main logic"""
+    """
+    Testing task 87 class main logic
+    """
     assert algo.Task87.main_logic(number, quantity) == expected_value
 
 
@@ -136,7 +138,9 @@ def test_task87_main_logic(number, quantity, expected_value):
     ],
 )
 def test_task226_main_logic(number1, number2, expected_value):
-    """Testing task 226 class main logic"""
+    """
+    Testing task 226 class main logic
+    """
     assert algo.Task226.main_logic(number1, number2) == expected_value
 
 
@@ -152,11 +156,12 @@ def test_task226_main_logic(number1, number2, expected_value):
     ],
 )
 def test_task559_main_logic(number, expected_value):
-    """Testing task 559 class main logic"""
+    """
+    Testing task 559 class main logic
+    """
     assert algo.Task559.main_logic(number) == expected_value
 
 
-# Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
 @pytest.mark.parametrize(
     "input_value, expected_value",
     [
@@ -174,10 +179,12 @@ def test_task559_main_logic(number, expected_value):
     ],
 )
 def test_task107_main_logic(input_value, expected_value):
+    """
+    Testing task 107 class main logic (must return  the largest integer k, at which 4 ^k < m)
+    """
     assert algo.Task107.main_logic(input_value) == expected_value
 
 
-# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -192,10 +199,12 @@ def test_task107_main_logic(input_value, expected_value):
     ],
 )
 def test_task243a_main_logic(number, expected_value):
+    """
+    Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    """
     assert algo.Task243a.main_logic(number) == expected_value
 
 
-# Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
 @pytest.mark.parametrize(
     "number, expected_value",
     [
@@ -210,6 +219,9 @@ def test_task243a_main_logic(number, expected_value):
     ],
 )
 def test_task243b_main_logic(number, expected_value):
+    """
+    Testing task 243a class main logic (must return True if there are two numbers (x, y) that x ^2 + y ^2 = n)
+    """
     assert algo.Task243b.main_logic(number) == expected_value
 
 
@@ -308,8 +320,10 @@ def test_task331b(input_value, expected_value):
     ],
 )
 def test_task178d(input_value, expected_value):
-    """Testing task 178d class main logic
-    (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+    """
+    Testing task 178d class main logic
+    (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)
+    """
     assert algo.Task178d.main_logic(input_value) == expected_value
 
 
@@ -323,7 +337,9 @@ def test_task178d(input_value, expected_value):
     ],
 )
 def test_task178e(input_value, expected_value):
-    """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
+    """
+    Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)
+    """
     assert algo.Task178e.main_logic(input_value) == expected_value
 
 
@@ -337,7 +353,9 @@ def test_task178e(input_value, expected_value):
                                   '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
                          ])
 def test_task555(input_value, expected_value):
-    """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+    """
+    Testing task 555 class main logic (build first n rows of Pascal's triangle)
+    """
     assert list(algo.Task555.main_logic(input_value)) == expected_value
 
 
@@ -351,7 +369,9 @@ def test_task555(input_value, expected_value):
     ],
 )
 def test_task178b(input_value, expected_value):
-    """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+    """
+    Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)
+    """
     assert algo.Task178b.main_logic(input_value) == expected_value
 
 
@@ -365,7 +385,9 @@ def test_task178b(input_value, expected_value):
     ],
 )
 def test_task178c(input_value, expected_value):
-    """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+    """
+    Testing task 178c class main logic (Find numbers which are squares of even numbers)
+    """
     assert algo.Task178c.main_logic(input_value) == expected_value
 
 
@@ -385,7 +407,9 @@ def test_task178c(input_value, expected_value):
     ],
 )
 def test_task554(input_value, expected_value):
-    """Testing task 554 class main logic (return list of pythagorean triplets)"""
+    """
+    Testing task 554 class main logic (return list of pythagorean triplets)
+    """
     assert algo.Task554.main_logic(input_value + 1) == expected_value
 
 
@@ -394,7 +418,9 @@ def test_task554(input_value, expected_value):
     [(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)],
 )
 def test_task86a_main_logic(number, expected_value):
-    """Testing task 86a class main logic (must return  amount of digits in number)"""
+    """
+    Testing task 86a class main logic (must return  amount of digits in number)
+    """
     assert algo.Task86a.main_logic(number) == expected_value
 
 
@@ -413,7 +439,9 @@ def test_task86a_main_logic(number, expected_value):
     ],
 )
 def test_task86b_main_logic(number, expected_value):
-    """Testing task 86b class main logic (must return sum of digits in number)"""
+    """
+    Testing task 86b class main logic (must return sum of digits in number)
+    """
     assert algo.Task86b.main_logic(number) == expected_value
 
 
@@ -430,7 +458,9 @@ def test_task86b_main_logic(number, expected_value):
     ],
 )
 def test_task330_get_dividers(number, expected_value):
-    """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
+    """
+    Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)
+    """
     assert algo.Task330.get_dividers(number) == expected_value
 
 
@@ -446,5 +476,7 @@ def test_task330_get_dividers(number, expected_value):
     ],
 )
 def test_task330_main_logic(number, expected_value):
-    """Testing task 330 main logic (must return number that's sum of dividers is equal to the number)"""
+    """
+    Testing task 330 main logic (must return number that's sum of dividers is equal to the number)
+    """
     assert list(algo.Task330.main_logic(number)) == expected_value

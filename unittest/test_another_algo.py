@@ -126,17 +126,23 @@ class TestTask332(unittest.TestCase):
 
 
 class TestTask87(unittest.TestCase):
-    """Testing task 87"""
+    """
+    Testing task 87
+    """
     @parameterized.expand(
         [("49850", 2, 5), ("14", 2, 5), ("548736", 4, 24), ("5870", 1, 0), ("247845225", 1, 5), ("558062862", 5, 24)]
     )
     def test_main_logic(self, number, quantity, expected_value):
-        """Testing task 87 class main logic"""
+        """
+        Testing task 87 class main logic
+        """
         self.assertEqual(algo.Task87.main_logic(number, quantity), expected_value)
 
 
 class TestTask226(unittest.TestCase):
-    """Testing task 226"""
+    """
+    Testing task 226
+    """
     @parameterized.expand(
         [
             (10, 3, []),
@@ -146,12 +152,16 @@ class TestTask226(unittest.TestCase):
         ]
     )
     def test_main_logic(self, number1, number2, expected_value):
-        """Testing task 226 class main logic"""
+        """
+        Testing task 226 class main logic
+        """
         self.assertEqual(algo.Task226.main_logic(number1, number2), expected_value)
 
 
 class TestTask559(unittest.TestCase):
-    """Testing task 559"""
+    """
+    Testing task 559
+    """
     @parameterized.expand(
         [
             (126, [3, 7, 31]),
@@ -164,7 +174,9 @@ class TestTask559(unittest.TestCase):
         ],
     )
     def test_main_logic(self, number, expected_value):
-        """Testing task 559 class main logic"""
+        """
+        Testing task 559 class main logic
+        """
         self.assertEqual(algo.Task559.main_logic(number), expected_value)
 
 
@@ -211,7 +223,9 @@ class TestTask243b(unittest.TestCase):
 
 
 class TestTask108(unittest.TestCase):
-    """Test class for task 108"""
+    """
+    Test class for task 108
+    """
 
     @parameterized.expand(
         [(5, 8), (16, 32), (1, 2), (65, 128), (8, 16), (55, 64), (256, 512), (1000, 1024), (13, 16), (2, 4)]
@@ -225,7 +239,9 @@ class TestTask108(unittest.TestCase):
 
 
 class TestTask331a(unittest.TestCase):
-    """Test class for task 331a"""
+    """
+    Test class for task 331a
+    """
 
     @parameterized.expand(
         [
@@ -250,7 +266,9 @@ class TestTask331a(unittest.TestCase):
 
 
 class TestTask331b(unittest.TestCase):
-    """Test class for task 331b"""
+    """
+    Test class for task 331b
+    """
 
     @parameterized.expand(
         [
@@ -290,19 +308,25 @@ class TestTask331b(unittest.TestCase):
 
 
 class TestTask178d(unittest.TestCase):
-    """Testing task class 178d """
+    """
+    Testing task class 178d
+    """
 
     @parameterized.expand(
         [([9, 12, 3], 0), ([18, 3, 17], 1), ([18, 3, 17, 78], 2), ([18, 3, 17, 0], 1), ([17, 17, 17, 17], 0)]
     )
     def test_task178d(self, input_value, expected_value):
-        """Testing task 178d class main logic
-        (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)"""
+        """
+        Testing task 178d class main logic
+        (find amount of elements, which satisfy the condition\nAk < (Ak-1 + Ak+1) / 2.)
+        """
         self.assertEqual(algo.Task178d.main_logic(input_value), expected_value)
 
 
 class TestTask178e(unittest.TestCase):
-    """Testing task class 178e """
+    """
+    Testing task class 178e
+    """
 
     @parameterized.expand(
         [
@@ -313,12 +337,16 @@ class TestTask178e(unittest.TestCase):
         ]
     )
     def test_task178e(self, input_value, expected_value):
-        """Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)"""
+        """
+        Testing task 178e class main logic (find amount of elements, which satisfy the condition\n2**k < Ak < k!)
+        """
         self.assertEqual(algo.Task178e.main_logic(input_value), expected_value)
 
 
 class TestTask555(unittest.TestCase):
-    """Testing task class 555 """
+    """
+    Testing task class 555
+    """
 
     @parameterized.expand([
         (1, [1, '\n']),
@@ -329,12 +357,16 @@ class TestTask555(unittest.TestCase):
              '\n', 1, 4, 6, 4, 1, '\n', 1, 5, 10, 10, 5, 1, '\n', ]),
     ])
     def test_task555(self, input_value, expected_value):
-        """Testing task 555 class main logic (build first n rows of Pascal's triangle)"""
+        """
+        Testing task 555 class main logic (build first n rows of Pascal's triangle)
+        """
         self.assertEqual([*algo.Task555.main_logic(input_value)], expected_value)
 
 
 class TestTask178b(unittest.TestCase):
-    """Testing task class 178e """
+    """
+    Testing task class 178e
+    """
 
     @parameterized.expand(
         [
@@ -345,12 +377,16 @@ class TestTask178b(unittest.TestCase):
         ]
     )
     def test_task178b(self, input_value, expected_value):
-        """Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)"""
+        """
+        Testing task 178b class main logic (Find numbers which are multiples of 3 and not multiples of 5)
+        """
         self.assertEqual(algo.Task178b.main_logic(input_value), expected_value)
 
 
 class TestTask178c(unittest.TestCase):
-    """Testing task class 178e """
+    """
+    Testing task class 178e
+    """
 
     @parameterized.expand(
         [
@@ -361,12 +397,16 @@ class TestTask178c(unittest.TestCase):
         ]
     )
     def test_task178c(self, input_value, expected_value):
-        """Testing task 178c class main logic (Find numbers which are squares of even numbers)"""
+        """
+        Testing task 178c class main logic (Find numbers which are squares of even numbers)
+        """
         self.assertEqual(algo.Task178c.main_logic(input_value), expected_value)
 
 
 class TestTask554(unittest.TestCase):
-    """Testing task class 178e """
+    """
+    Testing task class 178e
+    """
 
     @parameterized.expand(
         [
@@ -383,32 +423,44 @@ class TestTask554(unittest.TestCase):
         ],
     )
     def test_task554(self, input_value, expected_value):
-        """Testing task 554 class main logic (return list of pythagorean triplets)"""
+        """
+        Testing task 554 class main logic (return list of pythagorean triplets)
+        """
         self.assertEqual(algo.Task554.main_logic(input_value + 1), expected_value)
 
 
 class TestTask86a(unittest.TestCase):
-    """Testing all methods of task 86a class"""
+    """
+    Testing all methods of task 86a class
+    """
 
     @parameterized.expand([(15, 2), (441, 3), (9, 1), (123456798, 9), (15263, 5), (10526374859632104512, 20)])
     def test_task86a(self, input_value, expected_value):
-        """Testing task 86a class main logic (must return  amount of digits in number)"""
+        """
+        Testing task 86a class main logic (must return  amount of digits in number)
+        """
         self.assertEqual(algo.Task86a.main_logic(input_value), expected_value)
 
 
 class TestTask86b(unittest.TestCase):
-    """Testing all methods of task 86b class"""
+    """
+    Testing all methods of task 86b class
+    """
 
     @parameterized.expand(
         [(15, 6), (441, 9), (9, 9), (123456798, 45), (15263, 17), (0, 0), (10000, 1), (11111, 5), (1991, 20)]
     )
     def test_task86b(self, input_value, expected_value):
-        """Testing task 86b class main logic (must return sum of digits in number)"""
+        """
+        Testing task 86b class main logic (must return sum of digits in number)
+        """
         self.assertEqual(algo.Task86b.main_logic(input_value), expected_value)
 
 
 class TestTask330(unittest.TestCase):
-    """Testing all methods of task 330 class"""
+    """
+    Testing all methods of task 330 class
+    """
 
     @parameterized.expand(
         [
@@ -422,7 +474,9 @@ class TestTask330(unittest.TestCase):
         ]
     )
     def test_task330_get_dividers(self, number, expected_value):
-        """Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)"""
+        """
+        Testing task 330 class  dividers func (must return set of all dividers of the number expect number itself)
+        """
         self.assertEqual(algo.Task330.get_dividers(number), expected_value)
 
     @parameterized.expand(
@@ -436,5 +490,7 @@ class TestTask330(unittest.TestCase):
         ]
     )
     def test_task330_main_logic(self, number, expected_value):
-        """Testing task 330 main logic (must return number that's sum of dividers is equal to the number)"""
+        """
+        Testing task 330 main logic (must return number that's sum of dividers is equal to the number)
+        """
         self.assertEqual(list(algo.Task330.main_logic(number)), expected_value)
