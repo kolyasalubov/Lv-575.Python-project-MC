@@ -533,3 +533,62 @@ def test_task88b_main_logic(number, expected_value):
     Testing task 88b class main logic ( input number n, we should revert it)
     """
     assert algo.Task88b.main_logic(number) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (1, 1),
+        (3, 3),
+        (234, 432),
+        (2347689, 9347682),
+        (55, 55),
+        (13, 31),
+        (9934792443522434, 4934792443522439),
+    ],
+)
+def test_task88c(input_value, expected_value):
+    """
+    Testing task 88c class main logic (Swaps the first and last digits of number)
+    """
+    assert algo.Task88c.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (2, 121),
+        (21, 1211),
+        (234, 12341),
+        (73451, 1734511),
+        (333, 13331),
+        (293480293702432, 12934802937024321),
+        (0, 101),
+    ],
+)
+def test_task88d(input_value, expected_value):
+    """
+    Testing task 88d class main logic (Adds the digit 1 to the beginning and end of the number)
+    """
+    assert algo.Task88d.main_logic(input_value) == expected_value
+
+
+@pytest.mark.parametrize(
+    "input_value, expected_value",
+    [
+        (1, [1, 0, 0, 0]),
+        (3, [1, 1, 1, 0]),
+        (31, [5, 2, 1, 1]),
+        (310, [17, 4, 2, 1]),
+        (2137, [46, 4, 2, 1]),
+        (2140, [46, 4, 2, 2]),
+        (2141, [46, 5, 0, 0]),
+
+    ],
+)
+def test_task332(input_value, expected_value):
+    """
+    Testing task 332 class main logic (Finds natural x1, x2, x3, x4 which satisfy the condition of equality:
+                                                                              x1^2 + x2^2 + x3^2 + x4^2 = n)
+    """
+    assert algo.Task332.main_logic(input_value) == expected_value

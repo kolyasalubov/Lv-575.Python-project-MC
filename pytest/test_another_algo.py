@@ -49,6 +49,41 @@ def test_task_with_one_int_validation_parameter_validate_data_exception(input_nu
 
 
 @pytest.mark.parametrize(
+    "number, expected_value",
+    [
+        (1, "NO"),
+        (6, "YES"),
+        (19, "YES"),
+        (4, "NO"),
+        (15, "NO"),
+        (73, "YES"),
+    ],
+)
+def test_task88a_main_logic(number, expected_value):
+    """
+    Testing task 88a class main logic ( input number n, we should check, if 3 is in n^2 number)
+    """
+    assert algo.Task88a.main_logic(number) == expected_value
+
+
+@pytest.mark.parametrize(
+    "number, expected_value",
+    [
+        (4, 4),
+        (123, 321),
+        (45678, 87654),
+        (100, 1),
+        (2130000, 312),
+    ],
+)
+def test_task88b_main_logic(number, expected_value):
+    """
+    Testing task 88b class main logic ( input number n, we should revert it)
+    """
+    assert algo.Task88b.main_logic(number) == expected_value
+
+
+@pytest.mark.parametrize(
     "input_value, expected_value",
     [
         (1, 1),

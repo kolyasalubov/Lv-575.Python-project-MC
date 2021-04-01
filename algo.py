@@ -1022,7 +1022,9 @@ class Task88d(TaskWithOneIntValidationParameter):
 
     @staticmethod
     def main_logic(n: int) -> int:
-        """Inserts digit 1 on the start and last positions"""
+        """
+        Inserts digit 1 on the start and last positions
+        """
 
         n = str(n)
         return int("1" + n + "1")
@@ -1053,12 +1055,14 @@ class Task88d(TaskWithOneIntValidationParameter):
 class Task332(TaskWithOneIntValidationParameter):
     """
     A natural number n is given.
-    Find non-negative x1, x2, x3, x4 such that x1^2 + x2^2 + x3^2 + x4^2 = n
+    Finds natural x1, x2, x3, x4 which satisfy the condition of equality: x1^2 + x2^2 + x3^2 + x4^2 = n
     """
 
     @staticmethod
     def main_logic(n: int) -> List[int]:
-        """Returns coefficients of distribution of a natural number into 4 squares"""
+        """
+        Returns coefficients of distribution of a natural number into 4 squares
+        """
 
         res, tmp_res, counter = 0, 0, 0
         xs = [0, 0, 0, 0]

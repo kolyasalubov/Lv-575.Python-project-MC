@@ -494,3 +494,44 @@ class TestTask330(unittest.TestCase):
         Testing task 330 main logic (must return number that's sum of dividers is equal to the number)
         """
         self.assertEqual(list(algo.Task330.main_logic(number)), expected_value)
+
+
+class TestTask88a(unittest.TestCase):
+    """
+    Testing all methods of task 88a class
+    """
+    @parameterized.expand(
+        [
+            (1, "NO"),
+            (6, "YES"),
+            (19, "YES"),
+            (4, "NO"),
+            (15, "NO"),
+            (73, "YES"),
+        ],
+    )
+    def test_task88a_main_logic(self, number, expected_value):
+        """
+        Testing task 88a class main logic
+        """
+        self.assertEqual(algo.Task88a.main_logic(number), expected_value)
+
+
+class TestTask88b(unittest.TestCase):
+    """
+    Testing all methods of task 88b class
+    """
+    @parameterized.expand(
+        [
+            (4, 4),
+            (123, 321),
+            (45678, 87654),
+            (100, 1),
+            (2130000, 312),
+        ],
+    )
+    def test_task88b_main_logic(self, number, expected_value):
+        """
+        Testing task 88b class main logic
+        """
+        self.assertEqual(algo.Task88b.main_logic(number), expected_value)
