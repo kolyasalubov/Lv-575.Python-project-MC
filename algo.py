@@ -157,7 +157,7 @@ class Task88a(TaskWithOneIntValidationParameter):
 
     def execute(self) -> None:
         print(self.__doc__)
-        number = int(input("Input natural number: "))
+        number = input("Input natural number: ")
         try:
             number = self.validate_data(number)
         except ValueError:
@@ -166,7 +166,7 @@ class Task88a(TaskWithOneIntValidationParameter):
         except TypeError:
             print("Invalid type of input number")
             return None
-        result = self.main_logic(number)
+        result = self.main_logic(int(number))
         print("Is 3 in n^2?", result)
         return None
 
