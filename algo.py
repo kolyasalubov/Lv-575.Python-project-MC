@@ -1055,7 +1055,7 @@ class Task88d(TaskWithOneIntValidationParameter):
 class Task332(TaskWithOneIntValidationParameter):
     """
     A natural number n is given.
-    (Finds natural x1, x2, x3, x4 which satisfy the condition of equality: x1^2 + x2^2 + x3^2 + x4^2 = n)
+    Finds natural x1, x2, x3, x4 which satisfy the condition of equality: x1^2 + x2^2 + x3^2 + x4^2 = n
     """
 
     @staticmethod
